@@ -1,4 +1,0 @@
-C:/Users/niumu/Refocusing/camera_screen/cam_to_screen_platform/zynq_fsbl/build/CMakeFiles/fsbl.elf.dir
-C:/Users/niumu/Refocusing/camera_screen/cam_to_screen_platform/zynq_fsbl/build/CMakeFiles/print_build_info.dir
-C:/Users/niumu/Refocusing/camera_screen/cam_to_screen_platform/zynq_fsbl/build/CMakeFiles/edit_cache.dir
-C:/Users/niumu/Refocusing/camera_screen/cam_to_screen_platform/zynq_fsbl/build/CMakeFiles/rebuild_cache.dir
