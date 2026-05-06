@@ -1,0 +1,142 @@
+####### CAMERA MODULE #######
+
+# PCLK
+create_clock -period 41.667 -name pclk_ext -waveform {0.000 20.833} [get_ports PCLK]
+
+set_property PACKAGE_PIN T9 [get_ports PCLK]
+set_property IOSTANDARD LVCMOS33 [get_ports PCLK]
+
+# I2C
+set_property PACKAGE_PIN V6 [get_ports {SCL_port[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {SCL_port[0]}]
+
+set_property PACKAGE_PIN W6 [get_ports {SDA_port[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {SDA_port[0]}]
+
+set_property PULLUP true [get_ports {SCL_port[0]}]
+set_property PULLUP true [get_ports {SDA_port[0]}]
+
+# Video Sync
+set_property PACKAGE_PIN V8 [get_ports vid_vsync_0]
+set_property IOSTANDARD LVCMOS33 [get_ports vid_vsync_0]
+
+set_property PACKAGE_PIN W8 [get_ports vid_active_video_0]
+set_property IOSTANDARD LVCMOS33 [get_ports vid_active_video_0]
+
+# Data Bus
+set_property PACKAGE_PIN W10 [get_ports {vid_data_0[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {vid_data_0[0]}]
+
+set_property PACKAGE_PIN W9 [get_ports {vid_data_0[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {vid_data_0[1]}]
+
+set_property PACKAGE_PIN V11 [get_ports {vid_data_0[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {vid_data_0[2]}]
+
+set_property PACKAGE_PIN V10 [get_ports {vid_data_0[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {vid_data_0[3]}]
+
+set_property PACKAGE_PIN Y12 [get_ports {vid_data_0[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {vid_data_0[4]}]
+
+set_property PACKAGE_PIN Y13 [get_ports {vid_data_0[5]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {vid_data_0[5]}]
+
+set_property PACKAGE_PIN Y7 [get_ports {vid_data_0[6]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {vid_data_0[6]}]
+
+set_property PACKAGE_PIN Y6 [get_ports {vid_data_0[7]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {vid_data_0[7]}]
+
+# Camera Reset & PWDN
+set_property PACKAGE_PIN Y9 [get_ports {RST[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {RST[0]}]
+
+set_property PACKAGE_PIN Y8 [get_ports {RST[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {RST[1]}]
+
+set_property PACKAGE_PIN V5 [get_ports {RST[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {RST[2]}]
+
+
+
+
+####### LCD DISPLAY MODULE #######
+
+# Control - BL (back light)
+set_property PACKAGE_PIN T19 [get_ports {RST[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {RST[3]}]
+
+# Control - VSYNC
+set_property PACKAGE_PIN W13 [get_ports vid_vsync_1]
+set_property IOSTANDARD LVCMOS33 [get_ports vid_vsync_1]
+
+# Control - HSYNC
+set_property PACKAGE_PIN V12 [get_ports vid_hsync_0]
+set_property IOSTANDARD LVCMOS33 [get_ports vid_hsync_0]
+
+# Control - DE (display enable)
+set_property PACKAGE_PIN V15 [get_ports vid_active_video_1]
+set_property IOSTANDARD LVCMOS33 [get_ports vid_active_video_1]
+
+# Control - PCLK
+set_property PACKAGE_PIN W15 [get_ports lcd_pclk]
+set_property IOSTANDARD LVCMOS33 [get_ports lcd_pclk]
+
+# Red Channel - 5 bits
+set_property PACKAGE_PIN T15 [get_ports {lcd_red[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_red[4]}]
+
+set_property PACKAGE_PIN T14 [get_ports {lcd_red[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_red[3]}]
+
+set_property PACKAGE_PIN V13 [get_ports {lcd_red[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_red[2]}]
+
+set_property PACKAGE_PIN U13 [get_ports {lcd_red[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_red[1]}]
+
+set_property PACKAGE_PIN U12 [get_ports {lcd_red[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_red[0]}]
+
+# Green Channel - 6 bits
+set_property PACKAGE_PIN R14 [get_ports {lcd_green[5]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_green[5]}]
+
+set_property PACKAGE_PIN P14 [get_ports {lcd_green[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_green[4]}]
+
+set_property PACKAGE_PIN P16 [get_ports {lcd_green[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_green[3]}]
+
+set_property PACKAGE_PIN P15 [get_ports {lcd_green[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_green[2]}]
+
+set_property PACKAGE_PIN U17 [get_ports {lcd_green[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_green[1]}]
+
+set_property PACKAGE_PIN T16 [get_ports {lcd_green[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_green[0]}]
+
+# Blue Channel - 5 bits
+set_property PACKAGE_PIN U19 [get_ports {lcd_blue[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_blue[4]}]
+
+set_property PACKAGE_PIN U18 [get_ports {lcd_blue[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_blue[3]}]
+
+set_property PACKAGE_PIN W19 [get_ports {lcd_blue[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_blue[2]}]
+
+set_property PACKAGE_PIN W18 [get_ports {lcd_blue[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_blue[1]}]
+
+set_property PACKAGE_PIN R17 [get_ports {lcd_blue[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {lcd_blue[0]}]
+
+# handling clocks
+set_clock_groups -asynchronous \
+    -group [get_clocks pclk_ext] \
+    -group [get_clocks clk_fpga_0] \
+    -group [get_clocks clk_fpga_1] \
+    -group [get_clocks -of_objects [get_pins dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/TCK]]
