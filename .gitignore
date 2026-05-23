@@ -10,6 +10,8 @@ export/
 /logs
 .log
 .rigel_lopper/
+.clangd/
+.cache/
 
 # Vitis Metadata and Logs
 .metadata/
@@ -28,19 +30,10 @@ _ide/
 # Vivado junk
 *.backup.jou
 *.backup.log
-camera_screen.cache/
-camera_screen.hw/
-camera_screen.runs/
-camera_screen.sim/
-
-# Keep only the final XSA, ignore the old versions
-cam_screen_1.xsa
-cam_screen_2.xsa
-cam_screen_3.xsa
-cam_screen_4.xsa
-cam_screen_5.xsa
-cam_screen_6.xsa
-cam_screen_7.xsa
+refocus_cam_v2.cache/
+refocus_cam_v2.hw/
+refocus_cam_v2.runs/
+refocus_cam_v2.sim/
 
 
 _ide/logs

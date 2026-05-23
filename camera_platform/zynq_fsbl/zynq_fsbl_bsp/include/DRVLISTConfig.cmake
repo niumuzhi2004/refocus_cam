@@ -1,0 +1,1 @@
+set(DRIVER_LIST axivdma;common;coresightps_dcc;devcfg;dmaps;gpio;gpiops;iicps;scugic;scutimer;scuwdt;sdps;uartps;video_common;vtc;xadcps)
