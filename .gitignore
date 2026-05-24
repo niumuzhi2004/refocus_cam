@@ -35,6 +35,9 @@ refocus_cam_v2.hw/
 refocus_cam_v2.runs/
 refocus_cam_v2.sim/
 
-
+# IDE and VS Code junk
 _ide/logs
 _ide/.wsdata
+.vscode/
+*.vscode
+*.code-workspace
