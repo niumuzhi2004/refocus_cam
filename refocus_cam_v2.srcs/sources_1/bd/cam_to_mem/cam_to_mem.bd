@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x185049D36D2282D4",
+      "boundary_crc": "0x72C63BF1554157EC",
       "device": "xc7z020clg400-2",
       "gen_directory": "../../../../refocus_cam_v2.gen/sources_1/bd/cam_to_mem",
       "name": "cam_to_mem",
@@ -37,9 +37,7 @@
       "xlslice_0": "",
       "xlslice_1": "",
       "xlslice_2": "",
-      "axis_downsampler_0": "",
-      "axi_gpio_0": "",
-      "xlconcat_0": ""
+      "axis_downsampler_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -221,25 +219,6 @@
             "direction": "IO"
           }
         }
-      },
-      "pl_keys_3bit": {
-        "mode": "Master",
-        "vlnv_bus_definition": "xilinx.com:interface:gpio:1.0",
-        "vlnv": "xilinx.com:interface:gpio_rtl:1.0",
-        "hdl_attributes": {
-          "LOCKED": {
-            "value": "FALSE",
-            "value_src": "default"
-          }
-        },
-        "port_maps": {
-          "TRI_I": {
-            "physical_name": "pl_keys_3bit_tri_i",
-            "direction": "I",
-            "left": "2",
-            "right": "0"
-          }
-        }
       }
     },
     "ports": {
@@ -278,9 +257,9 @@
         "left": "7",
         "right": "0"
       },
-      "RST": {
+      "EMIO": {
         "direction": "O",
-        "left": "3",
+        "left": "6",
         "right": "0"
       },
       "SCL_port": {
@@ -483,10 +462,10 @@
             "value": "1"
           },
           "PCW_GPIO_EMIO_GPIO_IO": {
-            "value": "4"
+            "value": "7"
           },
           "PCW_GPIO_EMIO_GPIO_WIDTH": {
-            "value": "4"
+            "value": "7"
           },
           "PCW_GPIO_MIO_GPIO_ENABLE": {
             "value": "1"
@@ -1302,7 +1281,7 @@
         "has_run_ip_tcl": "true",
         "parameters": {
           "NUM_MI": {
-            "value": "3"
+            "value": "2"
           },
           "NUM_SI": {
             "value": "1"
@@ -1323,14 +1302,9 @@
             },
             "bridges": [
               "M00_AXI",
-              "M01_AXI",
-              "M02_AXI"
+              "M01_AXI"
             ],
             "bd_attributes": {
-              "BRIDGES": {
-                "value": "M00_AXI:M01_AXI:M02_AXI",
-                "value_src": "auto"
-              },
               "TYPE": {
                 "value": "interior",
                 "value_src": "default"
@@ -1369,37 +1343,6 @@
             }
           },
           "M01_AXI": {
-            "mode": "Master",
-            "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
-            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
-            "parameters": {
-              "NUM_READ_OUTSTANDING": {
-                "value": "8"
-              },
-              "NUM_READ_THREADS": {
-                "value": "1"
-              },
-              "NUM_WRITE_OUTSTANDING": {
-                "value": "8"
-              },
-              "NUM_WRITE_THREADS": {
-                "value": "1"
-              },
-              "RUSER_BITS_PER_BYTE": {
-                "value": "0"
-              },
-              "WUSER_BITS_PER_BYTE": {
-                "value": "0"
-              }
-            },
-            "bd_attributes": {
-              "TYPE": {
-                "value": "interior",
-                "value_src": "default"
-              }
-            }
-          },
-          "M02_AXI": {
             "mode": "Master",
             "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
             "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
@@ -2473,42 +2416,9 @@
             }
           }
         }
-      },
-      "axi_gpio_0": {
-        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
-        "ip_revision": "37",
-        "xci_name": "cam_to_mem_axi_gpio_0_0",
-        "xci_path": "ip\\cam_to_mem_axi_gpio_0_0\\cam_to_mem_axi_gpio_0_0.xci",
-        "inst_hier_path": "axi_gpio_0",
-        "has_run_ip_tcl": "true",
-        "parameters": {
-          "C_ALL_INPUTS": {
-            "value": "1"
-          },
-          "C_GPIO_WIDTH": {
-            "value": "3"
-          },
-          "C_INTERRUPT_PRESENT": {
-            "value": "1"
-          }
-        }
-      },
-      "xlconcat_0": {
-        "vlnv": "xilinx.com:ip:xlconcat:2.1",
-        "ip_revision": "7",
-        "xci_name": "cam_to_mem_xlconcat_0_0",
-        "xci_path": "ip\\cam_to_mem_xlconcat_0_0\\cam_to_mem_xlconcat_0_0.xci",
-        "inst_hier_path": "xlconcat_0",
-        "has_run_ip_tcl": "true"
       }
     },
     "interface_nets": {
-      "axi_gpio_0_GPIO": {
-        "interface_ports": [
-          "pl_keys_3bit",
-          "axi_gpio_0/GPIO"
-        ]
-      },
       "axi_mem_intercon_1_M00_AXI": {
         "interface_ports": [
           "axi_mem_intercon_1/M00_AXI",
@@ -2531,12 +2441,6 @@
         "interface_ports": [
           "axi_smc/M01_AXI",
           "v_tc_0/ctrl"
-        ]
-      },
-      "axi_smc_M02_AXI": {
-        "interface_ports": [
-          "axi_smc/M02_AXI",
-          "axi_gpio_0/S_AXI"
         ]
       },
       "axi_vdma_0_M_AXIS_MM2S": {
@@ -2626,16 +2530,10 @@
           "proc_sys_reset_0/slowest_sync_clk"
         ]
       },
-      "axi_gpio_0_ip2intc_irpt": {
-        "ports": [
-          "axi_gpio_0/ip2intc_irpt",
-          "xlconcat_0/In1"
-        ]
-      },
       "axi_vdma_0_mm2s_introut": {
         "ports": [
           "axi_vdma_0/mm2s_introut",
-          "xlconcat_0/In0"
+          "processing_system7_0/IRQ_F2P"
         ]
       },
       "overflow": {
@@ -2691,8 +2589,7 @@
           "axi_vdma_0/m_axi_mm2s_aclk",
           "axi_vdma_0/s_axi_lite_aclk",
           "v_tc_0/s_axi_aclk",
-          "axis_downsampler_0/aclk",
-          "axi_gpio_0/s_axi_aclk"
+          "axis_downsampler_0/aclk"
         ]
       },
       "processing_system7_0_FCLK_CLK1": {
@@ -2717,7 +2614,7 @@
       "processing_system7_0_GPIO_O": {
         "ports": [
           "processing_system7_0/GPIO_O",
-          "RST"
+          "EMIO"
         ]
       },
       "processing_system7_0_I2C0_SCL_O": {
@@ -2758,8 +2655,7 @@
           "axi_vdma_0/axi_resetn",
           "axis_subset_converter_0/aresetn",
           "v_tc_0/s_axi_aresetn",
-          "axis_downsampler_0/aresetn",
-          "axi_gpio_0/s_axi_aresetn"
+          "axis_downsampler_0/aresetn"
         ]
       },
       "util_ds_buf_0_IOBUF_IO_O": {
@@ -2830,12 +2726,6 @@
           "v_vid_in_axi4s_0/vid_vsync"
         ]
       },
-      "xlconcat_0_dout": {
-        "ports": [
-          "xlconcat_0/dout",
-          "processing_system7_0/IRQ_F2P"
-        ]
-      },
       "xlslice_0_Dout": {
         "ports": [
           "xlslice_0/Dout",
@@ -2860,11 +2750,6 @@
         "address_spaces": {
           "Data": {
             "segments": {
-              "SEG_axi_gpio_0_Reg": {
-                "address_block": "/axi_gpio_0/S_AXI/Reg",
-                "offset": "0x41200000",
-                "range": "64K"
-              },
               "SEG_axi_vdma_0_Reg": {
                 "address_block": "/axi_vdma_0/S_AXI_LITE/Reg",
                 "offset": "0x43000000",

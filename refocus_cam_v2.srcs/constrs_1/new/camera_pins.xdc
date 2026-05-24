@@ -49,14 +49,14 @@ set_property PACKAGE_PIN Y6 [get_ports {vid_data_0[7]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {vid_data_0[7]}]
 
 # Camera Reset & PWDN
-set_property PACKAGE_PIN Y9 [get_ports {RST[0]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {RST[0]}]
+set_property PACKAGE_PIN Y9 [get_ports {EMIO[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {EMIO[0]}]
 
-set_property PACKAGE_PIN Y8 [get_ports {RST[1]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {RST[1]}]
+set_property PACKAGE_PIN Y8 [get_ports {EMIO[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {EMIO[1]}]
 
-set_property PACKAGE_PIN V5 [get_ports {RST[2]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {RST[2]}]
+set_property PACKAGE_PIN V5 [get_ports {EMIO[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {EMIO[2]}]
 
 
 
@@ -64,8 +64,8 @@ set_property IOSTANDARD LVCMOS33 [get_ports {RST[2]}]
 ####### LCD DISPLAY MODULE #######
 
 # Control - BL (back light)
-set_property PACKAGE_PIN T19 [get_ports {RST[3]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {RST[3]}]
+set_property PACKAGE_PIN T19 [get_ports {EMIO[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {EMIO[3]}]
 
 # Control - VSYNC
 set_property PACKAGE_PIN W13 [get_ports vid_vsync_1]
@@ -138,14 +138,14 @@ set_property IOSTANDARD LVCMOS33 [get_ports {lcd_blue[0]}]
 
 
 ####### PL BUTTONS #######
-set_property PACKAGE_PIN G20 [get_ports {pl_keys_3bit_tri_i[0]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {pl_keys_3bit_tri_i[0]}]
+set_property PACKAGE_PIN G20 [get_ports {EMIO[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {EMIO[4]}]
 
-set_property PACKAGE_PIN H15 [get_ports {pl_keys_3bit_tri_i[1]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {pl_keys_3bit_tri_i[1]}]
+set_property PACKAGE_PIN H15 [get_ports {EMIO[5]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {EMIO[5]}]
 
-set_property PACKAGE_PIN G15 [get_ports {pl_keys_3bit_tri_i[2]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {pl_keys_3bit_tri_i[2]}]
+set_property PACKAGE_PIN G15 [get_ports {EMIO[6]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {EMIO[6]}]
 
 
 

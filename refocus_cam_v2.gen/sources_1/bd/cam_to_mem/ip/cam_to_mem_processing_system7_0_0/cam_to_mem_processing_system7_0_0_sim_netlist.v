@@ -2,7 +2,7 @@
 // Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-// Date        : Fri May 22 18:49:31 2026
+// Date        : Sun May 24 14:41:31 2026
 // Host        : DanielsLaptop running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/Users/niumu/Refocusing/refocus_cam_v2/refocus_cam_v2.gen/sources_1/bd/cam_to_mem/ip/cam_to_mem_processing_system7_0_0/cam_to_mem_processing_system7_0_0_sim_netlist.v
@@ -179,9 +179,9 @@ module cam_to_mem_processing_system7_0_0
     PS_SRSTB,
     PS_CLK,
     PS_PORB);
-  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 GPIO_0 TRI_I" *) (* X_INTERFACE_MODE = "master" *) input [3:0]GPIO_I;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 GPIO_0 TRI_O" *) output [3:0]GPIO_O;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 GPIO_0 TRI_T" *) output [3:0]GPIO_T;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 GPIO_0 TRI_I" *) (* X_INTERFACE_MODE = "master" *) input [6:0]GPIO_I;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 GPIO_0 TRI_O" *) output [6:0]GPIO_O;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 GPIO_0 TRI_T" *) output [6:0]GPIO_T;
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 IIC_0 SDA_I" *) (* X_INTERFACE_MODE = "master" *) input I2C0_SDA_I;
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 IIC_0 SDA_O" *) output I2C0_SDA_O;
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 IIC_0 SDA_T" *) output I2C0_SDA_T;
@@ -317,7 +317,7 @@ module cam_to_mem_processing_system7_0_0
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_HP3 WID" *) input [5:0]S_AXI_HP3_WID;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_HP3 WDATA" *) input [63:0]S_AXI_HP3_WDATA;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_HP3 WSTRB" *) input [7:0]S_AXI_HP3_WSTRB;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 IRQ_F2P INTERRUPT" *) (* X_INTERFACE_MODE = "slave" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME IRQ_F2P, SENSITIVITY LEVEL_HIGH:LEVEL_HIGH, PortWidth 2" *) input [1:0]IRQ_F2P;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 IRQ_F2P INTERRUPT" *) (* X_INTERFACE_MODE = "slave" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME IRQ_F2P, SENSITIVITY LEVEL_HIGH, PortWidth 1" *) input [0:0]IRQ_F2P;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 FCLK_CLK0 CLK" *) (* X_INTERFACE_MODE = "master" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME FCLK_CLK0, FREQ_HZ 150000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) output FCLK_CLK0;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 FCLK_CLK1 CLK" *) (* X_INTERFACE_MODE = "master" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME FCLK_CLK1, FREQ_HZ 33333336, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK1, INSERT_VIP 0" *) output FCLK_CLK1;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 FCLK_RESET0_N RST" *) (* X_INTERFACE_MODE = "master" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME FCLK_RESET0_N, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) output FCLK_RESET0_N;
@@ -365,16 +365,16 @@ module cam_to_mem_processing_system7_0_0
   wire FCLK_CLK0;
   wire FCLK_CLK1;
   wire FCLK_RESET0_N;
-  wire [3:0]GPIO_I;
-  wire [3:0]GPIO_O;
-  wire [3:0]GPIO_T;
+  wire [6:0]GPIO_I;
+  wire [6:0]GPIO_O;
+  wire [6:0]GPIO_T;
   wire I2C0_SCL_I;
   wire I2C0_SCL_O;
   wire I2C0_SCL_T;
   wire I2C0_SDA_I;
   wire I2C0_SDA_O;
   wire I2C0_SDA_T;
-  wire [1:0]IRQ_F2P;
+  wire [0:0]IRQ_F2P;
   wire [53:0]MIO;
   wire M_AXI_GP0_ACLK;
   wire [31:0]M_AXI_GP0_ARADDR;
@@ -786,7 +786,7 @@ module cam_to_mem_processing_system7_0_0
   (* C_DM_WIDTH = "4" *) 
   (* C_DQS_WIDTH = "4" *) 
   (* C_DQ_WIDTH = "32" *) 
-  (* C_EMIO_GPIO_WIDTH = "4" *) 
+  (* C_EMIO_GPIO_WIDTH = "7" *) 
   (* C_EN_EMIO_ENET0 = "0" *) 
   (* C_EN_EMIO_ENET1 = "0" *) 
   (* C_EN_EMIO_PJTAG = "0" *) 
@@ -807,7 +807,7 @@ module cam_to_mem_processing_system7_0_0
   (* C_M_AXI_GP1_ENABLE_STATIC_REMAP = "0" *) 
   (* C_M_AXI_GP1_ID_WIDTH = "12" *) 
   (* C_M_AXI_GP1_THREAD_ID_WIDTH = "12" *) 
-  (* C_NUM_F2P_INTR_INPUTS = "2" *) 
+  (* C_NUM_F2P_INTR_INPUTS = "1" *) 
   (* C_PACKAGE_NAME = "clg400" *) 
   (* C_PS7_SI_REV = "PRODUCTION" *) 
   (* C_S_AXI_ACP_ARUSER_VAL = "31" *) 
@@ -1530,14 +1530,14 @@ module cam_to_mem_processing_system7_0_0
 endmodule
 
 (* C_DM_WIDTH = "4" *) (* C_DQS_WIDTH = "4" *) (* C_DQ_WIDTH = "32" *) 
-(* C_EMIO_GPIO_WIDTH = "4" *) (* C_EN_EMIO_ENET0 = "0" *) (* C_EN_EMIO_ENET1 = "0" *) 
+(* C_EMIO_GPIO_WIDTH = "7" *) (* C_EN_EMIO_ENET0 = "0" *) (* C_EN_EMIO_ENET1 = "0" *) 
 (* C_EN_EMIO_PJTAG = "0" *) (* C_EN_EMIO_TRACE = "0" *) (* C_FCLK_CLK0_BUF = "TRUE" *) 
 (* C_FCLK_CLK1_BUF = "TRUE" *) (* C_FCLK_CLK2_BUF = "FALSE" *) (* C_FCLK_CLK3_BUF = "FALSE" *) 
 (* C_GP0_EN_MODIFIABLE_TXN = "1" *) (* C_GP1_EN_MODIFIABLE_TXN = "1" *) (* C_INCLUDE_ACP_TRANS_CHECK = "0" *) 
 (* C_INCLUDE_TRACE_BUFFER = "0" *) (* C_IRQ_F2P_MODE = "DIRECT" *) (* C_MIO_PRIMITIVE = "54" *) 
 (* C_M_AXI_GP0_ENABLE_STATIC_REMAP = "0" *) (* C_M_AXI_GP0_ID_WIDTH = "12" *) (* C_M_AXI_GP0_THREAD_ID_WIDTH = "12" *) 
 (* C_M_AXI_GP1_ENABLE_STATIC_REMAP = "0" *) (* C_M_AXI_GP1_ID_WIDTH = "12" *) (* C_M_AXI_GP1_THREAD_ID_WIDTH = "12" *) 
-(* C_NUM_F2P_INTR_INPUTS = "2" *) (* C_PACKAGE_NAME = "clg400" *) (* C_PS7_SI_REV = "PRODUCTION" *) 
+(* C_NUM_F2P_INTR_INPUTS = "1" *) (* C_PACKAGE_NAME = "clg400" *) (* C_PS7_SI_REV = "PRODUCTION" *) 
 (* C_S_AXI_ACP_ARUSER_VAL = "31" *) (* C_S_AXI_ACP_AWUSER_VAL = "31" *) (* C_S_AXI_ACP_ID_WIDTH = "3" *) 
 (* C_S_AXI_GP0_ID_WIDTH = "6" *) (* C_S_AXI_GP1_ID_WIDTH = "6" *) (* C_S_AXI_HP0_DATA_WIDTH = "64" *) 
 (* C_S_AXI_HP0_ID_WIDTH = "6" *) (* C_S_AXI_HP1_DATA_WIDTH = "64" *) (* C_S_AXI_HP1_ID_WIDTH = "6" *) 
@@ -2289,9 +2289,9 @@ module cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_syst
   input ENET1_MDIO_I;
   input ENET1_EXT_INTIN;
   input [7:0]ENET1_GMII_RXD;
-  input [3:0]GPIO_I;
-  output [3:0]GPIO_O;
-  output [3:0]GPIO_T;
+  input [6:0]GPIO_I;
+  output [6:0]GPIO_O;
+  output [6:0]GPIO_T;
   input I2C0_SDA_I;
   output I2C0_SDA_O;
   output I2C0_SDA_T;
@@ -2818,7 +2818,7 @@ module cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_syst
   output IRQ_P2F_SPI1;
   output IRQ_P2F_UART1;
   output IRQ_P2F_CAN1;
-  input [1:0]IRQ_F2P;
+  input [0:0]IRQ_F2P;
   input Core0_nFIQ;
   input Core0_nIRQ;
   input Core1_nFIQ;
@@ -2945,9 +2945,9 @@ module cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_syst
   wire FCLK_CLK1;
   wire [1:0]FCLK_CLK_unbuffered;
   wire FCLK_RESET0_N;
-  wire [3:0]GPIO_I;
-  wire [3:0]GPIO_O;
-  wire [3:0]GPIO_T;
+  wire [6:0]GPIO_I;
+  wire [6:0]GPIO_O;
+  wire [6:0]GPIO_T;
   wire I2C0_SCL_I;
   wire I2C0_SCL_O;
   wire I2C0_SCL_T;
@@ -2958,7 +2958,7 @@ module cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_syst
   wire I2C0_SDA_T_n;
   wire I2C1_SCL_T_n;
   wire I2C1_SDA_T_n;
-  wire [1:0]IRQ_F2P;
+  wire [0:0]IRQ_F2P;
   wire [53:0]MIO;
   wire M_AXI_GP0_ACLK;
   wire [31:0]M_AXI_GP0_ARADDR;
@@ -3922,7 +3922,7 @@ module cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_syst
   wire buffered_PS_CLK;
   wire buffered_PS_PORB;
   wire buffered_PS_SRSTB;
-  wire [3:0]gpio_out_t_n;
+  wire [6:0]gpio_out_t_n;
   wire NLW_PS7_i_EMIOENET0GMIITXEN_UNCONNECTED;
   wire NLW_PS7_i_EMIOENET0GMIITXER_UNCONNECTED;
   wire NLW_PS7_i_EMIOENET1GMIITXEN_UNCONNECTED;
@@ -3932,8 +3932,8 @@ module cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_syst
   wire NLW_PS7_i_EMIOTRACECTL_UNCONNECTED;
   wire [7:0]NLW_PS7_i_EMIOENET0GMIITXD_UNCONNECTED;
   wire [7:0]NLW_PS7_i_EMIOENET1GMIITXD_UNCONNECTED;
-  wire [63:4]NLW_PS7_i_EMIOGPIOO_UNCONNECTED;
-  wire [63:4]NLW_PS7_i_EMIOGPIOTN_UNCONNECTED;
+  wire [63:7]NLW_PS7_i_EMIOGPIOO_UNCONNECTED;
+  wire [63:7]NLW_PS7_i_EMIOGPIOTN_UNCONNECTED;
   wire [31:0]NLW_PS7_i_EMIOTRACEDATA_UNCONNECTED;
   wire [1:1]NLW_PS7_i_MAXIGP0ARCACHE_UNCONNECTED;
   wire [1:1]NLW_PS7_i_MAXIGP0AWCACHE_UNCONNECTED;
@@ -4849,6 +4849,21 @@ module cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_syst
         .O(GPIO_T[3]));
   LUT1 #(
     .INIT(2'h1)) 
+    \GPIO_T[4]_INST_0 
+       (.I0(gpio_out_t_n[4]),
+        .O(GPIO_T[4]));
+  LUT1 #(
+    .INIT(2'h1)) 
+    \GPIO_T[5]_INST_0 
+       (.I0(gpio_out_t_n[5]),
+        .O(GPIO_T[5]));
+  LUT1 #(
+    .INIT(2'h1)) 
+    \GPIO_T[6]_INST_0 
+       (.I0(gpio_out_t_n[6]),
+        .O(GPIO_T[6]));
+  LUT1 #(
+    .INIT(2'h1)) 
     I2C0_SCL_T_INST_0
        (.I0(I2C0_SCL_T_n),
         .O(I2C0_SCL_T));
@@ -4967,9 +4982,9 @@ module cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_syst
         .EMIOENET1PTPSYNCFRAMETX(PS7_i_n_41),
         .EMIOENET1SOFRX(PS7_i_n_42),
         .EMIOENET1SOFTX(PS7_i_n_43),
-        .EMIOGPIOI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,GPIO_I}),
-        .EMIOGPIOO({NLW_PS7_i_EMIOGPIOO_UNCONNECTED[63:4],GPIO_O}),
-        .EMIOGPIOTN({NLW_PS7_i_EMIOGPIOTN_UNCONNECTED[63:4],gpio_out_t_n}),
+        .EMIOGPIOI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,GPIO_I}),
+        .EMIOGPIOO({NLW_PS7_i_EMIOGPIOO_UNCONNECTED[63:7],GPIO_O}),
+        .EMIOGPIOTN({NLW_PS7_i_EMIOGPIOTN_UNCONNECTED[63:7],gpio_out_t_n}),
         .EMIOI2C0SCLI(I2C0_SCL_I),
         .EMIOI2C0SCLO(I2C0_SCL_O),
         .EMIOI2C0SCLTN(I2C0_SCL_T_n),
@@ -5087,7 +5102,7 @@ module cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_syst
         .FTMTP2FDEBUG({PS7_i_n_401,PS7_i_n_402,PS7_i_n_403,PS7_i_n_404,PS7_i_n_405,PS7_i_n_406,PS7_i_n_407,PS7_i_n_408,PS7_i_n_409,PS7_i_n_410,PS7_i_n_411,PS7_i_n_412,PS7_i_n_413,PS7_i_n_414,PS7_i_n_415,PS7_i_n_416,PS7_i_n_417,PS7_i_n_418,PS7_i_n_419,PS7_i_n_420,PS7_i_n_421,PS7_i_n_422,PS7_i_n_423,PS7_i_n_424,PS7_i_n_425,PS7_i_n_426,PS7_i_n_427,PS7_i_n_428,PS7_i_n_429,PS7_i_n_430,PS7_i_n_431,PS7_i_n_432}),
         .FTMTP2FTRIG({PS7_i_n_717,PS7_i_n_718,PS7_i_n_719,PS7_i_n_720}),
         .FTMTP2FTRIGACK({1'b0,1'b0,1'b0,1'b0}),
-        .IRQF2P({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,IRQ_F2P}),
+        .IRQF2P({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,IRQ_F2P}),
         .IRQP2F({PS7_i_n_292,PS7_i_n_293,PS7_i_n_294,PS7_i_n_295,PS7_i_n_296,PS7_i_n_297,PS7_i_n_298,PS7_i_n_299,PS7_i_n_300,PS7_i_n_301,PS7_i_n_302,PS7_i_n_303,PS7_i_n_304,PS7_i_n_305,PS7_i_n_306,PS7_i_n_307,PS7_i_n_308,PS7_i_n_309,PS7_i_n_310,PS7_i_n_311,PS7_i_n_312,PS7_i_n_313,PS7_i_n_314,PS7_i_n_315,PS7_i_n_316,PS7_i_n_317,PS7_i_n_318,PS7_i_n_319,PS7_i_n_320}),
         .MAXIGP0ACLK(M_AXI_GP0_ACLK),
         .MAXIGP0ARADDR(M_AXI_GP0_ARADDR),

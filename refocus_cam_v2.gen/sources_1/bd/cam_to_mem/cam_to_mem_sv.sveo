@@ -90,7 +90,7 @@ cam_to_mem_sv your_instance_name (
   .SDA_port(SDA_port), // inout wire [0:0] SDA_port
   .PCLK(PCLK), // input wire PCLK
   .vid_data_0(vid_data_0), // input wire [7:0] vid_data_0
-  .RST(RST), // output wire [3:0] RST
+  .EMIO(EMIO), // output wire [6:0] EMIO
   .SCL_port(SCL_port), // inout wire [0:0] SCL_port
   .vid_vsync_0(vid_vsync_0), // input wire vid_vsync_0
   .vid_active_video_0(vid_active_video_0), // input wire vid_active_video_0
@@ -100,8 +100,7 @@ cam_to_mem_sv your_instance_name (
   .vid_hsync_0(vid_hsync_0), // output wire vid_hsync_0
   .lcd_red(lcd_red), // output wire [4:0] lcd_red
   .lcd_green(lcd_green), // output wire [5:0] lcd_green
-  .lcd_blue(lcd_blue), // output wire [4:0] lcd_blue
-  .pl_keys_3bit_tri_i(pl_keys_3bit_tri_i) // input wire [2:0] pl_keys_3bit_tri_i
+  .lcd_blue(lcd_blue) // output wire [4:0] lcd_blue
 );
 // INST_TAG_END ------  End cut for WRAPPER INSTANTIATION Template  ------
 

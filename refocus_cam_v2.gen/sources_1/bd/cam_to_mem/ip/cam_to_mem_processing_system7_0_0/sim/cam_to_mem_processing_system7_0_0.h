@@ -80,9 +80,9 @@ public:
 
   // module pin-to-pin RTL interface
 
-  sc_core::sc_in< sc_dt::sc_bv<4> > GPIO_I;
-  sc_core::sc_out< sc_dt::sc_bv<4> > GPIO_O;
-  sc_core::sc_out< sc_dt::sc_bv<4> > GPIO_T;
+  sc_core::sc_in< sc_dt::sc_bv<7> > GPIO_I;
+  sc_core::sc_out< sc_dt::sc_bv<7> > GPIO_O;
+  sc_core::sc_out< sc_dt::sc_bv<7> > GPIO_T;
   sc_core::sc_in< bool > I2C0_SDA_I;
   sc_core::sc_out< bool > I2C0_SDA_O;
   sc_core::sc_out< bool > I2C0_SDA_T;
@@ -218,7 +218,7 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<6> > S_AXI_HP3_WID;
   sc_core::sc_in< sc_dt::sc_bv<64> > S_AXI_HP3_WDATA;
   sc_core::sc_in< sc_dt::sc_bv<8> > S_AXI_HP3_WSTRB;
-  sc_core::sc_in< sc_dt::sc_bv<2> > IRQ_F2P;
+  sc_core::sc_in< sc_dt::sc_bv<1> > IRQ_F2P;
   sc_core::sc_out< bool > FCLK_CLK0;
   sc_core::sc_out< bool > FCLK_CLK1;
   sc_core::sc_out< bool > FCLK_RESET0_N;
@@ -300,9 +300,9 @@ public:
 
   // module pin-to-pin RTL interface
 
-  sc_core::sc_in< sc_dt::sc_bv<4> > GPIO_I;
-  sc_core::sc_out< sc_dt::sc_bv<4> > GPIO_O;
-  sc_core::sc_out< sc_dt::sc_bv<4> > GPIO_T;
+  sc_core::sc_in< sc_dt::sc_bv<7> > GPIO_I;
+  sc_core::sc_out< sc_dt::sc_bv<7> > GPIO_O;
+  sc_core::sc_out< sc_dt::sc_bv<7> > GPIO_T;
   sc_core::sc_in< bool > I2C0_SDA_I;
   sc_core::sc_out< bool > I2C0_SDA_O;
   sc_core::sc_out< bool > I2C0_SDA_T;
@@ -438,7 +438,7 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<6> > S_AXI_HP3_WID;
   sc_core::sc_in< sc_dt::sc_bv<64> > S_AXI_HP3_WDATA;
   sc_core::sc_in< sc_dt::sc_bv<8> > S_AXI_HP3_WSTRB;
-  sc_core::sc_in< sc_dt::sc_bv<2> > IRQ_F2P;
+  sc_core::sc_in< sc_dt::sc_bv<1> > IRQ_F2P;
   sc_core::sc_out< bool > FCLK_CLK0;
   sc_core::sc_out< bool > FCLK_CLK1;
   sc_core::sc_out< bool > FCLK_RESET0_N;
@@ -520,9 +520,9 @@ public:
 
   // module pin-to-pin RTL interface
 
-  sc_core::sc_in< sc_dt::sc_bv<4> > GPIO_I;
-  sc_core::sc_out< sc_dt::sc_bv<4> > GPIO_O;
-  sc_core::sc_out< sc_dt::sc_bv<4> > GPIO_T;
+  sc_core::sc_in< sc_dt::sc_bv<7> > GPIO_I;
+  sc_core::sc_out< sc_dt::sc_bv<7> > GPIO_O;
+  sc_core::sc_out< sc_dt::sc_bv<7> > GPIO_T;
   sc_core::sc_in< bool > I2C0_SDA_I;
   sc_core::sc_out< bool > I2C0_SDA_O;
   sc_core::sc_out< bool > I2C0_SDA_T;
@@ -658,7 +658,7 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<6> > S_AXI_HP3_WID;
   sc_core::sc_in< sc_dt::sc_bv<64> > S_AXI_HP3_WDATA;
   sc_core::sc_in< sc_dt::sc_bv<8> > S_AXI_HP3_WSTRB;
-  sc_core::sc_in< sc_dt::sc_bv<2> > IRQ_F2P;
+  sc_core::sc_in< sc_dt::sc_bv<1> > IRQ_F2P;
   sc_core::sc_out< bool > FCLK_CLK0;
   sc_core::sc_out< bool > FCLK_CLK1;
   sc_core::sc_out< bool > FCLK_RESET0_N;
@@ -744,9 +744,9 @@ public:
 
   // module pin-to-pin RTL interface
 
-  sc_core::sc_in< sc_dt::sc_bv<4> > GPIO_I;
-  sc_core::sc_out< sc_dt::sc_bv<4> > GPIO_O;
-  sc_core::sc_out< sc_dt::sc_bv<4> > GPIO_T;
+  sc_core::sc_in< sc_dt::sc_bv<7> > GPIO_I;
+  sc_core::sc_out< sc_dt::sc_bv<7> > GPIO_O;
+  sc_core::sc_out< sc_dt::sc_bv<7> > GPIO_T;
   sc_core::sc_in< bool > I2C0_SDA_I;
   sc_core::sc_out< bool > I2C0_SDA_O;
   sc_core::sc_out< bool > I2C0_SDA_T;
@@ -882,7 +882,7 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<6> > S_AXI_HP3_WID;
   sc_core::sc_in< sc_dt::sc_bv<64> > S_AXI_HP3_WDATA;
   sc_core::sc_in< sc_dt::sc_bv<8> > S_AXI_HP3_WSTRB;
-  sc_core::sc_in< sc_dt::sc_bv<2> > IRQ_F2P;
+  sc_core::sc_in< sc_dt::sc_bv<1> > IRQ_F2P;
   sc_core::sc_out< bool > FCLK_CLK0;
   sc_core::sc_out< bool > FCLK_CLK1;
   sc_core::sc_out< bool > FCLK_RESET0_N;
@@ -978,9 +978,9 @@ public:
 
   // module pin-to-pin RTL interface
 
-  sc_core::sc_in< sc_dt::sc_bv<4> > GPIO_I;
-  sc_core::sc_out< sc_dt::sc_bv<4> > GPIO_O;
-  sc_core::sc_out< sc_dt::sc_bv<4> > GPIO_T;
+  sc_core::sc_in< sc_dt::sc_bv<7> > GPIO_I;
+  sc_core::sc_out< sc_dt::sc_bv<7> > GPIO_O;
+  sc_core::sc_out< sc_dt::sc_bv<7> > GPIO_T;
   sc_core::sc_in< bool > I2C0_SDA_I;
   sc_core::sc_out< bool > I2C0_SDA_O;
   sc_core::sc_out< bool > I2C0_SDA_T;
@@ -1116,7 +1116,7 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<6> > S_AXI_HP3_WID;
   sc_core::sc_in< sc_dt::sc_bv<64> > S_AXI_HP3_WDATA;
   sc_core::sc_in< sc_dt::sc_bv<8> > S_AXI_HP3_WSTRB;
-  sc_core::sc_in< sc_dt::sc_bv<2> > IRQ_F2P;
+  sc_core::sc_in< sc_dt::sc_bv<1> > IRQ_F2P;
   sc_core::sc_out< bool > FCLK_CLK0;
   sc_core::sc_out< bool > FCLK_CLK1;
   sc_core::sc_out< bool > FCLK_RESET0_N;

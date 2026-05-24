@@ -70,7 +70,7 @@ cam_to_mem_processing_system7_0_0_sc::cam_to_mem_processing_system7_0_0_sc(const
     model_param_props.addLong("USE_TRACE_DATA_EDGE_DETECTOR", "0");
     model_param_props.addLong("C_TRACE_PIPELINE_WIDTH", "8");
     model_param_props.addLong("C_TRACE_BUFFER_CLOCK_DELAY", "12");
-    model_param_props.addLong("C_EMIO_GPIO_WIDTH", "4");
+    model_param_props.addLong("C_EMIO_GPIO_WIDTH", "7");
     model_param_props.addLong("C_INCLUDE_ACP_TRANS_CHECK", "0");
     model_param_props.addLong("C_USE_DEFAULT_ACP_USER_VAL", "0");
     model_param_props.addLong("C_S_AXI_ACP_ARUSER_VAL", "31");
@@ -92,7 +92,7 @@ cam_to_mem_processing_system7_0_0_sc::cam_to_mem_processing_system7_0_0_sc(const
     model_param_props.addLong("C_S_AXI_HP3_DATA_WIDTH", "64");
     model_param_props.addLong("C_M_AXI_GP0_THREAD_ID_WIDTH", "12");
     model_param_props.addLong("C_M_AXI_GP1_THREAD_ID_WIDTH", "12");
-    model_param_props.addLong("C_NUM_F2P_INTR_INPUTS", "2");
+    model_param_props.addLong("C_NUM_F2P_INTR_INPUTS", "1");
     model_param_props.addLong("C_DQ_WIDTH", "32");
     model_param_props.addLong("C_DQS_WIDTH", "4");
     model_param_props.addLong("C_DM_WIDTH", "4");

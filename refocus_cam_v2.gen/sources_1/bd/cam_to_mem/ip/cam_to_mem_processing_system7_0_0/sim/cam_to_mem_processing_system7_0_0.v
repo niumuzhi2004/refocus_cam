@@ -220,9 +220,9 @@ PS_SRSTB,
 PS_CLK, 
 PS_PORB 
 );
-input [3 : 0] GPIO_I;
-output [3 : 0] GPIO_O;
-output [3 : 0] GPIO_T;
+input [6 : 0] GPIO_I;
+output [6 : 0] GPIO_O;
+output [6 : 0] GPIO_T;
 input I2C0_SDA_I;
 output I2C0_SDA_O;
 output I2C0_SDA_T;
@@ -358,7 +358,7 @@ input [5 : 0] S_AXI_HP3_AWID;
 input [5 : 0] S_AXI_HP3_WID;
 input [63 : 0] S_AXI_HP3_WDATA;
 input [7 : 0] S_AXI_HP3_WSTRB;
-input [1 : 0] IRQ_F2P;
+input [0 : 0] IRQ_F2P;
 output FCLK_CLK0;
 output FCLK_CLK1;
 output FCLK_RESET0_N;

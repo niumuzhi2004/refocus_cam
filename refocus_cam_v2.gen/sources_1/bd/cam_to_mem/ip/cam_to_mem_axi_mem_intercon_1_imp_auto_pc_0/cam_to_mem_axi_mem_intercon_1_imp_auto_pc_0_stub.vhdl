@@ -2,10 +2,10 @@
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
--- Date        : Fri May 22 18:49:46 2026
+-- Date        : Fri May 22 18:49:43 2026
 -- Host        : DanielsLaptop running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               c:/Users/niumu/Refocusing/refocus_cam_v2/refocus_cam_v2.gen/sources_1/bd/cam_to_mem/ip/cam_to_mem_axi_mem_intercon_1_imp_auto_pc_0/cam_to_mem_axi_mem_intercon_1_imp_auto_pc_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top cam_to_mem_axi_mem_intercon_1_imp_auto_pc_0 -prefix
+--               cam_to_mem_axi_mem_intercon_1_imp_auto_pc_0_ cam_to_mem_axi_mem_intercon_1_imp_auto_pc_0_stub.vhdl
 -- Design      : cam_to_mem_axi_mem_intercon_1_imp_auto_pc_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-2

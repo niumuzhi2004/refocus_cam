@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-//Date        : Fri May 22 18:38:38 2026
+//Date        : Sun May 24 14:39:09 2026
 //Host        : DanielsLaptop running 64-bit major release  (build 9200)
 //Command     : generate_target cam_to_mem.bd
 //Design      : cam_to_mem
@@ -10,7 +10,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "cam_to_mem,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=cam_to_mem,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=25,numReposBlks=21,numNonXlnxBlks=0,numHierBlks=4,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=12,da_board_cnt=2,da_clkrst_cnt=15,da_ps7_cnt=2,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "cam_to_mem.hwdef" *) 
+(* CORE_GENERATION_INFO = "cam_to_mem,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=cam_to_mem,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=23,numReposBlks=19,numNonXlnxBlks=0,numHierBlks=4,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=12,da_board_cnt=2,da_clkrst_cnt=15,da_ps7_cnt=2,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "cam_to_mem.hwdef" *) 
 module cam_to_mem
    (DDR_addr,
     DDR_ba,
@@ -27,6 +27,7 @@ module cam_to_mem
     DDR_ras_n,
     DDR_reset_n,
     DDR_we_n,
+    EMIO,
     FIXED_IO_ddr_vrn,
     FIXED_IO_ddr_vrp,
     FIXED_IO_mio,
@@ -34,14 +35,12 @@ module cam_to_mem
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
     PCLK,
-    RST,
     SCL_port,
     SDA_port,
     lcd_blue,
     lcd_green,
     lcd_pclk,
     lcd_red,
-    pl_keys_3bit_tri_i,
     vid_active_video_0,
     vid_active_video_1,
     vid_data_0,
@@ -63,6 +62,7 @@ module cam_to_mem
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR RAS_N" *) inout DDR_ras_n;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR RESET_N" *) inout DDR_reset_n;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR WE_N" *) inout DDR_we_n;
+  output [6:0]EMIO;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRN" *) (* X_INTERFACE_MODE = "Master" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME FIXED_IO, CAN_DEBUG false" *) inout FIXED_IO_ddr_vrn;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRP" *) inout FIXED_IO_ddr_vrp;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO" *) inout [53:0]FIXED_IO_mio;
@@ -70,14 +70,12 @@ module cam_to_mem
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB" *) inout FIXED_IO_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB" *) inout FIXED_IO_ps_srstb;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.PCLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.PCLK, CLK_DOMAIN cam_to_mem_PCLK, FREQ_HZ 24000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input PCLK;
-  output [3:0]RST;
   inout [0:0]SCL_port;
   inout [0:0]SDA_port;
   output [4:0]lcd_blue;
   output [5:0]lcd_green;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.LCD_PCLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.LCD_PCLK, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK1, FREQ_HZ 33333336, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output [0:0]lcd_pclk;
   output [4:0]lcd_red;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 pl_keys_3bit TRI_I" *) (* X_INTERFACE_MODE = "Master" *) input [2:0]pl_keys_3bit_tri_i;
   input vid_active_video_0;
   output vid_active_video_1;
   input [7:0]vid_data_0;
@@ -100,6 +98,7 @@ module cam_to_mem
   wire DDR_ras_n;
   wire DDR_reset_n;
   wire DDR_we_n;
+  wire [6:0]EMIO;
   wire FIXED_IO_ddr_vrn;
   wire FIXED_IO_ddr_vrp;
   wire [53:0]FIXED_IO_mio;
@@ -107,10 +106,8 @@ module cam_to_mem
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
   wire PCLK;
-  wire [3:0]RST;
   wire [0:0]SCL_port;
   wire [0:0]SDA_port;
-  wire axi_gpio_0_ip2intc_irpt;
   wire [31:0]axi_mem_intercon_1_M00_AXI_ARADDR;
   wire [1:0]axi_mem_intercon_1_M00_AXI_ARBURST;
   wire [3:0]axi_mem_intercon_1_M00_AXI_ARCACHE;
@@ -177,23 +174,6 @@ module cam_to_mem
   wire axi_smc_M01_AXI_WREADY;
   wire [3:0]axi_smc_M01_AXI_WSTRB;
   wire axi_smc_M01_AXI_WVALID;
-  wire [8:0]axi_smc_M02_AXI_ARADDR;
-  wire axi_smc_M02_AXI_ARREADY;
-  wire axi_smc_M02_AXI_ARVALID;
-  wire [8:0]axi_smc_M02_AXI_AWADDR;
-  wire axi_smc_M02_AXI_AWREADY;
-  wire axi_smc_M02_AXI_AWVALID;
-  wire axi_smc_M02_AXI_BREADY;
-  wire [1:0]axi_smc_M02_AXI_BRESP;
-  wire axi_smc_M02_AXI_BVALID;
-  wire [31:0]axi_smc_M02_AXI_RDATA;
-  wire axi_smc_M02_AXI_RREADY;
-  wire [1:0]axi_smc_M02_AXI_RRESP;
-  wire axi_smc_M02_AXI_RVALID;
-  wire [31:0]axi_smc_M02_AXI_WDATA;
-  wire axi_smc_M02_AXI_WREADY;
-  wire [3:0]axi_smc_M02_AXI_WSTRB;
-  wire axi_smc_M02_AXI_WVALID;
   wire [15:0]axi_vdma_0_M_AXIS_MM2S_TDATA;
   wire [1:0]axi_vdma_0_M_AXIS_MM2S_TKEEP;
   wire axi_vdma_0_M_AXIS_MM2S_TLAST;
@@ -251,7 +231,6 @@ module cam_to_mem
   wire \^lcd_pclk ;
   wire [4:0]lcd_red;
   wire overflow;
-  wire [2:0]pl_keys_3bit_tri_i;
   wire [0:0]proc_sys_reset_0_peripheral_aresetn;
   wire [0:0]proc_sys_reset_0_peripheral_reset;
   wire [0:0]proc_sys_reset_1_peripheral_aresetn;
@@ -322,31 +301,8 @@ module cam_to_mem
   wire vid_hsync_0;
   wire vid_vsync_0;
   wire vid_vsync_1;
-  wire [1:0]xlconcat_0_dout;
 
   assign lcd_pclk[0] = \^lcd_pclk ;
-  cam_to_mem_axi_gpio_0_0 axi_gpio_0
-       (.gpio_io_i(pl_keys_3bit_tri_i),
-        .ip2intc_irpt(axi_gpio_0_ip2intc_irpt),
-        .s_axi_aclk(processing_system7_0_FCLK_CLK0),
-        .s_axi_araddr(axi_smc_M02_AXI_ARADDR),
-        .s_axi_aresetn(rst_ps7_0_50M_peripheral_aresetn),
-        .s_axi_arready(axi_smc_M02_AXI_ARREADY),
-        .s_axi_arvalid(axi_smc_M02_AXI_ARVALID),
-        .s_axi_awaddr(axi_smc_M02_AXI_AWADDR),
-        .s_axi_awready(axi_smc_M02_AXI_AWREADY),
-        .s_axi_awvalid(axi_smc_M02_AXI_AWVALID),
-        .s_axi_bready(axi_smc_M02_AXI_BREADY),
-        .s_axi_bresp(axi_smc_M02_AXI_BRESP),
-        .s_axi_bvalid(axi_smc_M02_AXI_BVALID),
-        .s_axi_rdata(axi_smc_M02_AXI_RDATA),
-        .s_axi_rready(axi_smc_M02_AXI_RREADY),
-        .s_axi_rresp(axi_smc_M02_AXI_RRESP),
-        .s_axi_rvalid(axi_smc_M02_AXI_RVALID),
-        .s_axi_wdata(axi_smc_M02_AXI_WDATA),
-        .s_axi_wready(axi_smc_M02_AXI_WREADY),
-        .s_axi_wstrb(axi_smc_M02_AXI_WSTRB),
-        .s_axi_wvalid(axi_smc_M02_AXI_WVALID));
   cam_to_mem_axi_mem_intercon_1 axi_mem_intercon
        (.ACLK(processing_system7_0_FCLK_CLK0),
         .ARESETN(rst_ps7_0_50M_peripheral_aresetn),
@@ -457,23 +413,6 @@ module cam_to_mem
         .M01_AXI_wready(axi_smc_M01_AXI_WREADY),
         .M01_AXI_wstrb(axi_smc_M01_AXI_WSTRB),
         .M01_AXI_wvalid(axi_smc_M01_AXI_WVALID),
-        .M02_AXI_araddr(axi_smc_M02_AXI_ARADDR),
-        .M02_AXI_arready(axi_smc_M02_AXI_ARREADY),
-        .M02_AXI_arvalid(axi_smc_M02_AXI_ARVALID),
-        .M02_AXI_awaddr(axi_smc_M02_AXI_AWADDR),
-        .M02_AXI_awready(axi_smc_M02_AXI_AWREADY),
-        .M02_AXI_awvalid(axi_smc_M02_AXI_AWVALID),
-        .M02_AXI_bready(axi_smc_M02_AXI_BREADY),
-        .M02_AXI_bresp(axi_smc_M02_AXI_BRESP),
-        .M02_AXI_bvalid(axi_smc_M02_AXI_BVALID),
-        .M02_AXI_rdata(axi_smc_M02_AXI_RDATA),
-        .M02_AXI_rready(axi_smc_M02_AXI_RREADY),
-        .M02_AXI_rresp(axi_smc_M02_AXI_RRESP),
-        .M02_AXI_rvalid(axi_smc_M02_AXI_RVALID),
-        .M02_AXI_wdata(axi_smc_M02_AXI_WDATA),
-        .M02_AXI_wready(axi_smc_M02_AXI_WREADY),
-        .M02_AXI_wstrb(axi_smc_M02_AXI_WSTRB),
-        .M02_AXI_wvalid(axi_smc_M02_AXI_WVALID),
         .S00_AXI_araddr(processing_system7_0_M_AXI_GP0_ARADDR),
         .S00_AXI_arburst(processing_system7_0_M_AXI_GP0_ARBURST),
         .S00_AXI_arcache(processing_system7_0_M_AXI_GP0_ARCACHE),
@@ -659,15 +598,15 @@ module cam_to_mem
         .FCLK_CLK0(processing_system7_0_FCLK_CLK0),
         .FCLK_CLK1(\^lcd_pclk ),
         .FCLK_RESET0_N(processing_system7_0_FCLK_RESET0_N),
-        .GPIO_I({1'b0,1'b0,1'b0,1'b0}),
-        .GPIO_O(RST),
+        .GPIO_I({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .GPIO_O(EMIO),
         .I2C0_SCL_I(util_ds_buf_1_IOBUF_IO_O),
         .I2C0_SCL_O(processing_system7_0_I2C0_SCL_O),
         .I2C0_SCL_T(processing_system7_0_I2C0_SCL_T),
         .I2C0_SDA_I(util_ds_buf_0_IOBUF_IO_O),
         .I2C0_SDA_O(processing_system7_0_I2C0_SDA_O),
         .I2C0_SDA_T(processing_system7_0_I2C0_SDA_T),
-        .IRQ_F2P(xlconcat_0_dout),
+        .IRQ_F2P(axi_vdma_0_mm2s_introut),
         .MIO(FIXED_IO_mio),
         .M_AXI_GP0_ACLK(processing_system7_0_FCLK_CLK0),
         .M_AXI_GP0_ARADDR(processing_system7_0_M_AXI_GP0_ARADDR),
@@ -875,10 +814,6 @@ module cam_to_mem
         .vid_io_in_reset(proc_sys_reset_0_peripheral_reset),
         .vid_vblank(1'b0),
         .vid_vsync(vid_vsync_0));
-  cam_to_mem_xlconcat_0_0 xlconcat_0
-       (.In0(axi_vdma_0_mm2s_introut),
-        .In1(axi_gpio_0_ip2intc_irpt),
-        .dout(xlconcat_0_dout));
   cam_to_mem_xlslice_0_0 xlslice_0
        (.Din(v_axi4s_vid_out_0_vid_data),
         .Dout(lcd_red));

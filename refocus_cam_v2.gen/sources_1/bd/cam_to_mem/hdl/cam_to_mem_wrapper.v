@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-//Date        : Fri May 22 18:38:38 2026
+//Date        : Sun May 24 14:39:09 2026
 //Host        : DanielsLaptop running 64-bit major release  (build 9200)
 //Command     : generate_target cam_to_mem_wrapper.bd
 //Design      : cam_to_mem_wrapper
@@ -26,6 +26,7 @@ module cam_to_mem_wrapper
     DDR_ras_n,
     DDR_reset_n,
     DDR_we_n,
+    EMIO,
     FIXED_IO_ddr_vrn,
     FIXED_IO_ddr_vrp,
     FIXED_IO_mio,
@@ -33,14 +34,12 @@ module cam_to_mem_wrapper
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
     PCLK,
-    RST,
     SCL_port,
     SDA_port,
     lcd_blue,
     lcd_green,
     lcd_pclk,
     lcd_red,
-    pl_keys_3bit_tri_i,
     vid_active_video_0,
     vid_active_video_1,
     vid_data_0,
@@ -62,6 +61,7 @@ module cam_to_mem_wrapper
   inout DDR_ras_n;
   inout DDR_reset_n;
   inout DDR_we_n;
+  output [6:0]EMIO;
   inout FIXED_IO_ddr_vrn;
   inout FIXED_IO_ddr_vrp;
   inout [53:0]FIXED_IO_mio;
@@ -69,14 +69,12 @@ module cam_to_mem_wrapper
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
   input PCLK;
-  output [3:0]RST;
   inout [0:0]SCL_port;
   inout [0:0]SDA_port;
   output [4:0]lcd_blue;
   output [5:0]lcd_green;
   output [0:0]lcd_pclk;
   output [4:0]lcd_red;
-  input [2:0]pl_keys_3bit_tri_i;
   input vid_active_video_0;
   output vid_active_video_1;
   input [7:0]vid_data_0;
@@ -99,6 +97,7 @@ module cam_to_mem_wrapper
   wire DDR_ras_n;
   wire DDR_reset_n;
   wire DDR_we_n;
+  wire [6:0]EMIO;
   wire FIXED_IO_ddr_vrn;
   wire FIXED_IO_ddr_vrp;
   wire [53:0]FIXED_IO_mio;
@@ -106,14 +105,12 @@ module cam_to_mem_wrapper
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
   wire PCLK;
-  wire [3:0]RST;
   wire [0:0]SCL_port;
   wire [0:0]SDA_port;
   wire [4:0]lcd_blue;
   wire [5:0]lcd_green;
   wire [0:0]lcd_pclk;
   wire [4:0]lcd_red;
-  wire [2:0]pl_keys_3bit_tri_i;
   wire vid_active_video_0;
   wire vid_active_video_1;
   wire [7:0]vid_data_0;
@@ -137,6 +134,7 @@ module cam_to_mem_wrapper
         .DDR_ras_n(DDR_ras_n),
         .DDR_reset_n(DDR_reset_n),
         .DDR_we_n(DDR_we_n),
+        .EMIO(EMIO),
         .FIXED_IO_ddr_vrn(FIXED_IO_ddr_vrn),
         .FIXED_IO_ddr_vrp(FIXED_IO_ddr_vrp),
         .FIXED_IO_mio(FIXED_IO_mio),
@@ -144,14 +142,12 @@ module cam_to_mem_wrapper
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
         .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
         .PCLK(PCLK),
-        .RST(RST),
         .SCL_port(SCL_port),
         .SDA_port(SDA_port),
         .lcd_blue(lcd_blue),
         .lcd_green(lcd_green),
         .lcd_pclk(lcd_pclk),
         .lcd_red(lcd_red),
-        .pl_keys_3bit_tri_i(pl_keys_3bit_tri_i),
         .vid_active_video_0(vid_active_video_0),
         .vid_active_video_1(vid_active_video_1),
         .vid_data_0(vid_data_0),

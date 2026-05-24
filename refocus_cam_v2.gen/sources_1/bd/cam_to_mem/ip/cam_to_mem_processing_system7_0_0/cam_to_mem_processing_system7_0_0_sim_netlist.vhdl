@@ -2,7 +2,7 @@
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
--- Date        : Fri May 22 18:49:31 2026
+-- Date        : Sun May 24 14:41:31 2026
 -- Host        : DanielsLaptop running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/Users/niumu/Refocusing/refocus_cam_v2/refocus_cam_v2.gen/sources_1/bd/cam_to_mem/ip/cam_to_mem_processing_system7_0_0/cam_to_mem_processing_system7_0_0_sim_netlist.vhdl
@@ -71,9 +71,9 @@ entity cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_syst
     ENET1_MDIO_I : in STD_LOGIC;
     ENET1_EXT_INTIN : in STD_LOGIC;
     ENET1_GMII_RXD : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    GPIO_I : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    GPIO_O : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    GPIO_T : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    GPIO_I : in STD_LOGIC_VECTOR ( 6 downto 0 );
+    GPIO_O : out STD_LOGIC_VECTOR ( 6 downto 0 );
+    GPIO_T : out STD_LOGIC_VECTOR ( 6 downto 0 );
     I2C0_SDA_I : in STD_LOGIC;
     I2C0_SDA_O : out STD_LOGIC;
     I2C0_SDA_T : out STD_LOGIC;
@@ -600,7 +600,7 @@ entity cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_syst
     IRQ_P2F_SPI1 : out STD_LOGIC;
     IRQ_P2F_UART1 : out STD_LOGIC;
     IRQ_P2F_CAN1 : out STD_LOGIC;
-    IRQ_F2P : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    IRQ_F2P : in STD_LOGIC_VECTOR ( 0 to 0 );
     Core0_nFIQ : in STD_LOGIC;
     Core0_nIRQ : in STD_LOGIC;
     Core1_nFIQ : in STD_LOGIC;
@@ -710,7 +710,7 @@ entity cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_syst
   attribute C_DQ_WIDTH : integer;
   attribute C_DQ_WIDTH of cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_system7 : entity is 32;
   attribute C_EMIO_GPIO_WIDTH : integer;
-  attribute C_EMIO_GPIO_WIDTH of cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_system7 : entity is 4;
+  attribute C_EMIO_GPIO_WIDTH of cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_system7 : entity is 7;
   attribute C_EN_EMIO_ENET0 : integer;
   attribute C_EN_EMIO_ENET0 of cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_system7 : entity is 0;
   attribute C_EN_EMIO_ENET1 : integer;
@@ -752,7 +752,7 @@ entity cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_syst
   attribute C_M_AXI_GP1_THREAD_ID_WIDTH : integer;
   attribute C_M_AXI_GP1_THREAD_ID_WIDTH of cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_system7 : entity is 12;
   attribute C_NUM_F2P_INTR_INPUTS : integer;
-  attribute C_NUM_F2P_INTR_INPUTS of cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_system7 : entity is 2;
+  attribute C_NUM_F2P_INTR_INPUTS of cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_system7 : entity is 1;
   attribute C_PACKAGE_NAME : string;
   attribute C_PACKAGE_NAME of cam_to_mem_processing_system7_0_0_processing_system7_v5_5_processing_system7 : entity is "clg400";
   attribute C_PS7_SI_REV : string;
@@ -1683,7 +1683,7 @@ architecture STRUCTURE of cam_to_mem_processing_system7_0_0_processing_system7_v
   signal buffered_PS_CLK : STD_LOGIC;
   signal buffered_PS_PORB : STD_LOGIC;
   signal buffered_PS_SRSTB : STD_LOGIC;
-  signal gpio_out_t_n : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal gpio_out_t_n : STD_LOGIC_VECTOR ( 6 downto 0 );
   signal NLW_PS7_i_EMIOENET0GMIITXEN_UNCONNECTED : STD_LOGIC;
   signal NLW_PS7_i_EMIOENET0GMIITXER_UNCONNECTED : STD_LOGIC;
   signal NLW_PS7_i_EMIOENET1GMIITXEN_UNCONNECTED : STD_LOGIC;
@@ -1693,8 +1693,8 @@ architecture STRUCTURE of cam_to_mem_processing_system7_0_0_processing_system7_v
   signal NLW_PS7_i_EMIOTRACECTL_UNCONNECTED : STD_LOGIC;
   signal NLW_PS7_i_EMIOENET0GMIITXD_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal NLW_PS7_i_EMIOENET1GMIITXD_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal NLW_PS7_i_EMIOGPIOO_UNCONNECTED : STD_LOGIC_VECTOR ( 63 downto 4 );
-  signal NLW_PS7_i_EMIOGPIOTN_UNCONNECTED : STD_LOGIC_VECTOR ( 63 downto 4 );
+  signal NLW_PS7_i_EMIOGPIOO_UNCONNECTED : STD_LOGIC_VECTOR ( 63 downto 7 );
+  signal NLW_PS7_i_EMIOGPIOTN_UNCONNECTED : STD_LOGIC_VECTOR ( 63 downto 7 );
   signal NLW_PS7_i_EMIOTRACEDATA_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal NLW_PS7_i_MAXIGP0ARCACHE_UNCONNECTED : STD_LOGIC_VECTOR ( 1 to 1 );
   signal NLW_PS7_i_MAXIGP0AWCACHE_UNCONNECTED : STD_LOGIC_VECTOR ( 1 to 1 );
@@ -2767,6 +2767,30 @@ GND: unisim.vcomponents.GND
       I0 => gpio_out_t_n(3),
       O => GPIO_T(3)
     );
+\GPIO_T[4]_INST_0\: unisim.vcomponents.LUT1
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => gpio_out_t_n(4),
+      O => GPIO_T(4)
+    );
+\GPIO_T[5]_INST_0\: unisim.vcomponents.LUT1
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => gpio_out_t_n(5),
+      O => GPIO_T(5)
+    );
+\GPIO_T[6]_INST_0\: unisim.vcomponents.LUT1
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => gpio_out_t_n(6),
+      O => GPIO_T(6)
+    );
 I2C0_SCL_T_INST_0: unisim.vcomponents.LUT1
     generic map(
       INIT => X"1"
@@ -2897,12 +2921,12 @@ PS7_i: unisim.vcomponents.PS7
       EMIOENET1PTPSYNCFRAMETX => PS7_i_n_41,
       EMIOENET1SOFRX => PS7_i_n_42,
       EMIOENET1SOFTX => PS7_i_n_43,
-      EMIOGPIOI(63 downto 4) => B"000000000000000000000000000000000000000000000000000000000000",
-      EMIOGPIOI(3 downto 0) => GPIO_I(3 downto 0),
-      EMIOGPIOO(63 downto 4) => NLW_PS7_i_EMIOGPIOO_UNCONNECTED(63 downto 4),
-      EMIOGPIOO(3 downto 0) => GPIO_O(3 downto 0),
-      EMIOGPIOTN(63 downto 4) => NLW_PS7_i_EMIOGPIOTN_UNCONNECTED(63 downto 4),
-      EMIOGPIOTN(3 downto 0) => gpio_out_t_n(3 downto 0),
+      EMIOGPIOI(63 downto 7) => B"000000000000000000000000000000000000000000000000000000000",
+      EMIOGPIOI(6 downto 0) => GPIO_I(6 downto 0),
+      EMIOGPIOO(63 downto 7) => NLW_PS7_i_EMIOGPIOO_UNCONNECTED(63 downto 7),
+      EMIOGPIOO(6 downto 0) => GPIO_O(6 downto 0),
+      EMIOGPIOTN(63 downto 7) => NLW_PS7_i_EMIOGPIOTN_UNCONNECTED(63 downto 7),
+      EMIOGPIOTN(6 downto 0) => gpio_out_t_n(6 downto 0),
       EMIOI2C0SCLI => I2C0_SCL_I,
       EMIOI2C0SCLO => I2C0_SCL_O,
       EMIOI2C0SCLTN => I2C0_SCL_T_n,
@@ -3084,8 +3108,8 @@ PS7_i: unisim.vcomponents.PS7
       FTMTP2FTRIG(1) => PS7_i_n_719,
       FTMTP2FTRIG(0) => PS7_i_n_720,
       FTMTP2FTRIGACK(3 downto 0) => B"0000",
-      IRQF2P(19 downto 2) => B"000000000000000000",
-      IRQF2P(1 downto 0) => IRQ_F2P(1 downto 0),
+      IRQF2P(19 downto 1) => B"0000000000000000000",
+      IRQF2P(0) => IRQ_F2P(0),
       IRQP2F(28) => PS7_i_n_292,
       IRQP2F(27) => PS7_i_n_293,
       IRQP2F(26) => PS7_i_n_294,
@@ -4818,9 +4842,9 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity cam_to_mem_processing_system7_0_0 is
   port (
-    GPIO_I : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    GPIO_O : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    GPIO_T : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    GPIO_I : in STD_LOGIC_VECTOR ( 6 downto 0 );
+    GPIO_O : out STD_LOGIC_VECTOR ( 6 downto 0 );
+    GPIO_T : out STD_LOGIC_VECTOR ( 6 downto 0 );
     I2C0_SDA_I : in STD_LOGIC;
     I2C0_SDA_O : out STD_LOGIC;
     I2C0_SDA_T : out STD_LOGIC;
@@ -4956,7 +4980,7 @@ entity cam_to_mem_processing_system7_0_0 is
     S_AXI_HP3_WID : in STD_LOGIC_VECTOR ( 5 downto 0 );
     S_AXI_HP3_WDATA : in STD_LOGIC_VECTOR ( 63 downto 0 );
     S_AXI_HP3_WSTRB : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    IRQ_F2P : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    IRQ_F2P : in STD_LOGIC_VECTOR ( 0 to 0 );
     FCLK_CLK0 : out STD_LOGIC;
     FCLK_CLK1 : out STD_LOGIC;
     FCLK_RESET0_N : out STD_LOGIC;
@@ -5266,7 +5290,7 @@ architecture STRUCTURE of cam_to_mem_processing_system7_0_0 is
   attribute C_DQ_WIDTH : integer;
   attribute C_DQ_WIDTH of inst : label is 32;
   attribute C_EMIO_GPIO_WIDTH : integer;
-  attribute C_EMIO_GPIO_WIDTH of inst : label is 4;
+  attribute C_EMIO_GPIO_WIDTH of inst : label is 7;
   attribute C_EN_EMIO_ENET0 : integer;
   attribute C_EN_EMIO_ENET0 of inst : label is 0;
   attribute C_EN_EMIO_ENET1 : integer;
@@ -5308,7 +5332,7 @@ architecture STRUCTURE of cam_to_mem_processing_system7_0_0 is
   attribute C_M_AXI_GP1_THREAD_ID_WIDTH : integer;
   attribute C_M_AXI_GP1_THREAD_ID_WIDTH of inst : label is 12;
   attribute C_NUM_F2P_INTR_INPUTS : integer;
-  attribute C_NUM_F2P_INTR_INPUTS of inst : label is 2;
+  attribute C_NUM_F2P_INTR_INPUTS of inst : label is 1;
   attribute C_PACKAGE_NAME : string;
   attribute C_PACKAGE_NAME of inst : label is "clg400";
   attribute C_PS7_SI_REV : string;
@@ -5477,7 +5501,7 @@ architecture STRUCTURE of cam_to_mem_processing_system7_0_0 is
   attribute X_INTERFACE_INFO of GPIO_T : signal is "xilinx.com:interface:gpio:1.0 GPIO_0 TRI_T";
   attribute X_INTERFACE_INFO of IRQ_F2P : signal is "xilinx.com:signal:interrupt:1.0 IRQ_F2P INTERRUPT";
   attribute X_INTERFACE_MODE of IRQ_F2P : signal is "slave";
-  attribute X_INTERFACE_PARAMETER of IRQ_F2P : signal is "XIL_INTERFACENAME IRQ_F2P, SENSITIVITY LEVEL_HIGH:LEVEL_HIGH, PortWidth 2";
+  attribute X_INTERFACE_PARAMETER of IRQ_F2P : signal is "XIL_INTERFACENAME IRQ_F2P, SENSITIVITY LEVEL_HIGH, PortWidth 1";
   attribute X_INTERFACE_INFO of MIO : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO";
   attribute X_INTERFACE_MODE of MIO : signal is "master";
   attribute X_INTERFACE_PARAMETER of MIO : signal is "XIL_INTERFACENAME FIXED_IO, CAN_DEBUG false";
@@ -5741,9 +5765,9 @@ inst: entity work.cam_to_mem_processing_system7_0_0_processing_system7_v5_5_proc
       FTMT_P2F_TRIG_1 => NLW_inst_FTMT_P2F_TRIG_1_UNCONNECTED,
       FTMT_P2F_TRIG_2 => NLW_inst_FTMT_P2F_TRIG_2_UNCONNECTED,
       FTMT_P2F_TRIG_3 => NLW_inst_FTMT_P2F_TRIG_3_UNCONNECTED,
-      GPIO_I(3 downto 0) => GPIO_I(3 downto 0),
-      GPIO_O(3 downto 0) => GPIO_O(3 downto 0),
-      GPIO_T(3 downto 0) => GPIO_T(3 downto 0),
+      GPIO_I(6 downto 0) => GPIO_I(6 downto 0),
+      GPIO_O(6 downto 0) => GPIO_O(6 downto 0),
+      GPIO_T(6 downto 0) => GPIO_T(6 downto 0),
       I2C0_SCL_I => I2C0_SCL_I,
       I2C0_SCL_O => I2C0_SCL_O,
       I2C0_SCL_T => I2C0_SCL_T,
@@ -5756,7 +5780,7 @@ inst: entity work.cam_to_mem_processing_system7_0_0_processing_system7_v5_5_proc
       I2C1_SDA_I => '0',
       I2C1_SDA_O => NLW_inst_I2C1_SDA_O_UNCONNECTED,
       I2C1_SDA_T => NLW_inst_I2C1_SDA_T_UNCONNECTED,
-      IRQ_F2P(1 downto 0) => IRQ_F2P(1 downto 0),
+      IRQ_F2P(0) => IRQ_F2P(0),
       IRQ_P2F_CAN0 => NLW_inst_IRQ_P2F_CAN0_UNCONNECTED,
       IRQ_P2F_CAN1 => NLW_inst_IRQ_P2F_CAN1_UNCONNECTED,
       IRQ_P2F_CTI => NLW_inst_IRQ_P2F_CTI_UNCONNECTED,
