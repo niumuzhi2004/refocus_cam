@@ -102,8 +102,6 @@ module cam_to_mem_sv (
   (* X_INTERFACE_IGNORE = "true" *)
   input wire [7:0] vid_data_0,
   (* X_INTERFACE_IGNORE = "true" *)
-  output wire [6:0] EMIO,
-  (* X_INTERFACE_IGNORE = "true" *)
   inout wire [0:0] SCL_port,
   (* X_INTERFACE_IGNORE = "true" *)
   input wire vid_vsync_0,
@@ -122,7 +120,11 @@ module cam_to_mem_sv (
   (* X_INTERFACE_IGNORE = "true" *)
   output wire [5:0] lcd_green,
   (* X_INTERFACE_IGNORE = "true" *)
-  output wire [4:0] lcd_blue
+  output wire [4:0] lcd_blue,
+  (* X_INTERFACE_IGNORE = "true" *)
+  output wire [3:0] EMIO_O,
+  (* X_INTERFACE_IGNORE = "true" *)
+  input wire [2:0] EMIO_I
 );
 
   cam_to_mem inst (
@@ -150,7 +152,6 @@ module cam_to_mem_sv (
     .SDA_port(SDA_port),
     .PCLK(PCLK),
     .vid_data_0(vid_data_0),
-    .EMIO(EMIO),
     .SCL_port(SCL_port),
     .vid_vsync_0(vid_vsync_0),
     .vid_active_video_0(vid_active_video_0),
@@ -160,7 +161,9 @@ module cam_to_mem_sv (
     .vid_hsync_0(vid_hsync_0),
     .lcd_red(lcd_red),
     .lcd_green(lcd_green),
-    .lcd_blue(lcd_blue)
+    .lcd_blue(lcd_blue),
+    .EMIO_O(EMIO_O),
+    .EMIO_I(EMIO_I)
   );
 
 endmodule

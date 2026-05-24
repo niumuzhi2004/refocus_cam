@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x72C63BF1554157EC",
+      "boundary_crc": "0xD5573C61D39A90E3",
       "device": "xc7z020clg400-2",
       "gen_directory": "../../../../refocus_cam_v2.gen/sources_1/bd/cam_to_mem",
       "name": "cam_to_mem",
@@ -37,7 +37,10 @@
       "xlslice_0": "",
       "xlslice_1": "",
       "xlslice_2": "",
-      "axis_downsampler_0": ""
+      "axis_downsampler_0": "",
+      "ilslice_0": "",
+      "ilconcat_0": "",
+      "ilconstant_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -257,11 +260,6 @@
         "left": "7",
         "right": "0"
       },
-      "EMIO": {
-        "direction": "O",
-        "left": "6",
-        "right": "0"
-      },
       "SCL_port": {
         "direction": "IO",
         "left": "0",
@@ -284,7 +282,7 @@
             "value_src": "default"
           },
           "FREQ_HZ": {
-            "value": "33333336",
+            "value": "3.33333e+07",
             "value_src": "user_prop"
           },
           "FREQ_TOLERANCE_HZ": {
@@ -323,6 +321,22 @@
       "lcd_blue": {
         "direction": "O",
         "left": "4",
+        "right": "0"
+      },
+      "EMIO_O": {
+        "direction": "O",
+        "left": "3",
+        "right": "0",
+        "parameters": {
+          "PortWidth": {
+            "value": "4",
+            "value_src": "user_prop"
+          }
+        }
+      },
+      "EMIO_I": {
+        "direction": "I",
+        "left": "2",
         "right": "0"
       }
     },
@@ -1305,6 +1319,10 @@
               "M01_AXI"
             ],
             "bd_attributes": {
+              "BRIDGES": {
+                "value": "M00_AXI:M01_AXI",
+                "value_src": "auto"
+              },
               "TYPE": {
                 "value": "interior",
                 "value_src": "default"
@@ -2267,7 +2285,7 @@
                 "value_src": "constant"
               },
               "FREQ_HZ": {
-                "value": "150000000",
+                "value": "1.5e+08",
                 "value_src": "user_prop"
               },
               "CLK_DOMAIN": {
@@ -2338,7 +2356,7 @@
                 "value_src": "constant"
               },
               "FREQ_HZ": {
-                "value": "150000000",
+                "value": "1.5e+08",
                 "value_src": "user_prop"
               },
               "CLK_DOMAIN": {
@@ -2392,7 +2410,7 @@
                 "value_src": "constant"
               },
               "FREQ_HZ": {
-                "value": "150000000",
+                "value": "1.5e+08",
                 "value_src": "user_prop"
               },
               "CLK_DOMAIN": {
@@ -2414,6 +2432,43 @@
                 "value_src": "default_prop"
               }
             }
+          }
+        }
+      },
+      "ilslice_0": {
+        "vlnv": "xilinx.com:inline_hdl:ilslice:1.0",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "3"
+          },
+          "DIN_WIDTH": {
+            "value": "7"
+          }
+        }
+      },
+      "ilconcat_0": {
+        "vlnv": "xilinx.com:inline_hdl:ilconcat:1.0",
+        "parameters": {
+          "IN0_WIDTH": {
+            "value": "4",
+            "value_src": "propagated",
+            "value_mode": "auto"
+          },
+          "IN1_WIDTH": {
+            "value": "3",
+            "value_src": "propagated",
+            "value_mode": "auto"
+          }
+        }
+      },
+      "ilconstant_0": {
+        "vlnv": "xilinx.com:inline_hdl:ilconstant:1.0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "4"
           }
         }
       }
@@ -2511,6 +2566,12 @@
       }
     },
     "nets": {
+      "EMIO_I_1": {
+        "ports": [
+          "EMIO_I",
+          "ilconcat_0/In1"
+        ]
+      },
       "Net": {
         "ports": [
           "SDA_port",
@@ -2536,9 +2597,22 @@
           "processing_system7_0/IRQ_F2P"
         ]
       },
-      "overflow": {
+      "ilconcat_0_dout": {
         "ports": [
-          "v_axi4s_vid_out_0/overflow"
+          "ilconcat_0/dout",
+          "processing_system7_0/GPIO_I"
+        ]
+      },
+      "ilconstant_0_dout": {
+        "ports": [
+          "ilconstant_0/dout",
+          "ilconcat_0/In0"
+        ]
+      },
+      "ilslice_0_Dout": {
+        "ports": [
+          "ilslice_0/Dout",
+          "EMIO_O"
         ]
       },
       "proc_sys_reset_0_peripheral_aresetn": {
@@ -2614,7 +2688,7 @@
       "processing_system7_0_GPIO_O": {
         "ports": [
           "processing_system7_0/GPIO_O",
-          "EMIO"
+          "ilslice_0/Din"
         ]
       },
       "processing_system7_0_I2C0_SCL_O": {

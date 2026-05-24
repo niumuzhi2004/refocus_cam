@@ -18,7 +18,8 @@ int main () {
 	if (Status != XST_SUCCESS) {
         xil_printf("[main] GPIO initializations failed!\r\n");
     }
-
+    emio_debug();
+    
 
     // Reset the Video Timing Controller
     xil_printf("[main] Resetting VTC!\r\n");
@@ -54,8 +55,16 @@ int main () {
     vtc_start(); // release VTC from reset
     
 
+    // Set up GPIO interruptions from buttons
+    xil_printf("[main] Setting up GPIO interruption!\r\n");
+    Status = gpio_interrupt_setup();
+    if (Status != XST_SUCCESS) {
+        xil_printf("[main] GPIO interruption setup failed!\r\n");
+    }
+
     while (1) {
-        vdma_debug();
+        // vdma_debug();
+        // emio_debug();
         usleep(1000000); 
     }
 

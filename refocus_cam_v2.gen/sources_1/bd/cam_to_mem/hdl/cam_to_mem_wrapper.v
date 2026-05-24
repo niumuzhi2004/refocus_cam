@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-//Date        : Sun May 24 14:39:09 2026
+//Date        : Sun May 24 18:55:58 2026
 //Host        : DanielsLaptop running 64-bit major release  (build 9200)
 //Command     : generate_target cam_to_mem_wrapper.bd
 //Design      : cam_to_mem_wrapper
@@ -26,7 +26,8 @@ module cam_to_mem_wrapper
     DDR_ras_n,
     DDR_reset_n,
     DDR_we_n,
-    EMIO,
+    EMIO_I,
+    EMIO_O,
     FIXED_IO_ddr_vrn,
     FIXED_IO_ddr_vrp,
     FIXED_IO_mio,
@@ -61,7 +62,8 @@ module cam_to_mem_wrapper
   inout DDR_ras_n;
   inout DDR_reset_n;
   inout DDR_we_n;
-  output [6:0]EMIO;
+  input [2:0]EMIO_I;
+  output [3:0]EMIO_O;
   inout FIXED_IO_ddr_vrn;
   inout FIXED_IO_ddr_vrp;
   inout [53:0]FIXED_IO_mio;
@@ -97,7 +99,8 @@ module cam_to_mem_wrapper
   wire DDR_ras_n;
   wire DDR_reset_n;
   wire DDR_we_n;
-  wire [6:0]EMIO;
+  wire [2:0]EMIO_I;
+  wire [3:0]EMIO_O;
   wire FIXED_IO_ddr_vrn;
   wire FIXED_IO_ddr_vrp;
   wire [53:0]FIXED_IO_mio;
@@ -134,7 +137,8 @@ module cam_to_mem_wrapper
         .DDR_ras_n(DDR_ras_n),
         .DDR_reset_n(DDR_reset_n),
         .DDR_we_n(DDR_we_n),
-        .EMIO(EMIO),
+        .EMIO_I(EMIO_I),
+        .EMIO_O(EMIO_O),
         .FIXED_IO_ddr_vrn(FIXED_IO_ddr_vrn),
         .FIXED_IO_ddr_vrp(FIXED_IO_ddr_vrp),
         .FIXED_IO_mio(FIXED_IO_mio),

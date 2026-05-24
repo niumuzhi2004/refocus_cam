@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-//Date        : Sun May 24 14:39:09 2026
+//Date        : Sun May 24 18:55:58 2026
 //Host        : DanielsLaptop running 64-bit major release  (build 9200)
 //Command     : generate_target cam_to_mem.bd
 //Design      : cam_to_mem
@@ -10,7 +10,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "cam_to_mem,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=cam_to_mem,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=23,numReposBlks=19,numNonXlnxBlks=0,numHierBlks=4,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=12,da_board_cnt=2,da_clkrst_cnt=15,da_ps7_cnt=2,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "cam_to_mem.hwdef" *) 
+(* CORE_GENERATION_INFO = "cam_to_mem,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=cam_to_mem,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=26,numReposBlks=22,numNonXlnxBlks=0,numHierBlks=4,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=12,da_board_cnt=2,da_clkrst_cnt=15,da_ps7_cnt=2,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "cam_to_mem.hwdef" *) 
 module cam_to_mem
    (DDR_addr,
     DDR_ba,
@@ -27,7 +27,8 @@ module cam_to_mem
     DDR_ras_n,
     DDR_reset_n,
     DDR_we_n,
-    EMIO,
+    EMIO_I,
+    EMIO_O,
     FIXED_IO_ddr_vrn,
     FIXED_IO_ddr_vrp,
     FIXED_IO_mio,
@@ -62,7 +63,8 @@ module cam_to_mem
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR RAS_N" *) inout DDR_ras_n;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR RESET_N" *) inout DDR_reset_n;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR WE_N" *) inout DDR_we_n;
-  output [6:0]EMIO;
+  input [2:0]EMIO_I;
+  output [3:0]EMIO_O;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRN" *) (* X_INTERFACE_MODE = "Master" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME FIXED_IO, CAN_DEBUG false" *) inout FIXED_IO_ddr_vrn;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRP" *) inout FIXED_IO_ddr_vrp;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO" *) inout [53:0]FIXED_IO_mio;
@@ -74,7 +76,7 @@ module cam_to_mem
   inout [0:0]SDA_port;
   output [4:0]lcd_blue;
   output [5:0]lcd_green;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.LCD_PCLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.LCD_PCLK, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK1, FREQ_HZ 33333336, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output [0:0]lcd_pclk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.LCD_PCLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.LCD_PCLK, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK1, FREQ_HZ 3.33333e+07, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output [0:0]lcd_pclk;
   output [4:0]lcd_red;
   input vid_active_video_0;
   output vid_active_video_1;
@@ -98,7 +100,8 @@ module cam_to_mem
   wire DDR_ras_n;
   wire DDR_reset_n;
   wire DDR_we_n;
-  wire [6:0]EMIO;
+  wire [2:0]EMIO_I;
+  wire [3:0]EMIO_O;
   wire FIXED_IO_ddr_vrn;
   wire FIXED_IO_ddr_vrp;
   wire [53:0]FIXED_IO_mio;
@@ -226,17 +229,19 @@ module cam_to_mem
   wire axis_subset_converter_0_M_AXIS_TREADY;
   wire [0:0]axis_subset_converter_0_M_AXIS_TUSER;
   wire axis_subset_converter_0_M_AXIS_TVALID;
+  wire [6:0]ilconcat_0_dout;
+  wire [3:0]ilconstant_0_dout;
   wire [4:0]lcd_blue;
   wire [5:0]lcd_green;
   wire \^lcd_pclk ;
   wire [4:0]lcd_red;
-  wire overflow;
   wire [0:0]proc_sys_reset_0_peripheral_aresetn;
   wire [0:0]proc_sys_reset_0_peripheral_reset;
   wire [0:0]proc_sys_reset_1_peripheral_aresetn;
   wire [0:0]proc_sys_reset_1_peripheral_reset;
   wire processing_system7_0_FCLK_CLK0;
   wire processing_system7_0_FCLK_RESET0_N;
+  wire [6:0]processing_system7_0_GPIO_O;
   wire processing_system7_0_I2C0_SCL_O;
   wire processing_system7_0_I2C0_SCL_T;
   wire processing_system7_0_I2C0_SDA_O;
@@ -561,6 +566,9 @@ module cam_to_mem
         .s_axis_tready(axi_vdma_0_M_AXIS_MM2S_TREADY),
         .s_axis_tuser(axi_vdma_0_M_AXIS_MM2S_TUSER),
         .s_axis_tvalid(axi_vdma_0_M_AXIS_MM2S_TVALID));
+  assign ilconcat_0_dout = {EMIO_I, ilconstant_0_dout};
+  assign ilconstant_0_dout = 4'h0;
+  assign EMIO_O = processing_system7_0_GPIO_O[3:0];
   cam_to_mem_proc_sys_reset_0_0 proc_sys_reset_0
        (.aux_reset_in(1'b1),
         .dcm_locked(1'b1),
@@ -598,8 +606,8 @@ module cam_to_mem
         .FCLK_CLK0(processing_system7_0_FCLK_CLK0),
         .FCLK_CLK1(\^lcd_pclk ),
         .FCLK_RESET0_N(processing_system7_0_FCLK_RESET0_N),
-        .GPIO_I({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .GPIO_O(EMIO),
+        .GPIO_I(ilconcat_0_dout),
+        .GPIO_O(processing_system7_0_GPIO_O),
         .I2C0_SCL_I(util_ds_buf_1_IOBUF_IO_O),
         .I2C0_SCL_O(processing_system7_0_I2C0_SCL_O),
         .I2C0_SCL_T(processing_system7_0_I2C0_SCL_T),
@@ -741,7 +749,6 @@ module cam_to_mem
         .aclken(1'b1),
         .aresetn(proc_sys_reset_1_peripheral_aresetn),
         .fid(1'b0),
-        .overflow(overflow),
         .s_axis_video_tdata(axis_data_fifo_0_M_AXIS_TDATA),
         .s_axis_video_tlast(axis_data_fifo_0_M_AXIS_TLAST),
         .s_axis_video_tready(axis_data_fifo_0_M_AXIS_TREADY),

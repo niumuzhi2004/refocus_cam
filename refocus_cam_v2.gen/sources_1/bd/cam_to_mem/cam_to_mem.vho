@@ -77,7 +77,6 @@ COMPONENT cam_to_mem
     SDA_port : INOUT STD_LOGIC_VECTOR(0 DOWNTO 0);
     PCLK : IN STD_LOGIC;
     vid_data_0 : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-    EMIO : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
     SCL_port : INOUT STD_LOGIC_VECTOR(0 DOWNTO 0);
     vid_vsync_0 : IN STD_LOGIC;
     vid_active_video_0 : IN STD_LOGIC;
@@ -87,7 +86,9 @@ COMPONENT cam_to_mem
     vid_hsync_0 : OUT STD_LOGIC;
     lcd_red : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
     lcd_green : OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
-    lcd_blue : OUT STD_LOGIC_VECTOR(4 DOWNTO 0)
+    lcd_blue : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
+    EMIO_O : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    EMIO_I : IN STD_LOGIC_VECTOR(2 DOWNTO 0)
   );
 END COMPONENT;
 -- COMP_TAG_END ------  End cut for COMPONENT Declaration  ------
@@ -122,7 +123,6 @@ your_instance_name : cam_to_mem
     SDA_port => SDA_port,
     PCLK => PCLK,
     vid_data_0 => vid_data_0,
-    EMIO => EMIO,
     SCL_port => SCL_port,
     vid_vsync_0 => vid_vsync_0,
     vid_active_video_0 => vid_active_video_0,
@@ -132,7 +132,9 @@ your_instance_name : cam_to_mem
     vid_hsync_0 => vid_hsync_0,
     lcd_red => lcd_red,
     lcd_green => lcd_green,
-    lcd_blue => lcd_blue
+    lcd_blue => lcd_blue,
+    EMIO_O => EMIO_O,
+    EMIO_I => EMIO_I
   );
 -- INST_TAG_END ------  End cut for INSTANTIATION Template  ------
 
