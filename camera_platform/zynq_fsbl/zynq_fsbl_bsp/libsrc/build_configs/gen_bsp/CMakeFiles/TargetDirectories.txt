@@ -46,13 +46,6 @@ C:/Users/niumu/Refocusing/refocus_cam_v2/camera_platform/zynq_fsbl/zynq_fsbl_bsp
 C:/Users/niumu/Refocusing/refocus_cam_v2/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/dmaps/src/CMakeFiles/install.dir
 C:/Users/niumu/Refocusing/refocus_cam_v2/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/dmaps/src/CMakeFiles/install/local.dir
 C:/Users/niumu/Refocusing/refocus_cam_v2/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/dmaps/src/CMakeFiles/install/strip.dir
-C:/Users/niumu/Refocusing/refocus_cam_v2/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/gpio/src/CMakeFiles/gpio.dir
-C:/Users/niumu/Refocusing/refocus_cam_v2/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/gpio/src/CMakeFiles/edit_cache.dir
-C:/Users/niumu/Refocusing/refocus_cam_v2/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/gpio/src/CMakeFiles/rebuild_cache.dir
-C:/Users/niumu/Refocusing/refocus_cam_v2/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/gpio/src/CMakeFiles/list_install_components.dir
-C:/Users/niumu/Refocusing/refocus_cam_v2/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/gpio/src/CMakeFiles/install.dir
-C:/Users/niumu/Refocusing/refocus_cam_v2/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/gpio/src/CMakeFiles/install/local.dir
-C:/Users/niumu/Refocusing/refocus_cam_v2/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/gpio/src/CMakeFiles/install/strip.dir
 C:/Users/niumu/Refocusing/refocus_cam_v2/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/gpiops/src/CMakeFiles/gpiops.dir
 C:/Users/niumu/Refocusing/refocus_cam_v2/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/gpiops/src/CMakeFiles/edit_cache.dir
 C:/Users/niumu/Refocusing/refocus_cam_v2/camera_platform/zynq_fsbl/zynq_fsbl_bsp/libsrc/build_configs/gen_bsp/libsrc/gpiops/src/CMakeFiles/rebuild_cache.dir

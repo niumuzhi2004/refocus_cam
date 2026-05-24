@@ -23,7 +23,7 @@
 		processing_system7_0: processing_system7@0 {
 			xlnx,pcw-act-enet0-peripheral-freqmhz = <10>;
 			xlnx,pcw-nor-grp-sram-cs1-io = "<Select>";
-			xlnx,num-f2p-intr-inputs = <2>;
+			xlnx,num-f2p-intr-inputs = <1>;
 			reg = <0x00000000 0x40000000>;
 			xlnx,pcw-mio-18-direction = "inout";
 			xlnx,pcw-nand-cycles-t-ar = <1>;
@@ -193,7 +193,7 @@
 			xlnx,pcw-can-peripheral-freqmhz = <100>;
 			xlnx,pcw-uiparam-ddr-dq-2-package-length = <0x561cad8>;
 			xlnx,pcw-mio-15-slew = "slow";
-			xlnx,emio-gpio-width = <4>;
+			xlnx,emio-gpio-width = <7>;
 			xlnx,fclk-clk2-buf;
 			xlnx,s-axi-hp0-data-width = <64>;
 			xlnx,pcw-mio-12-slew = "slow";
@@ -396,7 +396,7 @@
 			xlnx,pcw-nor-cs0-t-tr = <1>;
 			xlnx,pcw-ddr-priority-readport-3 = "<Select>";
 			xlnx,pcw-fclk0-peripheral-divisor1 = <3>;
-			xlnx,pcw-gpio-emio-gpio-io = <4>;
+			xlnx,pcw-gpio-emio-gpio-io = <7>;
 			xlnx,pcw-smc-peripheral-valid = <0>;
 			xlnx,pcw-uart1-peripheral-enable = <0>;
 			xlnx,pcw-act-smc-peripheral-freqmhz = <10>;
@@ -443,7 +443,7 @@
 			xlnx,pcw-uiparam-ddr-clock-1-length-mm = <0>;
 			xlnx,s-axi-acp-id-width = <3>;
 			xlnx,pcw-mio-24-direction = "inout";
-			xlnx,pcw-gpio-emio-gpio-width = <4>;
+			xlnx,pcw-gpio-emio-gpio-width = <7>;
 			xlnx,pcw-uiparam-ddr-clock-1-propogation-delay = <160>;
 			xlnx,irq-f2p-mode = "DIRECT";
 			xlnx,pcw-mio-12-iotype = "LVCMOS , 3.3V";
@@ -484,7 +484,7 @@
 			xlnx,pcw-uiparam-ddr-dq-0-length-mm = <0>;
 			xlnx,pcw-mio-27-slew = "slow";
 			xlnx,pcw-smc-peripheral-freqmhz = <100>;
-			xlnx,pcw-num-f2p-intr-inputs = <2>;
+			xlnx,pcw-num-f2p-intr-inputs = <1>;
 			xlnx,pcw-wdt-wdt-io = "<Select>";
 			xlnx,pcw-uiparam-ddr-dq-0-propogation-delay = <160>;
 			xlnx,pcw-mio-24-slew = "slow";
@@ -1047,10 +1047,10 @@
 		xlnx,mio-gpio-mask = <0x5600>;
 		status = "okay";
 		gpio-mask-high = <0>;
-		xlnx,emio-gpio-width = <4>;
+		xlnx,emio-gpio-width = <7>;
 		xlnx,ip-name = "ps7_gpio";
 		gpio-mask-low = <22016>;
-		emio-gpio-width = <0x4>;
+		emio-gpio-width = <0x7>;
 		xlnx,name = "ps7_gpio_0";
 	};
 	&mc {
