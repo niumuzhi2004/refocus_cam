@@ -26,5 +26,9 @@
 // memory parameters
 #define FRAME_STORE_START_ADDR      0x10000000      // start address to store frames
 
+// sd card constants
+#define BMP_HEADER_SIZE             54
+#define IMG_HEADER_SIZE             40
+
 
 #endif

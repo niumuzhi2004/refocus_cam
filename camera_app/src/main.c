@@ -8,6 +8,7 @@
 #include "vdma_config.h"
 #include "vtc_config.h"
 #include "constants.h"
+#include "storage.h"
 
 
 int main () {
@@ -18,7 +19,6 @@ int main () {
 	if (Status != XST_SUCCESS) {
         xil_printf("[main] GPIO initializations failed!\r\n");
     }
-    emio_debug();
     
 
     // Reset the Video Timing Controller
@@ -53,6 +53,14 @@ int main () {
         xil_printf("[main] VDMA MM2S configuration failed!\r\n");
     }
     vtc_start(); // release VTC from reset
+
+
+    // Mount SD card
+    xil_printf("[main] Mounting SD card!\r\n");
+    Status = sd_init();
+	if (Status != XST_SUCCESS) {
+        xil_printf("[main] SD card mount failed!\r\n");
+    }
     
 
     // Set up GPIO interruptions from buttons
@@ -62,10 +70,20 @@ int main () {
         xil_printf("[main] GPIO interruption setup failed!\r\n");
     }
 
+
     while (1) {
         // vdma_debug();
         // emio_debug();
-        usleep(1000000); 
+        // usleep(1000000); 
+
+        if (shutter_pressed) {
+            xil_printf("[main] Shutter pressed!\r\n");
+            sd_card_write();
+            shutter_pressed = 0;
+            usleep(500000);
+        }
+
+        usleep(10000);
     }
 
     return XST_SUCCESS;

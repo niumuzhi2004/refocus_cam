@@ -7,6 +7,7 @@
 #include "xparameters.h"
 #include "sleep.h"
 #include "xscugic.h"
+#include "storage.h"
 
 #define GPIO_DEVICE_ID      XPAR_XGPIOPS_0_BASEADDR
 #define INTC_DEVICE_ID      XPAR_XSCUGIC_0_BASEADDR
@@ -26,6 +27,8 @@
 
 static XGpioPs Gpio;
 static XScuGic Intc;
+
+volatile int shutter_pressed = 0;
 
 
 int gpio_init(void) {
@@ -141,7 +144,9 @@ int gpio_interrupt_setup(void) {
 
 
 void button_handler(void *CallBackRef, u32 Bank, u32 Status) {
-    xil_printf("An interrupt occurred: \t Bank %d \t Status 0x%X\r\n", Bank, Status);
+    if (Bank == 2 && Status == 0x40) {
+        shutter_pressed = 1;
+    }
 }
 
 

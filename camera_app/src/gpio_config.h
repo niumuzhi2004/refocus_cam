@@ -19,4 +19,11 @@ void button_handler(void *CallBackRef, u32 Bank, u32 Status);
 // print debug statements for emio pins
 void emio_debug(void);
 
+// global flag for hardware interrupt
+extern volatile int shutter_pressed;
+extern volatile int album_selected;
+extern volatile int stream_selected;
+extern volatile int left_nav_selected;
+extern volatile int right_nav_selected;
+
 #endif
