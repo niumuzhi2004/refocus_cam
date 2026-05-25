@@ -5,12 +5,14 @@
 #include "xil_cache.h"
 
 #include "constants.h"
+#include <stdint.h>
 #include <xstatus.h>
 
 #define VDMA_DEVICE_ID      XPAR_AXI_VDMA_0_BASEADDR
 
 static XAxiVdma Vdma;
 static XAxiVdma_Config *VdmaConfigPtr;
+static XAxiVdma_DmaSetup WriteCfg = {0}; 
 
 static const u32 frameOffset = CAM_HEIGHT * CAM_WIDTH * 2;
 
@@ -40,7 +42,6 @@ int vdma_write_init(void) {
     xil_printf("[vdma] VDMA Write Channel Reset Complete!\r\n");
 
     // Configuring Write Channel
-    XAxiVdma_DmaSetup WriteCfg = {0}; 
     WriteCfg.VertSizeInput = CAM_HEIGHT;
     WriteCfg.HoriSizeInput = CAM_WIDTH * 2; // RGB565 is 2 bytes per pixel
     WriteCfg.Stride = CAM_WIDTH * 2;
@@ -149,4 +150,29 @@ void vdma_debug(void) {
         // Clear the status register
         XAxiVdma_WriteReg(VdmaConfigPtr->BaseAddress, XAXIVDMA_RX_OFFSET + XAXIVDMA_SR_OFFSET, write_status);
     }
+}
+
+
+uintptr_t vdma_get_safe_buffer(void) {
+    u32 active_frame = XAxiVdma_CurrFrameStore(&Vdma, XAXIVDMA_WRITE);
+    int safe_frame = (active_frame == 0) ? 2 : (active_frame - 1);
+    return (uintptr_t)WriteCfg.FrameStoreStartAddr[safe_frame];
+}
+
+
+int vdma_write_pause(void) {
+    XAxiVdma_DmaStop(&Vdma, XAXIVDMA_WRITE);
+    xil_printf("[vdma] Write channel paused...\r\n");
+    return XST_SUCCESS;
+}
+
+
+int vdma_write_resume(void) {
+    int Status = XAxiVdma_DmaStart(&Vdma, XAXIVDMA_WRITE);
+    if (Status != XST_SUCCESS) {
+        xil_printf("[vdma] XAxiVdma_DmaStart() failed\r\n");
+        return XST_FAILURE;
+    }
+    xil_printf("[vdma] Write channel resumed...\r\n");
+    return XST_SUCCESS;
 }

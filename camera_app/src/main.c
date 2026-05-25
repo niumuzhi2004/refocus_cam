@@ -10,6 +10,10 @@
 #include "constants.h"
 #include "storage.h"
 
+SystemMode mode = MODE_LIVE;
+int current_photo_index = 0;
+int max_photo_index;
+
 
 int main () {
 
@@ -60,6 +64,9 @@ int main () {
     Status = sd_init();
 	if (Status != XST_SUCCESS) {
         xil_printf("[main] SD card mount failed!\r\n");
+    } else {
+        max_photo_index = sd_get_photo_count();
+        xil_printf("[main] Found %d photos in SD card\r\n", max_photo_index);
     }
     
 
@@ -72,15 +79,81 @@ int main () {
 
 
     while (1) {
-        // vdma_debug();
-        // emio_debug();
-        // usleep(1000000); 
 
         if (shutter_pressed) {
-            xil_printf("[main] Shutter pressed!\r\n");
-            sd_card_write();
+            if (mode == MODE_LIVE) {
+                xil_printf("[UI] Shutter pressed!\r\n");
+                Status = sd_card_write();
+                if (Status == XST_SUCCESS) {
+                    max_photo_index++;
+                }
+                usleep(500000);
+            } else {
+                xil_printf("[UI] Shutter disabled in album mode!\r\n");
+            }
             shutter_pressed = 0;
+        }
+
+        if (mode_changed) {
+            if (mode == MODE_LIVE) {
+                if (max_photo_index > 0) {
+                    mode = MODE_ALBUM;
+                    vdma_write_pause();
+                    
+                    xil_printf("[UI] Displaying album!\r\n");
+                    current_photo_index = max_photo_index;
+                    sd_card_read(current_photo_index - 1);
+                }
+                else {
+                    xil_printf("[UI] No photos to show!\r\n");
+                }
+            } else {
+                mode = MODE_LIVE;
+                vdma_write_resume();
+                xil_printf("[UI] Displaying live stream!\r\n");
+            }
+            mode_changed = 0;
+        }
+
+        if (photo_delete_selected) {
+            if (mode == MODE_ALBUM) {
+                sd_card_delete(current_photo_index);
+                xil_printf("[UI] Photo successfully deleted!\r\n");
+            } else {
+                xil_printf("[UI] Photo delete disabled in live mode!\r\n");
+            }
+            photo_delete_selected = 0;
             usleep(500000);
+        }
+
+        if (left_nav_selected) {
+            if (mode == MODE_ALBUM) {
+                if (current_photo_index > 1) {
+                    current_photo_index--;
+                    xil_printf("[UI] Showing previous photo!\r\n");
+                    sd_card_read(current_photo_index - 1);
+                } else {
+                    xil_printf("[UI] This is already the first photo!\r\n");
+                }
+            } else {
+                xil_printf("[UI] Navigation disabled in live mode!\r\n");
+            }
+            left_nav_selected = 0;
+        }
+
+        if (right_nav_selected) {
+             if (mode == MODE_ALBUM) {
+                if (current_photo_index < max_photo_index) {
+                    current_photo_index++;
+                    xil_printf("[UI] Showing next photo!\r\n");
+                    sd_card_read(current_photo_index - 1);
+                } else {
+                    xil_printf("[UI] This is already the last photo!\r\n");
+                }
+            } else {
+                xil_printf("[UI] Navigation disabled in live mode!\r\n");
+            }
+            right_nav_selected = 0;
         }
 
         usleep(10000);

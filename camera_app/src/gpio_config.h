@@ -1,8 +1,7 @@
-#include "xil_types.h"
-
-
 #ifndef GPIO_CONFIG_H
 #define GPIO_CONFIG_H
+
+#include "xil_types.h"
 
 // initialize GPIO pins needed
 int gpio_init(void);
@@ -21,8 +20,8 @@ void emio_debug(void);
 
 // global flag for hardware interrupt
 extern volatile int shutter_pressed;
-extern volatile int album_selected;
-extern volatile int stream_selected;
+extern volatile int mode_changed;
+extern volatile int photo_delete_selected;
 extern volatile int left_nav_selected;
 extern volatile int right_nav_selected;
 

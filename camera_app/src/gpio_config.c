@@ -23,12 +23,16 @@
 #define RIGHT_BUTTON        11      // MIO 11 - show right photo button
 #define SHUTTER_BUTTON      58      // EMIO 4 - shutter button
 #define ALBUM_BUTTON        59      // EMIO 5 - album select button
-#define CAM_BUTTON          60      // EMIO 6 - camera stream select button
+#define DELETE_BUTTON          60      // EMIO 6 - camera stream select button
 
 static XGpioPs Gpio;
 static XScuGic Intc;
 
 volatile int shutter_pressed = 0;
+volatile int mode_changed = 0;
+volatile int photo_delete_selected = 0;
+volatile int left_nav_selected = 0;
+volatile int right_nav_selected = 0;
 
 
 int gpio_init(void) {
@@ -55,7 +59,7 @@ int gpio_init(void) {
     XGpioPs_SetDirectionPin(&Gpio, RIGHT_BUTTON, 0);
     XGpioPs_SetDirectionPin(&Gpio, SHUTTER_BUTTON, 0);
     XGpioPs_SetDirectionPin(&Gpio, ALBUM_BUTTON, 0);
-    XGpioPs_SetDirectionPin(&Gpio, CAM_BUTTON, 0);
+    XGpioPs_SetDirectionPin(&Gpio, DELETE_BUTTON, 0);
     
     XGpioPs_SetOutputEnablePin(&Gpio, CAM_RST_PIN, 1);    
     XGpioPs_SetOutputEnablePin(&Gpio, CAM_PWDN_PIN, 1);
@@ -125,27 +129,42 @@ int gpio_interrupt_setup(void) {
     XGpioPs_SetIntrTypePin(&Gpio, RIGHT_BUTTON, XGPIOPS_IRQ_TYPE_EDGE_RISING);
     XGpioPs_SetIntrTypePin(&Gpio, SHUTTER_BUTTON, XGPIOPS_IRQ_TYPE_EDGE_RISING);
     XGpioPs_SetIntrTypePin(&Gpio, ALBUM_BUTTON, XGPIOPS_IRQ_TYPE_EDGE_RISING);
-    XGpioPs_SetIntrTypePin(&Gpio, CAM_BUTTON, XGPIOPS_IRQ_TYPE_EDGE_RISING);
+    XGpioPs_SetIntrTypePin(&Gpio, DELETE_BUTTON, XGPIOPS_IRQ_TYPE_EDGE_RISING);
     
     XGpioPs_IntrClearPin(&Gpio, LEFT_BUTTON);
     XGpioPs_IntrClearPin(&Gpio, RIGHT_BUTTON);
     XGpioPs_IntrClearPin(&Gpio, SHUTTER_BUTTON);
     XGpioPs_IntrClearPin(&Gpio, ALBUM_BUTTON);
-    XGpioPs_IntrClearPin(&Gpio, CAM_BUTTON);
+    XGpioPs_IntrClearPin(&Gpio, DELETE_BUTTON);
 
     XGpioPs_IntrEnablePin(&Gpio, LEFT_BUTTON);
     XGpioPs_IntrEnablePin(&Gpio, RIGHT_BUTTON);
     XGpioPs_IntrEnablePin(&Gpio, SHUTTER_BUTTON);
     XGpioPs_IntrEnablePin(&Gpio, ALBUM_BUTTON);
-    XGpioPs_IntrEnablePin(&Gpio, CAM_BUTTON);
+    XGpioPs_IntrEnablePin(&Gpio, DELETE_BUTTON);
 
     return XST_SUCCESS;
 }
 
 
 void button_handler(void *CallBackRef, u32 Bank, u32 Status) {
-    if (Bank == 2 && Status == 0x40) {
-        shutter_pressed = 1;
+    if (Bank == 2) {
+        if (Status == 0x40) {
+            shutter_pressed = 1;
+        } else 
+        if (Status == 0x20) {
+            mode_changed = 1;
+        } else 
+        if (Status == 0x10) {
+            photo_delete_selected = 1;
+        }
+    } else if (Bank == 0) {
+        if (Status & 0x400) {
+            left_nav_selected = 1;
+        } else 
+        if (Status & 0x800) {
+            right_nav_selected = 1;
+        }
     }
 }
 
@@ -153,5 +172,5 @@ void button_handler(void *CallBackRef, u32 Bank, u32 Status) {
 void emio_debug(void) {
     xil_printf("SHUTTER = %d\r\n", XGpioPs_ReadPin(&Gpio, SHUTTER_BUTTON));
     xil_printf("ALBUM   = %d\r\n", XGpioPs_ReadPin(&Gpio, ALBUM_BUTTON));
-    xil_printf("CAM     = %d\r\n", XGpioPs_ReadPin(&Gpio, CAM_BUTTON));
+    xil_printf("CAM     = %d\r\n", XGpioPs_ReadPin(&Gpio, DELETE_BUTTON));
 }

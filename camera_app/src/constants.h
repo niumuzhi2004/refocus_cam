@@ -30,5 +30,11 @@
 #define BMP_HEADER_SIZE             54
 #define IMG_HEADER_SIZE             40
 
+// system modes
+typedef enum {
+    MODE_LIVE,
+    MODE_ALBUM
+} SystemMode;
+
 
 #endif
