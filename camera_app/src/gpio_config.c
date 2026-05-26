@@ -81,9 +81,8 @@ int gpio_init(void) {
     XGpioPs_WritePin(&Gpio, CAM_PWDN_PIN, 0);
     usleep(100000);
     
-    // Reset Camera Module, Power On LCD Screen Back Light
+    // Reset Camera Module
     XGpioPs_WritePin(&Gpio, CAM_RST_PIN, 1);
-    XGpioPs_WritePin(&Gpio, BACK_LIGHT_PIN, 1);
     usleep(500000);
 
     return XST_SUCCESS;
@@ -173,4 +172,16 @@ void emio_debug(void) {
     xil_printf("SHUTTER = %d\r\n", XGpioPs_ReadPin(&Gpio, SHUTTER_BUTTON));
     xil_printf("ALBUM   = %d\r\n", XGpioPs_ReadPin(&Gpio, ALBUM_BUTTON));
     xil_printf("CAM     = %d\r\n", XGpioPs_ReadPin(&Gpio, DELETE_BUTTON));
+}
+
+
+void screen_poweron(void) {
+    XGpioPs_WritePin(&Gpio, BACK_LIGHT_PIN, 1);
+}
+
+
+void screen_flash(void) {
+    XGpioPs_WritePin(&Gpio, BACK_LIGHT_PIN, 0);
+    usleep(40000);
+    XGpioPs_WritePin(&Gpio, BACK_LIGHT_PIN, 1);
 }

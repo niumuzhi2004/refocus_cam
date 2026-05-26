@@ -18,6 +18,12 @@ void button_handler(void *CallBackRef, u32 Bank, u32 Status);
 // print debug statements for emio pins
 void emio_debug(void);
 
+// power on LCD screen
+void screen_poweron(void);
+
+// create a visual flash when shutter button is pressed
+void screen_flash(void);
+
 // global flag for hardware interrupt
 extern volatile int shutter_pressed;
 extern volatile int mode_changed;

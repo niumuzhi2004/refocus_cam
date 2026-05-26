@@ -76,13 +76,14 @@ int main () {
     if (Status != XST_SUCCESS) {
         xil_printf("[main] GPIO interruption setup failed!\r\n");
     }
+    screen_poweron(); // turn on LCD backlight
 
 
     while (1) {
 
         if (shutter_pressed) {
             if (mode == MODE_LIVE) {
-                xil_printf("[UI] Shutter pressed!\r\n");
+                screen_flash();
                 Status = sd_card_write();
                 if (Status == XST_SUCCESS) {
                     max_photo_index++;
