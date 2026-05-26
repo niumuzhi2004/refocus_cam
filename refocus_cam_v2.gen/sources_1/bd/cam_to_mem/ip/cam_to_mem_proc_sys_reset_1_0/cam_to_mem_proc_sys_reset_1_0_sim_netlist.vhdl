@@ -2,10 +2,10 @@
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
--- Date        : Sun May 24 17:52:36 2026
+-- Date        : Fri May 22 18:49:24 2026
 -- Host        : DanielsLaptop running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               c:/Users/niumu/Refocusing/refocus_cam_v2/refocus_cam_v2.gen/sources_1/bd/cam_to_mem/ip/cam_to_mem_proc_sys_reset_1_0/cam_to_mem_proc_sys_reset_1_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top cam_to_mem_proc_sys_reset_1_0 -prefix
+--               cam_to_mem_proc_sys_reset_1_0_ cam_to_mem_proc_sys_reset_1_0_sim_netlist.vhdl
 -- Design      : cam_to_mem_proc_sys_reset_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -22,8 +22,6 @@ entity cam_to_mem_proc_sys_reset_1_0_upcnt_n is
     seq_cnt_en : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_proc_sys_reset_1_0_upcnt_n : entity is "upcnt_n";
 end cam_to_mem_proc_sys_reset_1_0_upcnt_n;
 
 architecture STRUCTURE of cam_to_mem_proc_sys_reset_1_0_upcnt_n is
@@ -190,8 +188,6 @@ entity cam_to_mem_proc_sys_reset_1_0_xpm_cdc_single is
   attribute DEST_SYNC_FF of cam_to_mem_proc_sys_reset_1_0_xpm_cdc_single : entity is 4;
   attribute INIT_SYNC_FF : integer;
   attribute INIT_SYNC_FF of cam_to_mem_proc_sys_reset_1_0_xpm_cdc_single : entity is 0;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_proc_sys_reset_1_0_xpm_cdc_single : entity is "xpm_cdc_single";
   attribute SIM_ASSERT_CHK : integer;
   attribute SIM_ASSERT_CHK of cam_to_mem_proc_sys_reset_1_0_xpm_cdc_single : entity is 0;
   attribute SRC_INPUT_REG : integer;
@@ -362,8 +358,6 @@ entity cam_to_mem_proc_sys_reset_1_0_lpf is
     ext_reset_in : in STD_LOGIC;
     aux_reset_in : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_proc_sys_reset_1_0_lpf : entity is "lpf";
 end cam_to_mem_proc_sys_reset_1_0_lpf;
 
 architecture STRUCTURE of cam_to_mem_proc_sys_reset_1_0_lpf is
@@ -607,8 +601,6 @@ entity cam_to_mem_proc_sys_reset_1_0_sequence_psr is
     lpf_int : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_proc_sys_reset_1_0_sequence_psr : entity is "sequence_psr";
 end cam_to_mem_proc_sys_reset_1_0_sequence_psr;
 
 architecture STRUCTURE of cam_to_mem_proc_sys_reset_1_0_sequence_psr is
@@ -947,8 +939,6 @@ entity cam_to_mem_proc_sys_reset_1_0_proc_sys_reset is
   attribute C_NUM_PERP_ARESETN of cam_to_mem_proc_sys_reset_1_0_proc_sys_reset : entity is 1;
   attribute C_NUM_PERP_RST : integer;
   attribute C_NUM_PERP_RST of cam_to_mem_proc_sys_reset_1_0_proc_sys_reset : entity is 1;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_proc_sys_reset_1_0_proc_sys_reset : entity is "proc_sys_reset";
 end cam_to_mem_proc_sys_reset_1_0_proc_sys_reset;
 
 architecture STRUCTURE of cam_to_mem_proc_sys_reset_1_0_proc_sys_reset is
@@ -1118,7 +1108,7 @@ architecture STRUCTURE of cam_to_mem_proc_sys_reset_1_0 is
   attribute x_interface_parameter of mb_reset : signal is "XIL_INTERFACENAME mb_rst, POLARITY ACTIVE_HIGH, TYPE PROCESSOR, INSERT_VIP 0";
   attribute x_interface_info of slowest_sync_clk : signal is "xilinx.com:signal:clock:1.0 clock CLK";
   attribute x_interface_mode of slowest_sync_clk : signal is "slave clock";
-  attribute x_interface_parameter of slowest_sync_clk : signal is "XIL_INTERFACENAME clock, ASSOCIATED_RESET mb_reset:bus_struct_reset:interconnect_aresetn:peripheral_aresetn:peripheral_reset, FREQ_HZ 3.33333e+07, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK1, INSERT_VIP 0";
+  attribute x_interface_parameter of slowest_sync_clk : signal is "XIL_INTERFACENAME clock, ASSOCIATED_RESET mb_reset:bus_struct_reset:interconnect_aresetn:peripheral_aresetn:peripheral_reset, FREQ_HZ 33333336, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK1, INSERT_VIP 0";
   attribute x_interface_info of bus_struct_reset : signal is "xilinx.com:signal:reset:1.0 bus_struct_reset RST";
   attribute x_interface_mode of bus_struct_reset : signal is "master bus_struct_reset";
   attribute x_interface_parameter of bus_struct_reset : signal is "XIL_INTERFACENAME bus_struct_reset, POLARITY ACTIVE_HIGH, TYPE INTERCONNECT, INSERT_VIP 0";

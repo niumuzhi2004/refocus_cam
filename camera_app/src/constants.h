@@ -27,9 +27,10 @@
 #define FRAME_STORE_START_ADDR      0x10000000      // start address to store frames
 
 // sd card constants
-#define BMP_HEADER_SIZE             54
+#define BMP_HEADER_SIZE             66
 #define IMG_HEADER_SIZE             40
 #define MAX_PHOTOS                  450
+#define BITS_PER_PIXEL              16
 
 // system modes
 typedef enum {

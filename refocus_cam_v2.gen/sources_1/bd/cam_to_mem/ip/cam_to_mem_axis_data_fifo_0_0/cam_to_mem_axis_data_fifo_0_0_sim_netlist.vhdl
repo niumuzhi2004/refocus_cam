@@ -2,10 +2,10 @@
 -- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
--- Date        : Sun May 24 17:52:53 2026
+-- Date        : Fri May 22 18:49:22 2026
 -- Host        : DanielsLaptop running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               c:/Users/niumu/Refocusing/refocus_cam_v2/refocus_cam_v2.gen/sources_1/bd/cam_to_mem/ip/cam_to_mem_axis_data_fifo_0_0/cam_to_mem_axis_data_fifo_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top cam_to_mem_axis_data_fifo_0_0 -prefix
+--               cam_to_mem_axis_data_fifo_0_0_ cam_to_mem_axis_data_fifo_0_0_sim_netlist.vhdl
 -- Design      : cam_to_mem_axis_data_fifo_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -26,8 +26,6 @@ entity cam_to_mem_axis_data_fifo_0_0_xpm_cdc_gray is
   attribute DEST_SYNC_FF of cam_to_mem_axis_data_fifo_0_0_xpm_cdc_gray : entity is 3;
   attribute INIT_SYNC_FF : integer;
   attribute INIT_SYNC_FF of cam_to_mem_axis_data_fifo_0_0_xpm_cdc_gray : entity is 1;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_axis_data_fifo_0_0_xpm_cdc_gray : entity is "xpm_cdc_gray";
   attribute REG_OUTPUT : integer;
   attribute REG_OUTPUT of cam_to_mem_axis_data_fifo_0_0_xpm_cdc_gray : entity is 0;
   attribute SIM_ASSERT_CHK : integer;
@@ -3093,8 +3091,6 @@ entity cam_to_mem_axis_data_fifo_0_0_xpm_cdc_sync_rst is
   attribute INIT of cam_to_mem_axis_data_fifo_0_0_xpm_cdc_sync_rst : entity is "0";
   attribute INIT_SYNC_FF : integer;
   attribute INIT_SYNC_FF of cam_to_mem_axis_data_fifo_0_0_xpm_cdc_sync_rst : entity is 1;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_axis_data_fifo_0_0_xpm_cdc_sync_rst : entity is "xpm_cdc_sync_rst";
   attribute SIM_ASSERT_CHK : integer;
   attribute SIM_ASSERT_CHK of cam_to_mem_axis_data_fifo_0_0_xpm_cdc_sync_rst : entity is 0;
   attribute VERSION : integer;
@@ -3350,8 +3346,6 @@ entity cam_to_mem_axis_data_fifo_0_0_xpm_counter_updn is
     \count_value_i_reg[1]_1\ : in STD_LOGIC;
     rd_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_axis_data_fifo_0_0_xpm_counter_updn : entity is "xpm_counter_updn";
 end cam_to_mem_axis_data_fifo_0_0_xpm_counter_updn;
 
 architecture STRUCTURE of cam_to_mem_axis_data_fifo_0_0_xpm_counter_updn is
@@ -4767,8 +4761,6 @@ entity cam_to_mem_axis_data_fifo_0_0_xpm_fifo_reg_bit is
     \count_value_i_reg[3]_0\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     \count_value_i_reg[3]_1\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_axis_data_fifo_0_0_xpm_fifo_reg_bit : entity is "xpm_fifo_reg_bit";
 end cam_to_mem_axis_data_fifo_0_0_xpm_fifo_reg_bit;
 
 architecture STRUCTURE of cam_to_mem_axis_data_fifo_0_0_xpm_fifo_reg_bit is
@@ -4840,8 +4832,6 @@ entity cam_to_mem_axis_data_fifo_0_0_xpm_fifo_reg_vec is
     D : in STD_LOGIC_VECTOR ( 10 downto 0 );
     wr_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_axis_data_fifo_0_0_xpm_fifo_reg_vec : entity is "xpm_fifo_reg_vec";
 end cam_to_mem_axis_data_fifo_0_0_xpm_fifo_reg_vec;
 
 architecture STRUCTURE of cam_to_mem_axis_data_fifo_0_0_xpm_fifo_reg_vec is
@@ -5532,8 +5522,6 @@ entity cam_to_mem_axis_data_fifo_0_0_xpm_memory_base is
   attribute MESSAGE_CONTROL of cam_to_mem_axis_data_fifo_0_0_xpm_memory_base : entity is 0;
   attribute NUM_CHAR_LOC : integer;
   attribute NUM_CHAR_LOC of cam_to_mem_axis_data_fifo_0_0_xpm_memory_base : entity is 0;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_axis_data_fifo_0_0_xpm_memory_base : entity is "xpm_memory_base";
   attribute P_ECC_MODE : integer;
   attribute P_ECC_MODE of cam_to_mem_axis_data_fifo_0_0_xpm_memory_base : entity is 0;
   attribute P_ENABLE_BYTE_WRITE_A : integer;
@@ -6144,8 +6132,6 @@ entity cam_to_mem_axis_data_fifo_0_0_xpm_fifo_rst is
     \count_value_i_reg[10]\ : in STD_LOGIC;
     rst_d1 : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_axis_data_fifo_0_0_xpm_fifo_rst : entity is "xpm_fifo_rst";
 end cam_to_mem_axis_data_fifo_0_0_xpm_fifo_rst;
 
 architecture STRUCTURE of cam_to_mem_axis_data_fifo_0_0_xpm_fifo_rst is
@@ -6692,8 +6678,6 @@ entity cam_to_mem_axis_data_fifo_0_0_xpm_fifo_base is
   attribute FULL_RESET_VALUE of cam_to_mem_axis_data_fifo_0_0_xpm_fifo_base : entity is 1;
   attribute FULL_RST_VAL : string;
   attribute FULL_RST_VAL of cam_to_mem_axis_data_fifo_0_0_xpm_fifo_base : entity is "1'b1";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_axis_data_fifo_0_0_xpm_fifo_base : entity is "xpm_fifo_base";
   attribute PE_THRESH_ADJ : integer;
   attribute PE_THRESH_ADJ of cam_to_mem_axis_data_fifo_0_0_xpm_fifo_base : entity is 3;
   attribute PE_THRESH_MAX : integer;
@@ -7600,8 +7584,6 @@ entity cam_to_mem_axis_data_fifo_0_0_xpm_fifo_axis is
   attribute FIFO_MEMORY_TYPE of cam_to_mem_axis_data_fifo_0_0_xpm_fifo_axis : entity is "auto";
   attribute LOG_DEPTH_AXIS : integer;
   attribute LOG_DEPTH_AXIS of cam_to_mem_axis_data_fifo_0_0_xpm_fifo_axis : entity is 11;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_axis_data_fifo_0_0_xpm_fifo_axis : entity is "xpm_fifo_axis";
   attribute PACKET_FIFO : string;
   attribute PACKET_FIFO of cam_to_mem_axis_data_fifo_0_0_xpm_fifo_axis : entity is "false";
   attribute PKT_SIZE_LT8 : string;
@@ -8059,8 +8041,6 @@ entity cam_to_mem_axis_data_fifo_0_0_axis_data_fifo_v2_0_17_top is
   attribute LP_USE_ADV_FEATURES of cam_to_mem_axis_data_fifo_0_0_axis_data_fifo_v2_0_17_top : entity is 825241648;
   attribute LP_WR_DATA_COUNT_WIDTH : integer;
   attribute LP_WR_DATA_COUNT_WIDTH of cam_to_mem_axis_data_fifo_0_0_axis_data_fifo_v2_0_17_top : entity is 12;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of cam_to_mem_axis_data_fifo_0_0_axis_data_fifo_v2_0_17_top : entity is "axis_data_fifo_v2_0_17_top";
 end cam_to_mem_axis_data_fifo_0_0_axis_data_fifo_v2_0_17_top;
 
 architecture STRUCTURE of cam_to_mem_axis_data_fifo_0_0_axis_data_fifo_v2_0_17_top is
@@ -8477,15 +8457,15 @@ architecture STRUCTURE of cam_to_mem_axis_data_fifo_0_0 is
   attribute X_INTERFACE_MODE : string;
   attribute X_INTERFACE_MODE of m_axis_aclk : signal is "slave";
   attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of m_axis_aclk : signal is "XIL_INTERFACENAME M_CLKIF, ASSOCIATED_BUSIF M_AXIS, FREQ_HZ 3.33333e+07, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK1, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of m_axis_aclk : signal is "XIL_INTERFACENAME M_CLKIF, ASSOCIATED_BUSIF M_AXIS, FREQ_HZ 33333336, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK1, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of m_axis_tlast : signal is "xilinx.com:interface:axis:1.0 M_AXIS TLAST";
   attribute X_INTERFACE_INFO of m_axis_tready : signal is "xilinx.com:interface:axis:1.0 M_AXIS TREADY";
   attribute X_INTERFACE_INFO of m_axis_tvalid : signal is "xilinx.com:interface:axis:1.0 M_AXIS TVALID";
   attribute X_INTERFACE_MODE of m_axis_tvalid : signal is "master";
-  attribute X_INTERFACE_PARAMETER of m_axis_tvalid : signal is "XIL_INTERFACENAME M_AXIS, TDATA_NUM_BYTES 3, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 3.33333e+07, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK1, LAYERED_METADATA undef, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of m_axis_tvalid : signal is "XIL_INTERFACENAME M_AXIS, TDATA_NUM_BYTES 3, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 33333336, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK1, LAYERED_METADATA undef, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of s_axis_aclk : signal is "xilinx.com:signal:clock:1.0 S_CLKIF CLK";
   attribute X_INTERFACE_MODE of s_axis_aclk : signal is "slave";
-  attribute X_INTERFACE_PARAMETER of s_axis_aclk : signal is "XIL_INTERFACENAME S_CLKIF, ASSOCIATED_BUSIF S_AXIS, FREQ_HZ 1.5e+08, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, ASSOCIATED_RESET s_axis_aresetn, INSERT_VIP 0, ASSOCIATED_CLKEN s_axis_aclken";
+  attribute X_INTERFACE_PARAMETER of s_axis_aclk : signal is "XIL_INTERFACENAME S_CLKIF, ASSOCIATED_BUSIF S_AXIS, FREQ_HZ 150000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, ASSOCIATED_RESET s_axis_aresetn, INSERT_VIP 0, ASSOCIATED_CLKEN s_axis_aclken";
   attribute X_INTERFACE_INFO of s_axis_aresetn : signal is "xilinx.com:signal:reset:1.0 S_RSTIF RST";
   attribute X_INTERFACE_MODE of s_axis_aresetn : signal is "slave";
   attribute X_INTERFACE_PARAMETER of s_axis_aresetn : signal is "XIL_INTERFACENAME S_RSTIF, POLARITY ACTIVE_LOW, INSERT_VIP 0, TYPE INTERCONNECT, PortWidth 1";
@@ -8493,7 +8473,7 @@ architecture STRUCTURE of cam_to_mem_axis_data_fifo_0_0 is
   attribute X_INTERFACE_INFO of s_axis_tready : signal is "xilinx.com:interface:axis:1.0 S_AXIS TREADY";
   attribute X_INTERFACE_INFO of s_axis_tvalid : signal is "xilinx.com:interface:axis:1.0 S_AXIS TVALID";
   attribute X_INTERFACE_MODE of s_axis_tvalid : signal is "slave";
-  attribute X_INTERFACE_PARAMETER of s_axis_tvalid : signal is "XIL_INTERFACENAME S_AXIS, TDATA_NUM_BYTES 3, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 1.5e+08, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of s_axis_tvalid : signal is "XIL_INTERFACENAME S_AXIS, TDATA_NUM_BYTES 3, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of m_axis_tdata : signal is "xilinx.com:interface:axis:1.0 M_AXIS TDATA";
   attribute X_INTERFACE_INFO of m_axis_tuser : signal is "xilinx.com:interface:axis:1.0 M_AXIS TUSER";
   attribute X_INTERFACE_INFO of s_axis_tdata : signal is "xilinx.com:interface:axis:1.0 S_AXIS TDATA";

@@ -87,7 +87,7 @@ int main () {
                 if (Status == XST_SUCCESS) {
                     max_photo_index++;
                 }
-                usleep(500000);
+                usleep(50000);
             } else {
                 xil_printf("[UI] Shutter disabled in album mode!\r\n");
             }
@@ -136,7 +136,7 @@ int main () {
                 xil_printf("[UI] Photo delete disabled in live mode!\r\n");
             }
             photo_delete_selected = 0;
-            usleep(500000);
+            usleep(50000);
         }
 
         if (left_nav_selected) {

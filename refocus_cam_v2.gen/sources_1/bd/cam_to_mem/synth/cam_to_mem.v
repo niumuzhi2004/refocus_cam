@@ -2,7 +2,7 @@
 //Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-//Date        : Sun May 24 18:55:58 2026
+//Date        : Tue May 26 12:23:35 2026
 //Host        : DanielsLaptop running 64-bit major release  (build 9200)
 //Command     : generate_target cam_to_mem.bd
 //Design      : cam_to_mem
@@ -76,7 +76,7 @@ module cam_to_mem
   inout [0:0]SDA_port;
   output [4:0]lcd_blue;
   output [5:0]lcd_green;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.LCD_PCLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.LCD_PCLK, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK1, FREQ_HZ 3.33333e+07, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output [0:0]lcd_pclk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.LCD_PCLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.LCD_PCLK, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK1, FREQ_HZ 33333336, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output [0:0]lcd_pclk;
   output [4:0]lcd_red;
   input vid_active_video_0;
   output vid_active_video_1;

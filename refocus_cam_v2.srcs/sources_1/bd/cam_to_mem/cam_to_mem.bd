@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xD5573C61D39A90E3",
+      "boundary_crc": "0xD5573C61D4294EBD",
       "device": "xc7z020clg400-2",
       "gen_directory": "../../../../refocus_cam_v2.gen/sources_1/bd/cam_to_mem",
       "name": "cam_to_mem",
@@ -282,7 +282,7 @@
             "value_src": "default"
           },
           "FREQ_HZ": {
-            "value": "3.33333e+07",
+            "value": "33333336",
             "value_src": "user_prop"
           },
           "FREQ_TOLERANCE_HZ": {
@@ -2285,7 +2285,7 @@
                 "value_src": "constant"
               },
               "FREQ_HZ": {
-                "value": "1.5e+08",
+                "value": "150000000",
                 "value_src": "user_prop"
               },
               "CLK_DOMAIN": {
@@ -2356,7 +2356,7 @@
                 "value_src": "constant"
               },
               "FREQ_HZ": {
-                "value": "1.5e+08",
+                "value": "150000000",
                 "value_src": "user_prop"
               },
               "CLK_DOMAIN": {
@@ -2410,7 +2410,7 @@
                 "value_src": "constant"
               },
               "FREQ_HZ": {
-                "value": "1.5e+08",
+                "value": "150000000",
                 "value_src": "user_prop"
               },
               "CLK_DOMAIN": {

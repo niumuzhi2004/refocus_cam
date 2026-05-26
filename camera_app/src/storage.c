@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
+#include <xil_io.h>
 #include <xil_printf.h>
 #include <xil_types.h>
 #include <xstatus.h>
@@ -14,14 +15,15 @@ static FATFS fatfs;
 static int photo_counter = 0;
 static int file_id_counter = 0;
 
-static u8 row_buffer[CAM_WIDTH * 3]; // RGB565 to RGB888
-static u16 snapshot_buffer[CAM_WIDTH * CAM_HEIGHT];
+static u16 snapshot_buffer[CAM_WIDTH * CAM_HEIGHT] __attribute__((aligned(32)));
 
 static char photo_list[MAX_PHOTOS][16];
 
 
 static void create_bmp_header(u8 *header) {
-    u32 fileSize = (CAM_WIDTH * CAM_HEIGHT * 3) + BMP_HEADER_SIZE;
+    u32 pixelDataSize = CAM_WIDTH * CAM_HEIGHT * 2;
+    u32 fileSize = pixelDataSize + BMP_HEADER_SIZE;
+    s32 topDownHeight = -CAM_HEIGHT; // top-down BMP rendering
     
     header[0] = 'B';                        // signature
     header[1] = 'M';
@@ -41,24 +43,35 @@ static void create_bmp_header(u8 *header) {
     header[15] = 0;
     header[16] = 0;
     header[17] = 0;
-    header[18] = (u8)(CAM_WIDTH);           // image width
+    header[18] = (u8)(CAM_WIDTH);                   // image width
     header[19] = (u8)(CAM_WIDTH >> 8);
     header[20] = (u8)(CAM_WIDTH >> 16);
     header[21] = (u8)(CAM_WIDTH >> 24);
-    header[22] = (u8)(CAM_HEIGHT);          // image height
-    header[23] = (u8)(CAM_HEIGHT >> 8);
-    header[24] = (u8)(CAM_HEIGHT >> 16);
-    header[25] = (u8)(CAM_HEIGHT >> 24);
+    header[22] = (u8)(topDownHeight);               // image height
+    header[23] = (u8)(topDownHeight >> 8);
+    header[24] = (u8)(topDownHeight >> 16);
+    header[25] = (u8)(topDownHeight >> 24);
     header[26] = 1;
     header[27] = 0; 
-    header[28] = 24; 
+    header[28] = BITS_PER_PIXEL;
     header[29] = 0;
-    header[30] = 0;  header[31] = 0; header[32] = 0; header[33] = 0; // compression
-    header[34] = 0;  header[35] = 0; header[36] = 0; header[37] = 0; // image size
+    header[30] = 3;                                 // compression
+    header[31] = 0; 
+    header[32] = 0; 
+    header[33] = 0;
+    header[34] = (u8)(pixelDataSize);               // image size
+    header[35] = (u8)(pixelDataSize >> 8); 
+    header[36] = (u8)(pixelDataSize >> 16); 
+    header[37] = (u8)(pixelDataSize >> 24); 
     header[38] = 0;  header[39] = 0; header[40] = 0; header[41] = 0; // X resolution
     header[42] = 0;  header[43] = 0; header[44] = 0; header[45] = 0; // Y resolution
     header[46] = 0;  header[47] = 0; header[48] = 0; header[49] = 0; // color map entries
     header[50] = 0;  header[51] = 0; header[52] = 0; header[53] = 0; // important colors
+
+    // color masks for compression
+    header[54] = 0x00; header[55] = 0xF8; header[56] = 0x00; header[57] = 0x00;
+    header[58] = 0xE0; header[59] = 0x07; header[60] = 0x00; header[61] = 0x00;
+    header[62] = 0x1F; header[63] = 0x00; header[64] = 0x00; header[65] = 0x00;
 }
 
 
@@ -102,29 +115,17 @@ int sd_card_write(void) {
     uintptr_t safe_buffer_addr = vdma_get_safe_buffer(); // avoid the active frame
     u32 frame_size = (CAM_WIDTH * CAM_HEIGHT * 2);
     Xil_DCacheInvalidateRange((INTPTR)safe_buffer_addr, frame_size);
-
-    memcpy(snapshot_buffer, (void*)safe_buffer_addr, frame_size); // fast copy
     
-    for (int row = CAM_HEIGHT - 1; row >= 0; row--) {
-        int buffer_idx = 0;
-        
-        for (int col = 0; col < CAM_WIDTH; col++) {
-            u16 rgb565 = snapshot_buffer[row * CAM_WIDTH + col];
-            rgb565 = Xil_EndianSwap16(rgb565); // invert endianness
-            
-            u8 red   = (rgb565 >> 8) & 0xf8;
-            u8 green = (rgb565 >> 3) & 0xfc; 
-            u8 blue  = (rgb565 << 3) & 0xf8;
-
-            row_buffer[buffer_idx++] = blue;
-            row_buffer[buffer_idx++] = green;
-            row_buffer[buffer_idx++] = red;
-        }
-        
-        result = f_write(&file, row_buffer, CAM_WIDTH*3, &bytesWritten);
-        if (result != FR_OK) {
-            xil_printf("[sd] Write failed with code %d\r\n", result);
-        }
+    // invert endianness
+    u16 *src = (u16 *)safe_buffer_addr;
+    for (int i = 0; i < CAM_WIDTH * CAM_HEIGHT; i++) {
+        snapshot_buffer[i] = Xil_EndianSwap16(src[i]);
+    }
+    
+    // write pixel data
+    result = f_write(&file, snapshot_buffer, frame_size, &bytesWritten);
+    if (result != FR_OK) {
+        xil_printf("[sd] Write failed with code %d\r\n", result); 
     }
 
     f_close(&file);
@@ -163,44 +164,32 @@ int sd_card_read(int index) {
     }
 
     // read pixel data
-    for (int row = CAM_HEIGHT - 1; row >= 0; row--) {
+    u32 frame_size = CAM_WIDTH * CAM_HEIGHT * 2;
 
-        result = f_read(&file, row_buffer, CAM_WIDTH*3, &bytesRead);
-        if (result != FR_OK) {
-            xil_printf("[sd] Read failed with code %d\r\n", result);
-            break;
-        }
-        
-        int buffer_idx = 0;
-        
-        for (int col = 0; col < CAM_WIDTH; col++) {
-            u8 blue  = row_buffer[buffer_idx++];
-            u8 green = row_buffer[buffer_idx++];
-            u8 red   = row_buffer[buffer_idx++];
-
-            u16 b5 = (blue >> 3) & 0x1f;
-            u16 g6 = (green >> 2) & 0x3f;
-            u16 r5 = (red >> 3) & 0x1f;
-
-            u16 rgb565 = (r5 << 11) | (g6 << 5) | b5;
-            rgb565 = Xil_EndianSwap16(rgb565); // invert endianness
-
-            snapshot_buffer[row * CAM_WIDTH + col] = rgb565;
-        }
+    result = f_read(&file, snapshot_buffer, frame_size, &bytesRead);
+    if (result != FR_OK || bytesRead == 0) {
+        xil_printf("[sd] Read failed with code %d\r\n", result);
     }
-    
     f_close(&file);
 
-    // fill all three buffers
-    uint32_t frame_bytes = CAM_HEIGHT * CAM_WIDTH * 2;
-    u8 *buf0 = (u8 *)(uintptr_t)FRAME_STORE_START_ADDR;
-    u8 *buf1 = (u8 *)(buf0 + frame_bytes);
-    u8 *buf2 = (u8 *)(buf1 + frame_bytes);
+    // invert endianness
+    for (int i = 0; i < CAM_WIDTH * CAM_HEIGHT; i++) {
+        snapshot_buffer[i] = Xil_EndianSwap16(snapshot_buffer[i]);
+    }
 
-    memcpy(buf0, snapshot_buffer, frame_bytes);
-    memcpy(buf1, snapshot_buffer, frame_bytes);
-    memcpy(buf2, snapshot_buffer, frame_bytes);
-    Xil_DCacheFlushRange((INTPTR)FRAME_STORE_START_ADDR, frame_bytes*3);
+    // fill all three buffers
+    u8 *buf0 = (u8 *)(uintptr_t)FRAME_STORE_START_ADDR;
+    u8 *buf1 = (u8 *)(buf0 + frame_size);
+    u8 *buf2 = (u8 *)(buf1 + frame_size);
+
+    memcpy(buf0, snapshot_buffer, frame_size);
+    Xil_DCacheFlushRange((INTPTR)buf0, frame_size);
+    
+    memcpy(buf1, snapshot_buffer, frame_size);
+    Xil_DCacheFlushRange((INTPTR)buf1, frame_size);
+    
+    memcpy(buf2, snapshot_buffer, frame_size);
+    Xil_DCacheFlushRange((INTPTR)buf2, frame_size);
     
     return XST_SUCCESS;
 }

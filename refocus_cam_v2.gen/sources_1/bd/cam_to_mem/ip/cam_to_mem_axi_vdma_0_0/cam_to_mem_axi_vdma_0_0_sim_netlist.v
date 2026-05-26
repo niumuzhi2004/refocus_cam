@@ -2,10 +2,10 @@
 // Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-// Date        : Sun May 24 17:54:13 2026
+// Date        : Fri May 22 18:50:47 2026
 // Host        : DanielsLaptop running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               c:/Users/niumu/Refocusing/refocus_cam_v2/refocus_cam_v2.gen/sources_1/bd/cam_to_mem/ip/cam_to_mem_axi_vdma_0_0/cam_to_mem_axi_vdma_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top cam_to_mem_axi_vdma_0_0 -prefix
+//               cam_to_mem_axi_vdma_0_0_ cam_to_mem_axi_vdma_0_0_sim_netlist.v
 // Design      : cam_to_mem_axi_vdma_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -13,461 +13,6 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "cam_to_mem_axi_vdma_0_0,axi_vdma,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "axi_vdma,Vivado 2025.2" *) 
-(* NotValidForBitStream *)
-module cam_to_mem_axi_vdma_0_0
-   (s_axi_lite_aclk,
-    m_axi_mm2s_aclk,
-    m_axis_mm2s_aclk,
-    m_axi_s2mm_aclk,
-    s_axis_s2mm_aclk,
-    axi_resetn,
-    s_axi_lite_awvalid,
-    s_axi_lite_awready,
-    s_axi_lite_awaddr,
-    s_axi_lite_wvalid,
-    s_axi_lite_wready,
-    s_axi_lite_wdata,
-    s_axi_lite_bresp,
-    s_axi_lite_bvalid,
-    s_axi_lite_bready,
-    s_axi_lite_arvalid,
-    s_axi_lite_arready,
-    s_axi_lite_araddr,
-    s_axi_lite_rvalid,
-    s_axi_lite_rready,
-    s_axi_lite_rdata,
-    s_axi_lite_rresp,
-    mm2s_frame_ptr_out,
-    s2mm_frame_ptr_out,
-    m_axi_mm2s_araddr,
-    m_axi_mm2s_arlen,
-    m_axi_mm2s_arsize,
-    m_axi_mm2s_arburst,
-    m_axi_mm2s_arprot,
-    m_axi_mm2s_arcache,
-    m_axi_mm2s_arvalid,
-    m_axi_mm2s_arready,
-    m_axi_mm2s_rdata,
-    m_axi_mm2s_rresp,
-    m_axi_mm2s_rlast,
-    m_axi_mm2s_rvalid,
-    m_axi_mm2s_rready,
-    m_axis_mm2s_tdata,
-    m_axis_mm2s_tkeep,
-    m_axis_mm2s_tuser,
-    m_axis_mm2s_tvalid,
-    m_axis_mm2s_tready,
-    m_axis_mm2s_tlast,
-    m_axi_s2mm_awaddr,
-    m_axi_s2mm_awlen,
-    m_axi_s2mm_awsize,
-    m_axi_s2mm_awburst,
-    m_axi_s2mm_awprot,
-    m_axi_s2mm_awcache,
-    m_axi_s2mm_awvalid,
-    m_axi_s2mm_awready,
-    m_axi_s2mm_wdata,
-    m_axi_s2mm_wstrb,
-    m_axi_s2mm_wlast,
-    m_axi_s2mm_wvalid,
-    m_axi_s2mm_wready,
-    m_axi_s2mm_bresp,
-    m_axi_s2mm_bvalid,
-    m_axi_s2mm_bready,
-    s_axis_s2mm_tdata,
-    s_axis_s2mm_tkeep,
-    s_axis_s2mm_tuser,
-    s_axis_s2mm_tvalid,
-    s_axis_s2mm_tready,
-    s_axis_s2mm_tlast,
-    mm2s_introut,
-    s2mm_introut);
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 S_AXI_LITE_ACLK CLK" *) (* x_interface_mode = "slave S_AXI_LITE_ACLK" *) (* x_interface_parameter = "XIL_INTERFACENAME S_AXI_LITE_ACLK, ASSOCIATED_BUSIF S_AXI_LITE:M_AXI, ASSOCIATED_RESET axi_resetn, FREQ_HZ 1.5e+08, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) input s_axi_lite_aclk;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 M_AXI_MM2S_ACLK CLK" *) (* x_interface_mode = "slave M_AXI_MM2S_ACLK" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXI_MM2S_ACLK, ASSOCIATED_BUSIF M_AXI_MM2S, FREQ_HZ 1.5e+08, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) input m_axi_mm2s_aclk;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 M_AXIS_MM2S_ACLK CLK" *) (* x_interface_mode = "slave M_AXIS_MM2S_ACLK" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXIS_MM2S_ACLK, ASSOCIATED_BUSIF M_AXIS_MM2S, FREQ_HZ 1.5e+08, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) input m_axis_mm2s_aclk;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 M_AXI_S2MM_ACLK CLK" *) (* x_interface_mode = "slave M_AXI_S2MM_ACLK" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXI_S2MM_ACLK, ASSOCIATED_BUSIF M_AXI_S2MM, FREQ_HZ 1.5e+08, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) input m_axi_s2mm_aclk;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 S_AXIS_S2MM_ACLK CLK" *) (* x_interface_mode = "slave S_AXIS_S2MM_ACLK" *) (* x_interface_parameter = "XIL_INTERFACENAME S_AXIS_S2MM_ACLK, ASSOCIATED_BUSIF S_AXIS_S2MM, FREQ_HZ 1.5e+08, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) input s_axis_s2mm_aclk;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 AXI_RESETN RST" *) (* x_interface_mode = "slave AXI_RESETN" *) (* x_interface_parameter = "XIL_INTERFACENAME AXI_RESETN, POLARITY ACTIVE_LOW, INSERT_VIP 0, PortWidth 1" *) input axi_resetn;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWVALID" *) (* x_interface_mode = "slave S_AXI_LITE" *) (* x_interface_parameter = "XIL_INTERFACENAME S_AXI_LITE, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 1.5e+08, ID_WIDTH 0, ADDR_WIDTH 9, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 0, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 0, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 8, NUM_WRITE_OUTSTANDING 8, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) input s_axi_lite_awvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWREADY" *) output s_axi_lite_awready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWADDR" *) input [8:0]s_axi_lite_awaddr;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE WVALID" *) input s_axi_lite_wvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE WREADY" *) output s_axi_lite_wready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE WDATA" *) input [31:0]s_axi_lite_wdata;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE BRESP" *) output [1:0]s_axi_lite_bresp;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE BVALID" *) output s_axi_lite_bvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE BREADY" *) input s_axi_lite_bready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARVALID" *) input s_axi_lite_arvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARREADY" *) output s_axi_lite_arready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARADDR" *) input [8:0]s_axi_lite_araddr;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RVALID" *) output s_axi_lite_rvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RREADY" *) input s_axi_lite_rready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RDATA" *) output [31:0]s_axi_lite_rdata;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RRESP" *) output [1:0]s_axi_lite_rresp;
-  (* x_interface_info = "xilinx.com:signal:video_frame_ptr:1.0 MM2S_FRAME_PTR_OUT FRAME_PTR" *) (* x_interface_mode = "master MM2S_FRAME_PTR_OUT" *) output [5:0]mm2s_frame_ptr_out;
-  (* x_interface_info = "xilinx.com:signal:video_frame_ptr:1.0 S2MM_FRAME_PTR_OUT FRAME_PTR" *) (* x_interface_mode = "master S2MM_FRAME_PTR_OUT" *) output [5:0]s2mm_frame_ptr_out;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARADDR" *) (* x_interface_mode = "master M_AXI_MM2S" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXI_MM2S, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 2, DATA_WIDTH 64, PROTOCOL AXI4, FREQ_HZ 1.5e+08, ID_WIDTH 0, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_ONLY, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 0, HAS_BRESP 0, HAS_RRESP 1, NUM_WRITE_OUTSTANDING 8, MAX_BURST_LENGTH 64, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) output [31:0]m_axi_mm2s_araddr;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARLEN" *) output [7:0]m_axi_mm2s_arlen;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARSIZE" *) output [2:0]m_axi_mm2s_arsize;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARBURST" *) output [1:0]m_axi_mm2s_arburst;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARPROT" *) output [2:0]m_axi_mm2s_arprot;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARCACHE" *) output [3:0]m_axi_mm2s_arcache;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARVALID" *) output m_axi_mm2s_arvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARREADY" *) input m_axi_mm2s_arready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S RDATA" *) input [63:0]m_axi_mm2s_rdata;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S RRESP" *) input [1:0]m_axi_mm2s_rresp;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S RLAST" *) input m_axi_mm2s_rlast;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S RVALID" *) input m_axi_mm2s_rvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S RREADY" *) output m_axi_mm2s_rready;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS_MM2S TDATA" *) (* x_interface_mode = "master M_AXIS_MM2S" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXIS_MM2S, TDATA_NUM_BYTES 2, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 1.5e+08, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0" *) output [15:0]m_axis_mm2s_tdata;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS_MM2S TKEEP" *) output [1:0]m_axis_mm2s_tkeep;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS_MM2S TUSER" *) output [0:0]m_axis_mm2s_tuser;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS_MM2S TVALID" *) output m_axis_mm2s_tvalid;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS_MM2S TREADY" *) input m_axis_mm2s_tready;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS_MM2S TLAST" *) output m_axis_mm2s_tlast;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWADDR" *) (* x_interface_mode = "master M_AXI_S2MM" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXI_S2MM, SUPPORTS_NARROW_BURST 0, NUM_WRITE_OUTSTANDING 2, DATA_WIDTH 64, PROTOCOL AXI4, FREQ_HZ 1.5e+08, ID_WIDTH 0, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE WRITE_ONLY, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 0, NUM_READ_OUTSTANDING 8, MAX_BURST_LENGTH 64, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) output [31:0]m_axi_s2mm_awaddr;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWLEN" *) output [7:0]m_axi_s2mm_awlen;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWSIZE" *) output [2:0]m_axi_s2mm_awsize;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWBURST" *) output [1:0]m_axi_s2mm_awburst;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWPROT" *) output [2:0]m_axi_s2mm_awprot;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWCACHE" *) output [3:0]m_axi_s2mm_awcache;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWVALID" *) output m_axi_s2mm_awvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWREADY" *) input m_axi_s2mm_awready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM WDATA" *) output [63:0]m_axi_s2mm_wdata;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM WSTRB" *) output [7:0]m_axi_s2mm_wstrb;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM WLAST" *) output m_axi_s2mm_wlast;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM WVALID" *) output m_axi_s2mm_wvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM WREADY" *) input m_axi_s2mm_wready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM BRESP" *) input [1:0]m_axi_s2mm_bresp;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM BVALID" *) input m_axi_s2mm_bvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM BREADY" *) output m_axi_s2mm_bready;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 S_AXIS_S2MM TDATA" *) (* x_interface_mode = "slave S_AXIS_S2MM" *) (* x_interface_parameter = "XIL_INTERFACENAME S_AXIS_S2MM, TDATA_NUM_BYTES 1, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 1.5e+08, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA xilinx.com:interface:datatypes:1.0 {TDATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value xilinx.com:video:Y_400:1.0} bitwidth {attribs {resolve_type automatic dependency {} format long minimum {} maximum {}} value 8} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} array_type {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value rows} size {attribs {resolve_type generated dependency active_rows format long minimum {} maximum {}} value 1} stride {attribs {resolve_type generated dependency active_rows_stride format long minimum {} maximum {}} value 8} datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type automatic dependency {} format long minimum {} maximum {}} value 8} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} array_type {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value cols} size {attribs {resolve_type generated dependency active_cols format long minimum {} maximum {}} value 1} stride {attribs {resolve_type generated dependency active_cols_stride format long minimum {} maximum {}} value 8} datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type automatic dependency {} format long minimum {} maximum {}} value 8} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} struct {field_Y {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value Y} enabled {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value true} datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type generated dependency video_data_width format long minimum {} maximum {}} value 8} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} integer {signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value true}}}}}}}}}}} TDATA_WIDTH 8}, INSERT_VIP 0" *) input [7:0]s_axis_s2mm_tdata;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 S_AXIS_S2MM TKEEP" *) input [0:0]s_axis_s2mm_tkeep;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 S_AXIS_S2MM TUSER" *) input [0:0]s_axis_s2mm_tuser;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 S_AXIS_S2MM TVALID" *) input s_axis_s2mm_tvalid;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 S_AXIS_S2MM TREADY" *) output s_axis_s2mm_tready;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 S_AXIS_S2MM TLAST" *) input s_axis_s2mm_tlast;
-  (* x_interface_info = "xilinx.com:signal:interrupt:1.0 MM2S_INTROUT INTERRUPT" *) (* x_interface_mode = "master MM2S_INTROUT" *) (* x_interface_parameter = "XIL_INTERFACENAME MM2S_INTROUT, SENSITIVITY LEVEL_HIGH, PortWidth 1" *) output mm2s_introut;
-  (* x_interface_info = "xilinx.com:signal:interrupt:1.0 S2MM_INTROUT INTERRUPT" *) (* x_interface_mode = "master S2MM_INTROUT" *) (* x_interface_parameter = "XIL_INTERFACENAME S2MM_INTROUT, SENSITIVITY LEVEL_HIGH, PortWidth 1" *) output s2mm_introut;
-
-  wire \<const0> ;
-  wire \<const1> ;
-  wire axi_resetn;
-  wire m_axi_mm2s_aclk;
-  wire [31:0]m_axi_mm2s_araddr;
-  wire [0:0]\^m_axi_mm2s_arburst ;
-  wire [5:0]\^m_axi_mm2s_arlen ;
-  wire m_axi_mm2s_arready;
-  wire [1:0]\^m_axi_mm2s_arsize ;
-  wire m_axi_mm2s_arvalid;
-  wire [63:0]m_axi_mm2s_rdata;
-  wire m_axi_mm2s_rlast;
-  wire m_axi_mm2s_rready;
-  wire [1:0]m_axi_mm2s_rresp;
-  wire m_axi_mm2s_rvalid;
-  wire m_axi_s2mm_aclk;
-  wire [31:0]m_axi_s2mm_awaddr;
-  wire [0:0]\^m_axi_s2mm_awburst ;
-  wire [6:0]\^m_axi_s2mm_awlen ;
-  wire m_axi_s2mm_awready;
-  wire [1:0]\^m_axi_s2mm_awsize ;
-  wire m_axi_s2mm_awvalid;
-  wire m_axi_s2mm_bready;
-  wire [1:0]m_axi_s2mm_bresp;
-  wire m_axi_s2mm_bvalid;
-  wire [63:0]m_axi_s2mm_wdata;
-  wire m_axi_s2mm_wlast;
-  wire m_axi_s2mm_wready;
-  wire m_axi_s2mm_wvalid;
-  wire m_axis_mm2s_aclk;
-  wire [15:0]m_axis_mm2s_tdata;
-  wire m_axis_mm2s_tlast;
-  wire m_axis_mm2s_tready;
-  wire [0:0]m_axis_mm2s_tuser;
-  wire m_axis_mm2s_tvalid;
-  wire [2:0]\^mm2s_frame_ptr_out ;
-  wire mm2s_introut;
-  wire [2:0]\^s2mm_frame_ptr_out ;
-  wire s2mm_introut;
-  wire s_axi_lite_aclk;
-  wire [8:0]s_axi_lite_araddr;
-  wire s_axi_lite_arready;
-  wire s_axi_lite_arvalid;
-  wire [8:0]s_axi_lite_awaddr;
-  wire s_axi_lite_awready;
-  wire s_axi_lite_awvalid;
-  wire s_axi_lite_bready;
-  wire s_axi_lite_bvalid;
-  wire [31:0]s_axi_lite_rdata;
-  wire s_axi_lite_rready;
-  wire s_axi_lite_rvalid;
-  wire [31:0]s_axi_lite_wdata;
-  wire s_axi_lite_wready;
-  wire s_axi_lite_wvalid;
-  wire s_axis_s2mm_aclk;
-  wire [7:0]s_axis_s2mm_tdata;
-  wire s_axis_s2mm_tlast;
-  wire s_axis_s2mm_tready;
-  wire [0:0]s_axis_s2mm_tuser;
-  wire s_axis_s2mm_tvalid;
-  wire NLW_U0_m_axi_sg_arvalid_UNCONNECTED;
-  wire NLW_U0_m_axi_sg_rready_UNCONNECTED;
-  wire NLW_U0_mm2s_buffer_almost_empty_UNCONNECTED;
-  wire NLW_U0_mm2s_buffer_empty_UNCONNECTED;
-  wire NLW_U0_mm2s_fsync_out_UNCONNECTED;
-  wire NLW_U0_mm2s_prmry_reset_out_n_UNCONNECTED;
-  wire NLW_U0_mm2s_prmtr_update_UNCONNECTED;
-  wire NLW_U0_s2mm_buffer_almost_full_UNCONNECTED;
-  wire NLW_U0_s2mm_buffer_full_UNCONNECTED;
-  wire NLW_U0_s2mm_fsync_out_UNCONNECTED;
-  wire NLW_U0_s2mm_prmry_reset_out_n_UNCONNECTED;
-  wire NLW_U0_s2mm_prmtr_update_UNCONNECTED;
-  wire [63:0]NLW_U0_axi_vdma_tstvec_UNCONNECTED;
-  wire [1:1]NLW_U0_m_axi_mm2s_arburst_UNCONNECTED;
-  wire [3:0]NLW_U0_m_axi_mm2s_arcache_UNCONNECTED;
-  wire [7:6]NLW_U0_m_axi_mm2s_arlen_UNCONNECTED;
-  wire [2:0]NLW_U0_m_axi_mm2s_arprot_UNCONNECTED;
-  wire [2:2]NLW_U0_m_axi_mm2s_arsize_UNCONNECTED;
-  wire [1:1]NLW_U0_m_axi_s2mm_awburst_UNCONNECTED;
-  wire [3:0]NLW_U0_m_axi_s2mm_awcache_UNCONNECTED;
-  wire [7:7]NLW_U0_m_axi_s2mm_awlen_UNCONNECTED;
-  wire [2:0]NLW_U0_m_axi_s2mm_awprot_UNCONNECTED;
-  wire [2:2]NLW_U0_m_axi_s2mm_awsize_UNCONNECTED;
-  wire [7:0]NLW_U0_m_axi_s2mm_wstrb_UNCONNECTED;
-  wire [31:0]NLW_U0_m_axi_sg_araddr_UNCONNECTED;
-  wire [1:0]NLW_U0_m_axi_sg_arburst_UNCONNECTED;
-  wire [3:0]NLW_U0_m_axi_sg_arcache_UNCONNECTED;
-  wire [7:0]NLW_U0_m_axi_sg_arlen_UNCONNECTED;
-  wire [2:0]NLW_U0_m_axi_sg_arprot_UNCONNECTED;
-  wire [2:0]NLW_U0_m_axi_sg_arsize_UNCONNECTED;
-  wire [1:0]NLW_U0_m_axis_mm2s_tkeep_UNCONNECTED;
-  wire [5:3]NLW_U0_mm2s_frame_ptr_out_UNCONNECTED;
-  wire [5:3]NLW_U0_s2mm_frame_ptr_out_UNCONNECTED;
-  wire [1:0]NLW_U0_s_axi_lite_bresp_UNCONNECTED;
-  wire [1:0]NLW_U0_s_axi_lite_rresp_UNCONNECTED;
-
-  assign m_axi_mm2s_arburst[1] = \<const0> ;
-  assign m_axi_mm2s_arburst[0] = \^m_axi_mm2s_arburst [0];
-  assign m_axi_mm2s_arcache[3] = \<const0> ;
-  assign m_axi_mm2s_arcache[2] = \<const0> ;
-  assign m_axi_mm2s_arcache[1] = \<const1> ;
-  assign m_axi_mm2s_arcache[0] = \<const1> ;
-  assign m_axi_mm2s_arlen[7] = \<const0> ;
-  assign m_axi_mm2s_arlen[6] = \<const0> ;
-  assign m_axi_mm2s_arlen[5:0] = \^m_axi_mm2s_arlen [5:0];
-  assign m_axi_mm2s_arprot[2] = \<const0> ;
-  assign m_axi_mm2s_arprot[1] = \<const0> ;
-  assign m_axi_mm2s_arprot[0] = \<const0> ;
-  assign m_axi_mm2s_arsize[2] = \<const0> ;
-  assign m_axi_mm2s_arsize[1:0] = \^m_axi_mm2s_arsize [1:0];
-  assign m_axi_s2mm_awburst[1] = \<const0> ;
-  assign m_axi_s2mm_awburst[0] = \^m_axi_s2mm_awburst [0];
-  assign m_axi_s2mm_awcache[3] = \<const0> ;
-  assign m_axi_s2mm_awcache[2] = \<const0> ;
-  assign m_axi_s2mm_awcache[1] = \<const1> ;
-  assign m_axi_s2mm_awcache[0] = \<const1> ;
-  assign m_axi_s2mm_awlen[7] = \<const0> ;
-  assign m_axi_s2mm_awlen[6:0] = \^m_axi_s2mm_awlen [6:0];
-  assign m_axi_s2mm_awprot[2] = \<const0> ;
-  assign m_axi_s2mm_awprot[1] = \<const0> ;
-  assign m_axi_s2mm_awprot[0] = \<const0> ;
-  assign m_axi_s2mm_awsize[2] = \<const0> ;
-  assign m_axi_s2mm_awsize[1:0] = \^m_axi_s2mm_awsize [1:0];
-  assign m_axi_s2mm_wstrb[7] = \<const1> ;
-  assign m_axi_s2mm_wstrb[6] = \<const1> ;
-  assign m_axi_s2mm_wstrb[5] = \<const1> ;
-  assign m_axi_s2mm_wstrb[4] = \<const1> ;
-  assign m_axi_s2mm_wstrb[3] = \<const1> ;
-  assign m_axi_s2mm_wstrb[2] = \<const1> ;
-  assign m_axi_s2mm_wstrb[1] = \<const1> ;
-  assign m_axi_s2mm_wstrb[0] = \<const1> ;
-  assign m_axis_mm2s_tkeep[1] = \<const1> ;
-  assign m_axis_mm2s_tkeep[0] = \<const1> ;
-  assign mm2s_frame_ptr_out[5] = \<const0> ;
-  assign mm2s_frame_ptr_out[4] = \<const0> ;
-  assign mm2s_frame_ptr_out[3] = \<const0> ;
-  assign mm2s_frame_ptr_out[2:0] = \^mm2s_frame_ptr_out [2:0];
-  assign s2mm_frame_ptr_out[5] = \<const0> ;
-  assign s2mm_frame_ptr_out[4] = \<const0> ;
-  assign s2mm_frame_ptr_out[3] = \<const0> ;
-  assign s2mm_frame_ptr_out[2:0] = \^s2mm_frame_ptr_out [2:0];
-  assign s_axi_lite_bresp[1] = \<const0> ;
-  assign s_axi_lite_bresp[0] = \<const0> ;
-  assign s_axi_lite_rresp[1] = \<const0> ;
-  assign s_axi_lite_rresp[0] = \<const0> ;
-  GND GND
-       (.G(\<const0> ));
-  (* C_DLYTMR_RESOLUTION = "125" *) 
-  (* C_DYNAMIC_RESOLUTION = "1" *) 
-  (* C_ENABLE_DEBUG_ALL = "0" *) 
-  (* C_ENABLE_DEBUG_INFO_0 = "0" *) 
-  (* C_ENABLE_DEBUG_INFO_1 = "0" *) 
-  (* C_ENABLE_DEBUG_INFO_10 = "0" *) 
-  (* C_ENABLE_DEBUG_INFO_11 = "0" *) 
-  (* C_ENABLE_DEBUG_INFO_12 = "0" *) 
-  (* C_ENABLE_DEBUG_INFO_13 = "0" *) 
-  (* C_ENABLE_DEBUG_INFO_14 = "1" *) 
-  (* C_ENABLE_DEBUG_INFO_15 = "1" *) 
-  (* C_ENABLE_DEBUG_INFO_2 = "0" *) 
-  (* C_ENABLE_DEBUG_INFO_3 = "0" *) 
-  (* C_ENABLE_DEBUG_INFO_4 = "0" *) 
-  (* C_ENABLE_DEBUG_INFO_5 = "0" *) 
-  (* C_ENABLE_DEBUG_INFO_6 = "1" *) 
-  (* C_ENABLE_DEBUG_INFO_7 = "1" *) 
-  (* C_ENABLE_DEBUG_INFO_8 = "0" *) 
-  (* C_ENABLE_DEBUG_INFO_9 = "0" *) 
-  (* C_ENABLE_VERT_FLIP = "0" *) 
-  (* C_ENABLE_VIDPRMTR_READS = "1" *) 
-  (* C_FAMILY = "zynq" *) 
-  (* C_FLUSH_ON_FSYNC = "1" *) 
-  (* C_INCLUDE_INTERNAL_GENLOCK = "1" *) 
-  (* C_INCLUDE_MM2S = "1" *) 
-  (* C_INCLUDE_MM2S_DRE = "0" *) 
-  (* C_INCLUDE_MM2S_SF = "0" *) 
-  (* C_INCLUDE_S2MM = "1" *) 
-  (* C_INCLUDE_S2MM_DRE = "0" *) 
-  (* C_INCLUDE_S2MM_SF = "1" *) 
-  (* C_INCLUDE_SG = "0" *) 
-  (* C_INSTANCE = "axi_vdma" *) 
-  (* C_MM2S_GENLOCK_MODE = "3" *) 
-  (* C_MM2S_GENLOCK_NUM_MASTERS = "1" *) 
-  (* C_MM2S_GENLOCK_REPEAT_EN = "0" *) 
-  (* C_MM2S_LINEBUFFER_DEPTH = "8192" *) 
-  (* C_MM2S_LINEBUFFER_THRESH = "4" *) 
-  (* C_MM2S_MAX_BURST_LENGTH = "64" *) 
-  (* C_MM2S_SOF_ENABLE = "1" *) 
-  (* C_M_AXIS_MM2S_TDATA_WIDTH = "16" *) 
-  (* C_M_AXIS_MM2S_TUSER_BITS = "1" *) 
-  (* C_M_AXI_MM2S_ADDR_WIDTH = "32" *) 
-  (* C_M_AXI_MM2S_DATA_WIDTH = "64" *) 
-  (* C_M_AXI_S2MM_ADDR_WIDTH = "32" *) 
-  (* C_M_AXI_S2MM_DATA_WIDTH = "64" *) 
-  (* C_M_AXI_SG_ADDR_WIDTH = "32" *) 
-  (* C_M_AXI_SG_DATA_WIDTH = "32" *) 
-  (* C_NUM_FSTORES = "3" *) 
-  (* C_PRMRY_IS_ACLK_ASYNC = "0" *) 
-  (* C_S2MM_GENLOCK_MODE = "2" *) 
-  (* C_S2MM_GENLOCK_NUM_MASTERS = "1" *) 
-  (* C_S2MM_GENLOCK_REPEAT_EN = "1" *) 
-  (* C_S2MM_LINEBUFFER_DEPTH = "8192" *) 
-  (* C_S2MM_LINEBUFFER_THRESH = "4" *) 
-  (* C_S2MM_MAX_BURST_LENGTH = "64" *) 
-  (* C_S2MM_SOF_ENABLE = "1" *) 
-  (* C_SELECT_XPM = "0" *) 
-  (* C_S_AXIS_S2MM_TDATA_WIDTH = "8" *) 
-  (* C_S_AXIS_S2MM_TUSER_BITS = "1" *) 
-  (* C_S_AXI_LITE_ADDR_WIDTH = "9" *) 
-  (* C_S_AXI_LITE_DATA_WIDTH = "32" *) 
-  (* C_USE_FSYNC = "1" *) 
-  (* C_USE_MM2S_FSYNC = "0" *) 
-  (* C_USE_S2MM_FSYNC = "2" *) 
-  (* downgradeipidentifiedwarnings = "yes" *) 
-  (* ip_group = "LOGICORE" *) 
-  (* iptype = "PERIPHERAL" *) 
-  (* run_ngcbuild = "TRUE" *) 
-  cam_to_mem_axi_vdma_0_0_axi_vdma U0
-       (.axi_resetn(axi_resetn),
-        .axi_vdma_tstvec(NLW_U0_axi_vdma_tstvec_UNCONNECTED[63:0]),
-        .m_axi_mm2s_aclk(m_axi_mm2s_aclk),
-        .m_axi_mm2s_araddr(m_axi_mm2s_araddr),
-        .m_axi_mm2s_arburst({NLW_U0_m_axi_mm2s_arburst_UNCONNECTED[1],\^m_axi_mm2s_arburst }),
-        .m_axi_mm2s_arcache(NLW_U0_m_axi_mm2s_arcache_UNCONNECTED[3:0]),
-        .m_axi_mm2s_arlen({NLW_U0_m_axi_mm2s_arlen_UNCONNECTED[7:6],\^m_axi_mm2s_arlen }),
-        .m_axi_mm2s_arprot(NLW_U0_m_axi_mm2s_arprot_UNCONNECTED[2:0]),
-        .m_axi_mm2s_arready(m_axi_mm2s_arready),
-        .m_axi_mm2s_arsize({NLW_U0_m_axi_mm2s_arsize_UNCONNECTED[2],\^m_axi_mm2s_arsize }),
-        .m_axi_mm2s_arvalid(m_axi_mm2s_arvalid),
-        .m_axi_mm2s_rdata(m_axi_mm2s_rdata),
-        .m_axi_mm2s_rlast(m_axi_mm2s_rlast),
-        .m_axi_mm2s_rready(m_axi_mm2s_rready),
-        .m_axi_mm2s_rresp(m_axi_mm2s_rresp),
-        .m_axi_mm2s_rvalid(m_axi_mm2s_rvalid),
-        .m_axi_s2mm_aclk(m_axi_s2mm_aclk),
-        .m_axi_s2mm_awaddr(m_axi_s2mm_awaddr),
-        .m_axi_s2mm_awburst({NLW_U0_m_axi_s2mm_awburst_UNCONNECTED[1],\^m_axi_s2mm_awburst }),
-        .m_axi_s2mm_awcache(NLW_U0_m_axi_s2mm_awcache_UNCONNECTED[3:0]),
-        .m_axi_s2mm_awlen({NLW_U0_m_axi_s2mm_awlen_UNCONNECTED[7],\^m_axi_s2mm_awlen }),
-        .m_axi_s2mm_awprot(NLW_U0_m_axi_s2mm_awprot_UNCONNECTED[2:0]),
-        .m_axi_s2mm_awready(m_axi_s2mm_awready),
-        .m_axi_s2mm_awsize({NLW_U0_m_axi_s2mm_awsize_UNCONNECTED[2],\^m_axi_s2mm_awsize }),
-        .m_axi_s2mm_awvalid(m_axi_s2mm_awvalid),
-        .m_axi_s2mm_bready(m_axi_s2mm_bready),
-        .m_axi_s2mm_bresp(m_axi_s2mm_bresp),
-        .m_axi_s2mm_bvalid(m_axi_s2mm_bvalid),
-        .m_axi_s2mm_wdata(m_axi_s2mm_wdata),
-        .m_axi_s2mm_wlast(m_axi_s2mm_wlast),
-        .m_axi_s2mm_wready(m_axi_s2mm_wready),
-        .m_axi_s2mm_wstrb(NLW_U0_m_axi_s2mm_wstrb_UNCONNECTED[7:0]),
-        .m_axi_s2mm_wvalid(m_axi_s2mm_wvalid),
-        .m_axi_sg_aclk(1'b0),
-        .m_axi_sg_araddr(NLW_U0_m_axi_sg_araddr_UNCONNECTED[31:0]),
-        .m_axi_sg_arburst(NLW_U0_m_axi_sg_arburst_UNCONNECTED[1:0]),
-        .m_axi_sg_arcache(NLW_U0_m_axi_sg_arcache_UNCONNECTED[3:0]),
-        .m_axi_sg_arlen(NLW_U0_m_axi_sg_arlen_UNCONNECTED[7:0]),
-        .m_axi_sg_arprot(NLW_U0_m_axi_sg_arprot_UNCONNECTED[2:0]),
-        .m_axi_sg_arready(1'b0),
-        .m_axi_sg_arsize(NLW_U0_m_axi_sg_arsize_UNCONNECTED[2:0]),
-        .m_axi_sg_arvalid(NLW_U0_m_axi_sg_arvalid_UNCONNECTED),
-        .m_axi_sg_rdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .m_axi_sg_rlast(1'b0),
-        .m_axi_sg_rready(NLW_U0_m_axi_sg_rready_UNCONNECTED),
-        .m_axi_sg_rresp({1'b0,1'b0}),
-        .m_axi_sg_rvalid(1'b0),
-        .m_axis_mm2s_aclk(m_axis_mm2s_aclk),
-        .m_axis_mm2s_tdata(m_axis_mm2s_tdata),
-        .m_axis_mm2s_tkeep(NLW_U0_m_axis_mm2s_tkeep_UNCONNECTED[1:0]),
-        .m_axis_mm2s_tlast(m_axis_mm2s_tlast),
-        .m_axis_mm2s_tready(m_axis_mm2s_tready),
-        .m_axis_mm2s_tuser(m_axis_mm2s_tuser),
-        .m_axis_mm2s_tvalid(m_axis_mm2s_tvalid),
-        .mm2s_buffer_almost_empty(NLW_U0_mm2s_buffer_almost_empty_UNCONNECTED),
-        .mm2s_buffer_empty(NLW_U0_mm2s_buffer_empty_UNCONNECTED),
-        .mm2s_frame_ptr_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .mm2s_frame_ptr_out({NLW_U0_mm2s_frame_ptr_out_UNCONNECTED[5:3],\^mm2s_frame_ptr_out }),
-        .mm2s_fsync(1'b0),
-        .mm2s_fsync_out(NLW_U0_mm2s_fsync_out_UNCONNECTED),
-        .mm2s_introut(mm2s_introut),
-        .mm2s_prmry_reset_out_n(NLW_U0_mm2s_prmry_reset_out_n_UNCONNECTED),
-        .mm2s_prmtr_update(NLW_U0_mm2s_prmtr_update_UNCONNECTED),
-        .s2mm_buffer_almost_full(NLW_U0_s2mm_buffer_almost_full_UNCONNECTED),
-        .s2mm_buffer_full(NLW_U0_s2mm_buffer_full_UNCONNECTED),
-        .s2mm_frame_ptr_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .s2mm_frame_ptr_out({NLW_U0_s2mm_frame_ptr_out_UNCONNECTED[5:3],\^s2mm_frame_ptr_out }),
-        .s2mm_fsync(1'b0),
-        .s2mm_fsync_out(NLW_U0_s2mm_fsync_out_UNCONNECTED),
-        .s2mm_introut(s2mm_introut),
-        .s2mm_prmry_reset_out_n(NLW_U0_s2mm_prmry_reset_out_n_UNCONNECTED),
-        .s2mm_prmtr_update(NLW_U0_s2mm_prmtr_update_UNCONNECTED),
-        .s_axi_lite_aclk(s_axi_lite_aclk),
-        .s_axi_lite_araddr({1'b0,s_axi_lite_araddr[7:2],1'b0,1'b0}),
-        .s_axi_lite_arready(s_axi_lite_arready),
-        .s_axi_lite_arvalid(s_axi_lite_arvalid),
-        .s_axi_lite_awaddr({1'b0,s_axi_lite_awaddr[7:2],1'b0,1'b0}),
-        .s_axi_lite_awready(s_axi_lite_awready),
-        .s_axi_lite_awvalid(s_axi_lite_awvalid),
-        .s_axi_lite_bready(s_axi_lite_bready),
-        .s_axi_lite_bresp(NLW_U0_s_axi_lite_bresp_UNCONNECTED[1:0]),
-        .s_axi_lite_bvalid(s_axi_lite_bvalid),
-        .s_axi_lite_rdata(s_axi_lite_rdata),
-        .s_axi_lite_rready(s_axi_lite_rready),
-        .s_axi_lite_rresp(NLW_U0_s_axi_lite_rresp_UNCONNECTED[1:0]),
-        .s_axi_lite_rvalid(s_axi_lite_rvalid),
-        .s_axi_lite_wdata(s_axi_lite_wdata),
-        .s_axi_lite_wready(s_axi_lite_wready),
-        .s_axi_lite_wvalid(s_axi_lite_wvalid),
-        .s_axis_s2mm_aclk(s_axis_s2mm_aclk),
-        .s_axis_s2mm_tdata(s_axis_s2mm_tdata),
-        .s_axis_s2mm_tkeep(1'b0),
-        .s_axis_s2mm_tlast(s_axis_s2mm_tlast),
-        .s_axis_s2mm_tready(s_axis_s2mm_tready),
-        .s_axis_s2mm_tuser(s_axis_s2mm_tuser),
-        .s_axis_s2mm_tvalid(s_axis_s2mm_tvalid));
-  VCC VCC
-       (.P(\<const1> ));
-endmodule
-
-(* ORIG_REF_NAME = "axi_datamover" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover
    (empty,
     sig_rst2all_stop_request,
@@ -779,7 +324,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover
         .uf_err1_carry__0(uf_err1_carry__0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_addr_cntl" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_addr_cntl
    (out,
     sig_posted_to_axi_reg_0,
@@ -1758,7 +1302,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_addr_cntl__parameterized0
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_cmd_status" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_cmd_status
    (FIFO_Full_reg,
     \GEN_NORMAL_DM_COMMAND.cmnd_wr_i_reg ,
@@ -1998,7 +1541,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_cmd_status__parameterized0
         .sig_psm_halt(sig_psm_halt));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_fifo" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_fifo
    (E,
     sig_init_reg_reg_0,
@@ -3776,7 +3318,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_fifo__parameterized9
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_ibttcc" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_ibttcc
    (sig_psm_pop_input_cmd,
     sig_csm_pop_child_cmd,
@@ -7791,7 +7332,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_ibttcc
         .R(sig_xfer_cache_reg0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_indet_btt" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_indet_btt
    (dout,
     empty,
@@ -9033,7 +8573,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_indet_btt
         .R(SR));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_mm2s_full_wrap" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_mm2s_full_wrap
    (empty,
     sig_rst2all_stop_request,
@@ -9381,7 +8920,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_mm2s_full_wrap
         .sig_s_h_halt_reg_reg_0(sig_s_h_halt_reg_reg));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_mssai_skid_buf" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_mssai_skid_buf
    (sig_s_ready_out_reg_0,
     out,
@@ -9924,7 +9462,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_mssai_skid_buf
         .O(rd_en));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_pcc" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_pcc
    (sig_init_reg,
     in,
@@ -13388,7 +12925,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_pcc
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_rd_sf" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_rd_sf
    (full,
     empty,
@@ -13660,7 +13196,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_rd_sf
         .S(SS));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_rd_status_cntl" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_rd_status_cntl
    (sig_rsc2stat_status_valid,
     sig_rsc2data_ready,
@@ -13747,7 +13282,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_rd_status_cntl
         .R(sig_rd_sts_slverr_reg_reg_1));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_rddata_cntl" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_rddata_cntl
    (FIFO_Full_reg,
     sig_data2rsc_valid,
@@ -14344,7 +13878,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_rddata_cntl
         .O(sig_rd_sts_slverr_reg0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_reset" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_reset
    (sig_cmd_stat_rst_int_reg_n,
     sig_rst2all_stop_request_0,
@@ -14671,7 +14204,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_reset_9
         .R(SS));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_s2mm_full_wrap" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_s2mm_full_wrap
    (sig_s_ready_out_reg,
     m_axi_s2mm_awburst,
@@ -15217,7 +14749,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_s2mm_full_wrap
         .sig_wsc2stat_status_valid(sig_wsc2stat_status_valid));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_s2mm_realign" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_s2mm_realign
    (sig_s_ready_out_reg,
     out,
@@ -15500,7 +15031,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_s2mm_realign
         .R(SR));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_s2mm_scatter" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_s2mm_scatter
    (sig_s_ready_out_reg,
     out,
@@ -16602,7 +16132,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_s2mm_scatter
         .R(SR));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_sfifo_autord" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_sfifo_autord
    (full,
     dout,
@@ -18560,7 +18089,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_sfifo_autord__parameterized1
         .O(\gen_pntr_flags_cc.gen_full_rst_val.ram_full_i_reg ));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_skid2mm_buf" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_skid2mm_buf
    (out,
     sig_s_ready_out_reg_0,
@@ -20219,7 +19747,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_skid2mm_buf
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_skid_buf" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_skid_buf
    (out,
     DI,
@@ -21934,7 +21461,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_skid_buf
         .R(SR));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_slice" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_slice
    (slice_insert_valid,
     sig_tstrb_fifo_valid,
@@ -22107,7 +21633,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_slice
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_wr_status_cntl" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_wr_status_cntl
    (FIFO_Full_reg,
     sig_wsc2stat_status_valid,
@@ -22553,7 +22078,6 @@ module cam_to_mem_axi_vdma_0_0_axi_datamover_wr_status_cntl
         .R(SR));
 endmodule
 
-(* ORIG_REF_NAME = "axi_datamover_wrdata_cntl" *) 
 module cam_to_mem_axi_vdma_0_0_axi_datamover_wrdata_cntl
    (FIFO_Full_reg,
     sig_dqual_reg_full,
@@ -23448,8 +22972,8 @@ endmodule
 (* C_S2MM_MAX_BURST_LENGTH = "64" *) (* C_S2MM_SOF_ENABLE = "1" *) (* C_SELECT_XPM = "0" *) 
 (* C_S_AXIS_S2MM_TDATA_WIDTH = "8" *) (* C_S_AXIS_S2MM_TUSER_BITS = "1" *) (* C_S_AXI_LITE_ADDR_WIDTH = "9" *) 
 (* C_S_AXI_LITE_DATA_WIDTH = "32" *) (* C_USE_FSYNC = "1" *) (* C_USE_MM2S_FSYNC = "0" *) 
-(* C_USE_S2MM_FSYNC = "2" *) (* ORIG_REF_NAME = "axi_vdma" *) (* downgradeipidentifiedwarnings = "yes" *) 
-(* ip_group = "LOGICORE" *) (* iptype = "PERIPHERAL" *) (* run_ngcbuild = "TRUE" *) 
+(* C_USE_S2MM_FSYNC = "2" *) (* downgradeipidentifiedwarnings = "yes" *) (* ip_group = "LOGICORE" *) 
+(* iptype = "PERIPHERAL" *) (* run_ngcbuild = "TRUE" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma
    (s_axi_lite_aclk,
     m_axi_sg_aclk,
@@ -25340,7 +24864,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma
         .wr_en(fifo_wren));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_cmdsts_if" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_cmdsts_if
    (m_axis_mm2s_sts_tready,
     interr_i_reg_0,
@@ -26361,7 +25884,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_cmdsts_if__parameterized0
         .S(\GEN_STS_GRTR_THAN_8.ovrflo_err_reg_1 ));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_fsync_gen" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_fsync_gen
    (mm2s_frame_sync,
     \GEN_FREE_RUN_MODE.frame_sync_aligned ,
@@ -26657,7 +26179,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_fsync_gen__parameterized0
         .O(\GEN_SPRT_FOR_S2MM.GEN_NO_AXIS_S2MM_DWIDTH_CONV.vsize_counter_no_dwidth[12]_i_4_n_0 ));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_genlock_mngr" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_genlock_mngr
    (mm2s_valid_frame_sync,
     \DYNAMIC_SLAVE_MODE_FRAME_CNT.frame_number_i_reg[4] ,
@@ -27449,7 +26970,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_genlock_mngr__parameterized0
         .O(\DYNAMIC_MASTER_MODE_FRAME_CNT.DM_GEN_FSTORE_GRTR_TWO.frame_number_i[4]_i_9_n_0 ));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_genlock_mux" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_genlock_mux
    (data2,
     D,
@@ -27619,7 +27139,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_greycoder__parameterized0_35
         .O(D[1]));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_intrpt" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_intrpt
    (ch1_delay_cnt_en,
     E,
@@ -28962,7 +28481,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_intrpt
         .R(SS));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_lite_if" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_lite_if
    (s_axi_lite_rdata,
     D,
@@ -34785,7 +34303,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_lite_if
         .R(SR));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_mm2s_linebuf" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_mm2s_linebuf
    (full,
     out,
@@ -35591,7 +35108,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_mm2s_linebuf
         .O(crnt_vsize_cdc_tig[3]));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_mngr" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_mngr
    (cmnd_wr,
     m_axis_mm2s_sts_tready,
@@ -37193,7 +36709,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_mngr__parameterized0
         .R(regdir_idle_i1));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_reg_if" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_reg_if
    (s_axi_lite_rdata,
     D,
@@ -38418,7 +37933,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_reg_if
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_reg_module" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_reg_module
    (out,
     \ENABLE_DMACR_DELAY_CNTR.dmacr_i_reg[31] ,
@@ -39273,7 +38787,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_reg_module__parameterized0
         .R(SS));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_reg_mux" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_reg_mux
    (out,
     in0);
@@ -39299,7 +38812,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_reg_mux__parameterized0
   assign out[31:0] = ip2axi_rddata_int;
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_regdirect" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_regdirect
    (mm2s_regdir_idle,
     \reg_module_hsize_reg[0]_0 ,
@@ -41890,7 +41402,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_regdirect__parameterized0
         .R(SS));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_register" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_register
    (\dmacr_i_reg[1]_0 ,
     reset_counts_reg_0,
@@ -43671,7 +43182,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_register__parameterized0
         .O(stop_i));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_reset" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_reset
    (dest_out,
     in0,
@@ -45466,7 +44976,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_reset_2
         .O(wr_en));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_rst_module" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_rst_module
    (s_axi_lite_resetn,
     out,
@@ -45885,7 +45394,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_rst_module
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_s2mm_linebuf" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_s2mm_linebuf
    (full,
     dout,
@@ -46670,7 +46178,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_s2mm_linebuf
         .O(s2mm_fsync_core));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_sfifo" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_sfifo
    (full,
     dout,
@@ -47068,7 +46575,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_sfifo__parameterized0
         .wr_rst_busy(NLW_xpm_fifo_sync_inst_wr_rst_busy_UNCONNECTED));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_skid_buf" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_skid_buf
    (out,
     m_axis_mm2s_tlast,
@@ -48439,7 +47945,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_skid_buf__parameterized0
         .R(s2mm_axis_linebuf_reset_out_inv));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_sm" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_sm
    (frame_sync_reg,
     \GEN_NORMAL_DM_COMMAND.cmnd_wr_i_reg_0 ,
@@ -52908,7 +52413,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_sm__parameterized0
         .R(regdir_idle_i1));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_sof_gen" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_sof_gen
    (mm2s_vid2cdc_packet_sof,
     \DYNAMIC_SLAVE_MODE_FRAME_CNT.tstvect_fsync_reg ,
@@ -53096,7 +52600,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_sof_gen_0
         .R(s_valid_d1_reg_0));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_sts_mngr" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_sts_mngr
    (datamover_idle,
     halted_set_i_reg_0,
@@ -53254,7 +52757,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_sts_mngr_31
         .R(regdir_idle_i1));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_vid_cdc" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_vid_cdc
    ();
 
@@ -53715,7 +53217,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_vid_cdc_1
         .R(s_fsync_d2_reg_1));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_vidreg_module" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_vidreg_module
    (prmtr_update_complete,
     \GEN_REGISTER_DIRECT.GEN_REGDIRECT_DRES.video_prmtrs_valid_i_reg_0 ,
@@ -54115,7 +53616,6 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_vidreg_module_32
         .O(\GEN_REGISTER_DIRECT.GEN_REGDIRECT_DRES.video_prmtrs_valid_i_reg_1 ));
 endmodule
 
-(* ORIG_REF_NAME = "axi_vdma_vregister" *) 
 module cam_to_mem_axi_vdma_0_0_axi_vdma_vregister
    (undrflo_err0,
     zero_vsize_err0,
@@ -57449,7 +56949,460 @@ module cam_to_mem_axi_vdma_0_0_axi_vdma_vregister_33
         .O(zero_vsize_err_i_4_n_0));
 endmodule
 
-(* ORIG_REF_NAME = "srl_fifo" *) 
+(* CHECK_LICENSE_TYPE = "cam_to_mem_axi_vdma_0_0,axi_vdma,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "axi_vdma,Vivado 2025.2" *) 
+(* NotValidForBitStream *)
+module cam_to_mem_axi_vdma_0_0
+   (s_axi_lite_aclk,
+    m_axi_mm2s_aclk,
+    m_axis_mm2s_aclk,
+    m_axi_s2mm_aclk,
+    s_axis_s2mm_aclk,
+    axi_resetn,
+    s_axi_lite_awvalid,
+    s_axi_lite_awready,
+    s_axi_lite_awaddr,
+    s_axi_lite_wvalid,
+    s_axi_lite_wready,
+    s_axi_lite_wdata,
+    s_axi_lite_bresp,
+    s_axi_lite_bvalid,
+    s_axi_lite_bready,
+    s_axi_lite_arvalid,
+    s_axi_lite_arready,
+    s_axi_lite_araddr,
+    s_axi_lite_rvalid,
+    s_axi_lite_rready,
+    s_axi_lite_rdata,
+    s_axi_lite_rresp,
+    mm2s_frame_ptr_out,
+    s2mm_frame_ptr_out,
+    m_axi_mm2s_araddr,
+    m_axi_mm2s_arlen,
+    m_axi_mm2s_arsize,
+    m_axi_mm2s_arburst,
+    m_axi_mm2s_arprot,
+    m_axi_mm2s_arcache,
+    m_axi_mm2s_arvalid,
+    m_axi_mm2s_arready,
+    m_axi_mm2s_rdata,
+    m_axi_mm2s_rresp,
+    m_axi_mm2s_rlast,
+    m_axi_mm2s_rvalid,
+    m_axi_mm2s_rready,
+    m_axis_mm2s_tdata,
+    m_axis_mm2s_tkeep,
+    m_axis_mm2s_tuser,
+    m_axis_mm2s_tvalid,
+    m_axis_mm2s_tready,
+    m_axis_mm2s_tlast,
+    m_axi_s2mm_awaddr,
+    m_axi_s2mm_awlen,
+    m_axi_s2mm_awsize,
+    m_axi_s2mm_awburst,
+    m_axi_s2mm_awprot,
+    m_axi_s2mm_awcache,
+    m_axi_s2mm_awvalid,
+    m_axi_s2mm_awready,
+    m_axi_s2mm_wdata,
+    m_axi_s2mm_wstrb,
+    m_axi_s2mm_wlast,
+    m_axi_s2mm_wvalid,
+    m_axi_s2mm_wready,
+    m_axi_s2mm_bresp,
+    m_axi_s2mm_bvalid,
+    m_axi_s2mm_bready,
+    s_axis_s2mm_tdata,
+    s_axis_s2mm_tkeep,
+    s_axis_s2mm_tuser,
+    s_axis_s2mm_tvalid,
+    s_axis_s2mm_tready,
+    s_axis_s2mm_tlast,
+    mm2s_introut,
+    s2mm_introut);
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 S_AXI_LITE_ACLK CLK" *) (* x_interface_mode = "slave S_AXI_LITE_ACLK" *) (* x_interface_parameter = "XIL_INTERFACENAME S_AXI_LITE_ACLK, ASSOCIATED_BUSIF S_AXI_LITE:M_AXI, ASSOCIATED_RESET axi_resetn, FREQ_HZ 150000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) input s_axi_lite_aclk;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 M_AXI_MM2S_ACLK CLK" *) (* x_interface_mode = "slave M_AXI_MM2S_ACLK" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXI_MM2S_ACLK, ASSOCIATED_BUSIF M_AXI_MM2S, FREQ_HZ 150000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) input m_axi_mm2s_aclk;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 M_AXIS_MM2S_ACLK CLK" *) (* x_interface_mode = "slave M_AXIS_MM2S_ACLK" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXIS_MM2S_ACLK, ASSOCIATED_BUSIF M_AXIS_MM2S, FREQ_HZ 150000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) input m_axis_mm2s_aclk;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 M_AXI_S2MM_ACLK CLK" *) (* x_interface_mode = "slave M_AXI_S2MM_ACLK" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXI_S2MM_ACLK, ASSOCIATED_BUSIF M_AXI_S2MM, FREQ_HZ 150000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) input m_axi_s2mm_aclk;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 S_AXIS_S2MM_ACLK CLK" *) (* x_interface_mode = "slave S_AXIS_S2MM_ACLK" *) (* x_interface_parameter = "XIL_INTERFACENAME S_AXIS_S2MM_ACLK, ASSOCIATED_BUSIF S_AXIS_S2MM, FREQ_HZ 150000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) input s_axis_s2mm_aclk;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 AXI_RESETN RST" *) (* x_interface_mode = "slave AXI_RESETN" *) (* x_interface_parameter = "XIL_INTERFACENAME AXI_RESETN, POLARITY ACTIVE_LOW, INSERT_VIP 0, PortWidth 1" *) input axi_resetn;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWVALID" *) (* x_interface_mode = "slave S_AXI_LITE" *) (* x_interface_parameter = "XIL_INTERFACENAME S_AXI_LITE, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 150000000, ID_WIDTH 0, ADDR_WIDTH 9, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 0, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 0, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 8, NUM_WRITE_OUTSTANDING 8, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) input s_axi_lite_awvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWREADY" *) output s_axi_lite_awready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWADDR" *) input [8:0]s_axi_lite_awaddr;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE WVALID" *) input s_axi_lite_wvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE WREADY" *) output s_axi_lite_wready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE WDATA" *) input [31:0]s_axi_lite_wdata;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE BRESP" *) output [1:0]s_axi_lite_bresp;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE BVALID" *) output s_axi_lite_bvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE BREADY" *) input s_axi_lite_bready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARVALID" *) input s_axi_lite_arvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARREADY" *) output s_axi_lite_arready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARADDR" *) input [8:0]s_axi_lite_araddr;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RVALID" *) output s_axi_lite_rvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RREADY" *) input s_axi_lite_rready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RDATA" *) output [31:0]s_axi_lite_rdata;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RRESP" *) output [1:0]s_axi_lite_rresp;
+  (* x_interface_info = "xilinx.com:signal:video_frame_ptr:1.0 MM2S_FRAME_PTR_OUT FRAME_PTR" *) (* x_interface_mode = "master MM2S_FRAME_PTR_OUT" *) output [5:0]mm2s_frame_ptr_out;
+  (* x_interface_info = "xilinx.com:signal:video_frame_ptr:1.0 S2MM_FRAME_PTR_OUT FRAME_PTR" *) (* x_interface_mode = "master S2MM_FRAME_PTR_OUT" *) output [5:0]s2mm_frame_ptr_out;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARADDR" *) (* x_interface_mode = "master M_AXI_MM2S" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXI_MM2S, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 2, DATA_WIDTH 64, PROTOCOL AXI4, FREQ_HZ 150000000, ID_WIDTH 0, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_ONLY, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 0, HAS_BRESP 0, HAS_RRESP 1, NUM_WRITE_OUTSTANDING 8, MAX_BURST_LENGTH 64, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) output [31:0]m_axi_mm2s_araddr;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARLEN" *) output [7:0]m_axi_mm2s_arlen;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARSIZE" *) output [2:0]m_axi_mm2s_arsize;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARBURST" *) output [1:0]m_axi_mm2s_arburst;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARPROT" *) output [2:0]m_axi_mm2s_arprot;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARCACHE" *) output [3:0]m_axi_mm2s_arcache;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARVALID" *) output m_axi_mm2s_arvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S ARREADY" *) input m_axi_mm2s_arready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S RDATA" *) input [63:0]m_axi_mm2s_rdata;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S RRESP" *) input [1:0]m_axi_mm2s_rresp;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S RLAST" *) input m_axi_mm2s_rlast;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S RVALID" *) input m_axi_mm2s_rvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_MM2S RREADY" *) output m_axi_mm2s_rready;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS_MM2S TDATA" *) (* x_interface_mode = "master M_AXIS_MM2S" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXIS_MM2S, TDATA_NUM_BYTES 2, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0" *) output [15:0]m_axis_mm2s_tdata;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS_MM2S TKEEP" *) output [1:0]m_axis_mm2s_tkeep;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS_MM2S TUSER" *) output [0:0]m_axis_mm2s_tuser;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS_MM2S TVALID" *) output m_axis_mm2s_tvalid;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS_MM2S TREADY" *) input m_axis_mm2s_tready;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS_MM2S TLAST" *) output m_axis_mm2s_tlast;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWADDR" *) (* x_interface_mode = "master M_AXI_S2MM" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXI_S2MM, SUPPORTS_NARROW_BURST 0, NUM_WRITE_OUTSTANDING 2, DATA_WIDTH 64, PROTOCOL AXI4, FREQ_HZ 150000000, ID_WIDTH 0, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE WRITE_ONLY, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 0, NUM_READ_OUTSTANDING 8, MAX_BURST_LENGTH 64, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) output [31:0]m_axi_s2mm_awaddr;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWLEN" *) output [7:0]m_axi_s2mm_awlen;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWSIZE" *) output [2:0]m_axi_s2mm_awsize;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWBURST" *) output [1:0]m_axi_s2mm_awburst;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWPROT" *) output [2:0]m_axi_s2mm_awprot;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWCACHE" *) output [3:0]m_axi_s2mm_awcache;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWVALID" *) output m_axi_s2mm_awvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM AWREADY" *) input m_axi_s2mm_awready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM WDATA" *) output [63:0]m_axi_s2mm_wdata;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM WSTRB" *) output [7:0]m_axi_s2mm_wstrb;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM WLAST" *) output m_axi_s2mm_wlast;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM WVALID" *) output m_axi_s2mm_wvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM WREADY" *) input m_axi_s2mm_wready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM BRESP" *) input [1:0]m_axi_s2mm_bresp;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM BVALID" *) input m_axi_s2mm_bvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_S2MM BREADY" *) output m_axi_s2mm_bready;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 S_AXIS_S2MM TDATA" *) (* x_interface_mode = "slave S_AXIS_S2MM" *) (* x_interface_parameter = "XIL_INTERFACENAME S_AXIS_S2MM, TDATA_NUM_BYTES 1, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN cam_to_mem_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA xilinx.com:interface:datatypes:1.0 {TDATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value xilinx.com:video:Y_400:1.0} bitwidth {attribs {resolve_type automatic dependency {} format long minimum {} maximum {}} value 8} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} array_type {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value rows} size {attribs {resolve_type generated dependency active_rows format long minimum {} maximum {}} value 1} stride {attribs {resolve_type generated dependency active_rows_stride format long minimum {} maximum {}} value 8} datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type automatic dependency {} format long minimum {} maximum {}} value 8} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} array_type {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value cols} size {attribs {resolve_type generated dependency active_cols format long minimum {} maximum {}} value 1} stride {attribs {resolve_type generated dependency active_cols_stride format long minimum {} maximum {}} value 8} datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type automatic dependency {} format long minimum {} maximum {}} value 8} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} struct {field_Y {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value Y} enabled {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value true} datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type generated dependency video_data_width format long minimum {} maximum {}} value 8} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} integer {signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value true}}}}}}}}}}} TDATA_WIDTH 8}, INSERT_VIP 0" *) input [7:0]s_axis_s2mm_tdata;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 S_AXIS_S2MM TKEEP" *) input [0:0]s_axis_s2mm_tkeep;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 S_AXIS_S2MM TUSER" *) input [0:0]s_axis_s2mm_tuser;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 S_AXIS_S2MM TVALID" *) input s_axis_s2mm_tvalid;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 S_AXIS_S2MM TREADY" *) output s_axis_s2mm_tready;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 S_AXIS_S2MM TLAST" *) input s_axis_s2mm_tlast;
+  (* x_interface_info = "xilinx.com:signal:interrupt:1.0 MM2S_INTROUT INTERRUPT" *) (* x_interface_mode = "master MM2S_INTROUT" *) (* x_interface_parameter = "XIL_INTERFACENAME MM2S_INTROUT, SENSITIVITY LEVEL_HIGH, PortWidth 1" *) output mm2s_introut;
+  (* x_interface_info = "xilinx.com:signal:interrupt:1.0 S2MM_INTROUT INTERRUPT" *) (* x_interface_mode = "master S2MM_INTROUT" *) (* x_interface_parameter = "XIL_INTERFACENAME S2MM_INTROUT, SENSITIVITY LEVEL_HIGH, PortWidth 1" *) output s2mm_introut;
+
+  wire \<const0> ;
+  wire \<const1> ;
+  wire axi_resetn;
+  wire m_axi_mm2s_aclk;
+  wire [31:0]m_axi_mm2s_araddr;
+  wire [0:0]\^m_axi_mm2s_arburst ;
+  wire [5:0]\^m_axi_mm2s_arlen ;
+  wire m_axi_mm2s_arready;
+  wire [1:0]\^m_axi_mm2s_arsize ;
+  wire m_axi_mm2s_arvalid;
+  wire [63:0]m_axi_mm2s_rdata;
+  wire m_axi_mm2s_rlast;
+  wire m_axi_mm2s_rready;
+  wire [1:0]m_axi_mm2s_rresp;
+  wire m_axi_mm2s_rvalid;
+  wire m_axi_s2mm_aclk;
+  wire [31:0]m_axi_s2mm_awaddr;
+  wire [0:0]\^m_axi_s2mm_awburst ;
+  wire [6:0]\^m_axi_s2mm_awlen ;
+  wire m_axi_s2mm_awready;
+  wire [1:0]\^m_axi_s2mm_awsize ;
+  wire m_axi_s2mm_awvalid;
+  wire m_axi_s2mm_bready;
+  wire [1:0]m_axi_s2mm_bresp;
+  wire m_axi_s2mm_bvalid;
+  wire [63:0]m_axi_s2mm_wdata;
+  wire m_axi_s2mm_wlast;
+  wire m_axi_s2mm_wready;
+  wire m_axi_s2mm_wvalid;
+  wire m_axis_mm2s_aclk;
+  wire [15:0]m_axis_mm2s_tdata;
+  wire m_axis_mm2s_tlast;
+  wire m_axis_mm2s_tready;
+  wire [0:0]m_axis_mm2s_tuser;
+  wire m_axis_mm2s_tvalid;
+  wire [2:0]\^mm2s_frame_ptr_out ;
+  wire mm2s_introut;
+  wire [2:0]\^s2mm_frame_ptr_out ;
+  wire s2mm_introut;
+  wire s_axi_lite_aclk;
+  wire [8:0]s_axi_lite_araddr;
+  wire s_axi_lite_arready;
+  wire s_axi_lite_arvalid;
+  wire [8:0]s_axi_lite_awaddr;
+  wire s_axi_lite_awready;
+  wire s_axi_lite_awvalid;
+  wire s_axi_lite_bready;
+  wire s_axi_lite_bvalid;
+  wire [31:0]s_axi_lite_rdata;
+  wire s_axi_lite_rready;
+  wire s_axi_lite_rvalid;
+  wire [31:0]s_axi_lite_wdata;
+  wire s_axi_lite_wready;
+  wire s_axi_lite_wvalid;
+  wire s_axis_s2mm_aclk;
+  wire [7:0]s_axis_s2mm_tdata;
+  wire s_axis_s2mm_tlast;
+  wire s_axis_s2mm_tready;
+  wire [0:0]s_axis_s2mm_tuser;
+  wire s_axis_s2mm_tvalid;
+  wire NLW_U0_m_axi_sg_arvalid_UNCONNECTED;
+  wire NLW_U0_m_axi_sg_rready_UNCONNECTED;
+  wire NLW_U0_mm2s_buffer_almost_empty_UNCONNECTED;
+  wire NLW_U0_mm2s_buffer_empty_UNCONNECTED;
+  wire NLW_U0_mm2s_fsync_out_UNCONNECTED;
+  wire NLW_U0_mm2s_prmry_reset_out_n_UNCONNECTED;
+  wire NLW_U0_mm2s_prmtr_update_UNCONNECTED;
+  wire NLW_U0_s2mm_buffer_almost_full_UNCONNECTED;
+  wire NLW_U0_s2mm_buffer_full_UNCONNECTED;
+  wire NLW_U0_s2mm_fsync_out_UNCONNECTED;
+  wire NLW_U0_s2mm_prmry_reset_out_n_UNCONNECTED;
+  wire NLW_U0_s2mm_prmtr_update_UNCONNECTED;
+  wire [63:0]NLW_U0_axi_vdma_tstvec_UNCONNECTED;
+  wire [1:1]NLW_U0_m_axi_mm2s_arburst_UNCONNECTED;
+  wire [3:0]NLW_U0_m_axi_mm2s_arcache_UNCONNECTED;
+  wire [7:6]NLW_U0_m_axi_mm2s_arlen_UNCONNECTED;
+  wire [2:0]NLW_U0_m_axi_mm2s_arprot_UNCONNECTED;
+  wire [2:2]NLW_U0_m_axi_mm2s_arsize_UNCONNECTED;
+  wire [1:1]NLW_U0_m_axi_s2mm_awburst_UNCONNECTED;
+  wire [3:0]NLW_U0_m_axi_s2mm_awcache_UNCONNECTED;
+  wire [7:7]NLW_U0_m_axi_s2mm_awlen_UNCONNECTED;
+  wire [2:0]NLW_U0_m_axi_s2mm_awprot_UNCONNECTED;
+  wire [2:2]NLW_U0_m_axi_s2mm_awsize_UNCONNECTED;
+  wire [7:0]NLW_U0_m_axi_s2mm_wstrb_UNCONNECTED;
+  wire [31:0]NLW_U0_m_axi_sg_araddr_UNCONNECTED;
+  wire [1:0]NLW_U0_m_axi_sg_arburst_UNCONNECTED;
+  wire [3:0]NLW_U0_m_axi_sg_arcache_UNCONNECTED;
+  wire [7:0]NLW_U0_m_axi_sg_arlen_UNCONNECTED;
+  wire [2:0]NLW_U0_m_axi_sg_arprot_UNCONNECTED;
+  wire [2:0]NLW_U0_m_axi_sg_arsize_UNCONNECTED;
+  wire [1:0]NLW_U0_m_axis_mm2s_tkeep_UNCONNECTED;
+  wire [5:3]NLW_U0_mm2s_frame_ptr_out_UNCONNECTED;
+  wire [5:3]NLW_U0_s2mm_frame_ptr_out_UNCONNECTED;
+  wire [1:0]NLW_U0_s_axi_lite_bresp_UNCONNECTED;
+  wire [1:0]NLW_U0_s_axi_lite_rresp_UNCONNECTED;
+
+  assign m_axi_mm2s_arburst[1] = \<const0> ;
+  assign m_axi_mm2s_arburst[0] = \^m_axi_mm2s_arburst [0];
+  assign m_axi_mm2s_arcache[3] = \<const0> ;
+  assign m_axi_mm2s_arcache[2] = \<const0> ;
+  assign m_axi_mm2s_arcache[1] = \<const1> ;
+  assign m_axi_mm2s_arcache[0] = \<const1> ;
+  assign m_axi_mm2s_arlen[7] = \<const0> ;
+  assign m_axi_mm2s_arlen[6] = \<const0> ;
+  assign m_axi_mm2s_arlen[5:0] = \^m_axi_mm2s_arlen [5:0];
+  assign m_axi_mm2s_arprot[2] = \<const0> ;
+  assign m_axi_mm2s_arprot[1] = \<const0> ;
+  assign m_axi_mm2s_arprot[0] = \<const0> ;
+  assign m_axi_mm2s_arsize[2] = \<const0> ;
+  assign m_axi_mm2s_arsize[1:0] = \^m_axi_mm2s_arsize [1:0];
+  assign m_axi_s2mm_awburst[1] = \<const0> ;
+  assign m_axi_s2mm_awburst[0] = \^m_axi_s2mm_awburst [0];
+  assign m_axi_s2mm_awcache[3] = \<const0> ;
+  assign m_axi_s2mm_awcache[2] = \<const0> ;
+  assign m_axi_s2mm_awcache[1] = \<const1> ;
+  assign m_axi_s2mm_awcache[0] = \<const1> ;
+  assign m_axi_s2mm_awlen[7] = \<const0> ;
+  assign m_axi_s2mm_awlen[6:0] = \^m_axi_s2mm_awlen [6:0];
+  assign m_axi_s2mm_awprot[2] = \<const0> ;
+  assign m_axi_s2mm_awprot[1] = \<const0> ;
+  assign m_axi_s2mm_awprot[0] = \<const0> ;
+  assign m_axi_s2mm_awsize[2] = \<const0> ;
+  assign m_axi_s2mm_awsize[1:0] = \^m_axi_s2mm_awsize [1:0];
+  assign m_axi_s2mm_wstrb[7] = \<const1> ;
+  assign m_axi_s2mm_wstrb[6] = \<const1> ;
+  assign m_axi_s2mm_wstrb[5] = \<const1> ;
+  assign m_axi_s2mm_wstrb[4] = \<const1> ;
+  assign m_axi_s2mm_wstrb[3] = \<const1> ;
+  assign m_axi_s2mm_wstrb[2] = \<const1> ;
+  assign m_axi_s2mm_wstrb[1] = \<const1> ;
+  assign m_axi_s2mm_wstrb[0] = \<const1> ;
+  assign m_axis_mm2s_tkeep[1] = \<const1> ;
+  assign m_axis_mm2s_tkeep[0] = \<const1> ;
+  assign mm2s_frame_ptr_out[5] = \<const0> ;
+  assign mm2s_frame_ptr_out[4] = \<const0> ;
+  assign mm2s_frame_ptr_out[3] = \<const0> ;
+  assign mm2s_frame_ptr_out[2:0] = \^mm2s_frame_ptr_out [2:0];
+  assign s2mm_frame_ptr_out[5] = \<const0> ;
+  assign s2mm_frame_ptr_out[4] = \<const0> ;
+  assign s2mm_frame_ptr_out[3] = \<const0> ;
+  assign s2mm_frame_ptr_out[2:0] = \^s2mm_frame_ptr_out [2:0];
+  assign s_axi_lite_bresp[1] = \<const0> ;
+  assign s_axi_lite_bresp[0] = \<const0> ;
+  assign s_axi_lite_rresp[1] = \<const0> ;
+  assign s_axi_lite_rresp[0] = \<const0> ;
+  GND GND
+       (.G(\<const0> ));
+  (* C_DLYTMR_RESOLUTION = "125" *) 
+  (* C_DYNAMIC_RESOLUTION = "1" *) 
+  (* C_ENABLE_DEBUG_ALL = "0" *) 
+  (* C_ENABLE_DEBUG_INFO_0 = "0" *) 
+  (* C_ENABLE_DEBUG_INFO_1 = "0" *) 
+  (* C_ENABLE_DEBUG_INFO_10 = "0" *) 
+  (* C_ENABLE_DEBUG_INFO_11 = "0" *) 
+  (* C_ENABLE_DEBUG_INFO_12 = "0" *) 
+  (* C_ENABLE_DEBUG_INFO_13 = "0" *) 
+  (* C_ENABLE_DEBUG_INFO_14 = "1" *) 
+  (* C_ENABLE_DEBUG_INFO_15 = "1" *) 
+  (* C_ENABLE_DEBUG_INFO_2 = "0" *) 
+  (* C_ENABLE_DEBUG_INFO_3 = "0" *) 
+  (* C_ENABLE_DEBUG_INFO_4 = "0" *) 
+  (* C_ENABLE_DEBUG_INFO_5 = "0" *) 
+  (* C_ENABLE_DEBUG_INFO_6 = "1" *) 
+  (* C_ENABLE_DEBUG_INFO_7 = "1" *) 
+  (* C_ENABLE_DEBUG_INFO_8 = "0" *) 
+  (* C_ENABLE_DEBUG_INFO_9 = "0" *) 
+  (* C_ENABLE_VERT_FLIP = "0" *) 
+  (* C_ENABLE_VIDPRMTR_READS = "1" *) 
+  (* C_FAMILY = "zynq" *) 
+  (* C_FLUSH_ON_FSYNC = "1" *) 
+  (* C_INCLUDE_INTERNAL_GENLOCK = "1" *) 
+  (* C_INCLUDE_MM2S = "1" *) 
+  (* C_INCLUDE_MM2S_DRE = "0" *) 
+  (* C_INCLUDE_MM2S_SF = "0" *) 
+  (* C_INCLUDE_S2MM = "1" *) 
+  (* C_INCLUDE_S2MM_DRE = "0" *) 
+  (* C_INCLUDE_S2MM_SF = "1" *) 
+  (* C_INCLUDE_SG = "0" *) 
+  (* C_INSTANCE = "axi_vdma" *) 
+  (* C_MM2S_GENLOCK_MODE = "3" *) 
+  (* C_MM2S_GENLOCK_NUM_MASTERS = "1" *) 
+  (* C_MM2S_GENLOCK_REPEAT_EN = "0" *) 
+  (* C_MM2S_LINEBUFFER_DEPTH = "8192" *) 
+  (* C_MM2S_LINEBUFFER_THRESH = "4" *) 
+  (* C_MM2S_MAX_BURST_LENGTH = "64" *) 
+  (* C_MM2S_SOF_ENABLE = "1" *) 
+  (* C_M_AXIS_MM2S_TDATA_WIDTH = "16" *) 
+  (* C_M_AXIS_MM2S_TUSER_BITS = "1" *) 
+  (* C_M_AXI_MM2S_ADDR_WIDTH = "32" *) 
+  (* C_M_AXI_MM2S_DATA_WIDTH = "64" *) 
+  (* C_M_AXI_S2MM_ADDR_WIDTH = "32" *) 
+  (* C_M_AXI_S2MM_DATA_WIDTH = "64" *) 
+  (* C_M_AXI_SG_ADDR_WIDTH = "32" *) 
+  (* C_M_AXI_SG_DATA_WIDTH = "32" *) 
+  (* C_NUM_FSTORES = "3" *) 
+  (* C_PRMRY_IS_ACLK_ASYNC = "0" *) 
+  (* C_S2MM_GENLOCK_MODE = "2" *) 
+  (* C_S2MM_GENLOCK_NUM_MASTERS = "1" *) 
+  (* C_S2MM_GENLOCK_REPEAT_EN = "1" *) 
+  (* C_S2MM_LINEBUFFER_DEPTH = "8192" *) 
+  (* C_S2MM_LINEBUFFER_THRESH = "4" *) 
+  (* C_S2MM_MAX_BURST_LENGTH = "64" *) 
+  (* C_S2MM_SOF_ENABLE = "1" *) 
+  (* C_SELECT_XPM = "0" *) 
+  (* C_S_AXIS_S2MM_TDATA_WIDTH = "8" *) 
+  (* C_S_AXIS_S2MM_TUSER_BITS = "1" *) 
+  (* C_S_AXI_LITE_ADDR_WIDTH = "9" *) 
+  (* C_S_AXI_LITE_DATA_WIDTH = "32" *) 
+  (* C_USE_FSYNC = "1" *) 
+  (* C_USE_MM2S_FSYNC = "0" *) 
+  (* C_USE_S2MM_FSYNC = "2" *) 
+  (* downgradeipidentifiedwarnings = "yes" *) 
+  (* ip_group = "LOGICORE" *) 
+  (* iptype = "PERIPHERAL" *) 
+  (* run_ngcbuild = "TRUE" *) 
+  cam_to_mem_axi_vdma_0_0_axi_vdma U0
+       (.axi_resetn(axi_resetn),
+        .axi_vdma_tstvec(NLW_U0_axi_vdma_tstvec_UNCONNECTED[63:0]),
+        .m_axi_mm2s_aclk(m_axi_mm2s_aclk),
+        .m_axi_mm2s_araddr(m_axi_mm2s_araddr),
+        .m_axi_mm2s_arburst({NLW_U0_m_axi_mm2s_arburst_UNCONNECTED[1],\^m_axi_mm2s_arburst }),
+        .m_axi_mm2s_arcache(NLW_U0_m_axi_mm2s_arcache_UNCONNECTED[3:0]),
+        .m_axi_mm2s_arlen({NLW_U0_m_axi_mm2s_arlen_UNCONNECTED[7:6],\^m_axi_mm2s_arlen }),
+        .m_axi_mm2s_arprot(NLW_U0_m_axi_mm2s_arprot_UNCONNECTED[2:0]),
+        .m_axi_mm2s_arready(m_axi_mm2s_arready),
+        .m_axi_mm2s_arsize({NLW_U0_m_axi_mm2s_arsize_UNCONNECTED[2],\^m_axi_mm2s_arsize }),
+        .m_axi_mm2s_arvalid(m_axi_mm2s_arvalid),
+        .m_axi_mm2s_rdata(m_axi_mm2s_rdata),
+        .m_axi_mm2s_rlast(m_axi_mm2s_rlast),
+        .m_axi_mm2s_rready(m_axi_mm2s_rready),
+        .m_axi_mm2s_rresp(m_axi_mm2s_rresp),
+        .m_axi_mm2s_rvalid(m_axi_mm2s_rvalid),
+        .m_axi_s2mm_aclk(m_axi_s2mm_aclk),
+        .m_axi_s2mm_awaddr(m_axi_s2mm_awaddr),
+        .m_axi_s2mm_awburst({NLW_U0_m_axi_s2mm_awburst_UNCONNECTED[1],\^m_axi_s2mm_awburst }),
+        .m_axi_s2mm_awcache(NLW_U0_m_axi_s2mm_awcache_UNCONNECTED[3:0]),
+        .m_axi_s2mm_awlen({NLW_U0_m_axi_s2mm_awlen_UNCONNECTED[7],\^m_axi_s2mm_awlen }),
+        .m_axi_s2mm_awprot(NLW_U0_m_axi_s2mm_awprot_UNCONNECTED[2:0]),
+        .m_axi_s2mm_awready(m_axi_s2mm_awready),
+        .m_axi_s2mm_awsize({NLW_U0_m_axi_s2mm_awsize_UNCONNECTED[2],\^m_axi_s2mm_awsize }),
+        .m_axi_s2mm_awvalid(m_axi_s2mm_awvalid),
+        .m_axi_s2mm_bready(m_axi_s2mm_bready),
+        .m_axi_s2mm_bresp(m_axi_s2mm_bresp),
+        .m_axi_s2mm_bvalid(m_axi_s2mm_bvalid),
+        .m_axi_s2mm_wdata(m_axi_s2mm_wdata),
+        .m_axi_s2mm_wlast(m_axi_s2mm_wlast),
+        .m_axi_s2mm_wready(m_axi_s2mm_wready),
+        .m_axi_s2mm_wstrb(NLW_U0_m_axi_s2mm_wstrb_UNCONNECTED[7:0]),
+        .m_axi_s2mm_wvalid(m_axi_s2mm_wvalid),
+        .m_axi_sg_aclk(1'b0),
+        .m_axi_sg_araddr(NLW_U0_m_axi_sg_araddr_UNCONNECTED[31:0]),
+        .m_axi_sg_arburst(NLW_U0_m_axi_sg_arburst_UNCONNECTED[1:0]),
+        .m_axi_sg_arcache(NLW_U0_m_axi_sg_arcache_UNCONNECTED[3:0]),
+        .m_axi_sg_arlen(NLW_U0_m_axi_sg_arlen_UNCONNECTED[7:0]),
+        .m_axi_sg_arprot(NLW_U0_m_axi_sg_arprot_UNCONNECTED[2:0]),
+        .m_axi_sg_arready(1'b0),
+        .m_axi_sg_arsize(NLW_U0_m_axi_sg_arsize_UNCONNECTED[2:0]),
+        .m_axi_sg_arvalid(NLW_U0_m_axi_sg_arvalid_UNCONNECTED),
+        .m_axi_sg_rdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .m_axi_sg_rlast(1'b0),
+        .m_axi_sg_rready(NLW_U0_m_axi_sg_rready_UNCONNECTED),
+        .m_axi_sg_rresp({1'b0,1'b0}),
+        .m_axi_sg_rvalid(1'b0),
+        .m_axis_mm2s_aclk(m_axis_mm2s_aclk),
+        .m_axis_mm2s_tdata(m_axis_mm2s_tdata),
+        .m_axis_mm2s_tkeep(NLW_U0_m_axis_mm2s_tkeep_UNCONNECTED[1:0]),
+        .m_axis_mm2s_tlast(m_axis_mm2s_tlast),
+        .m_axis_mm2s_tready(m_axis_mm2s_tready),
+        .m_axis_mm2s_tuser(m_axis_mm2s_tuser),
+        .m_axis_mm2s_tvalid(m_axis_mm2s_tvalid),
+        .mm2s_buffer_almost_empty(NLW_U0_mm2s_buffer_almost_empty_UNCONNECTED),
+        .mm2s_buffer_empty(NLW_U0_mm2s_buffer_empty_UNCONNECTED),
+        .mm2s_frame_ptr_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .mm2s_frame_ptr_out({NLW_U0_mm2s_frame_ptr_out_UNCONNECTED[5:3],\^mm2s_frame_ptr_out }),
+        .mm2s_fsync(1'b0),
+        .mm2s_fsync_out(NLW_U0_mm2s_fsync_out_UNCONNECTED),
+        .mm2s_introut(mm2s_introut),
+        .mm2s_prmry_reset_out_n(NLW_U0_mm2s_prmry_reset_out_n_UNCONNECTED),
+        .mm2s_prmtr_update(NLW_U0_mm2s_prmtr_update_UNCONNECTED),
+        .s2mm_buffer_almost_full(NLW_U0_s2mm_buffer_almost_full_UNCONNECTED),
+        .s2mm_buffer_full(NLW_U0_s2mm_buffer_full_UNCONNECTED),
+        .s2mm_frame_ptr_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .s2mm_frame_ptr_out({NLW_U0_s2mm_frame_ptr_out_UNCONNECTED[5:3],\^s2mm_frame_ptr_out }),
+        .s2mm_fsync(1'b0),
+        .s2mm_fsync_out(NLW_U0_s2mm_fsync_out_UNCONNECTED),
+        .s2mm_introut(s2mm_introut),
+        .s2mm_prmry_reset_out_n(NLW_U0_s2mm_prmry_reset_out_n_UNCONNECTED),
+        .s2mm_prmtr_update(NLW_U0_s2mm_prmtr_update_UNCONNECTED),
+        .s_axi_lite_aclk(s_axi_lite_aclk),
+        .s_axi_lite_araddr({1'b0,s_axi_lite_araddr[7:2],1'b0,1'b0}),
+        .s_axi_lite_arready(s_axi_lite_arready),
+        .s_axi_lite_arvalid(s_axi_lite_arvalid),
+        .s_axi_lite_awaddr({1'b0,s_axi_lite_awaddr[7:2],1'b0,1'b0}),
+        .s_axi_lite_awready(s_axi_lite_awready),
+        .s_axi_lite_awvalid(s_axi_lite_awvalid),
+        .s_axi_lite_bready(s_axi_lite_bready),
+        .s_axi_lite_bresp(NLW_U0_s_axi_lite_bresp_UNCONNECTED[1:0]),
+        .s_axi_lite_bvalid(s_axi_lite_bvalid),
+        .s_axi_lite_rdata(s_axi_lite_rdata),
+        .s_axi_lite_rready(s_axi_lite_rready),
+        .s_axi_lite_rresp(NLW_U0_s_axi_lite_rresp_UNCONNECTED[1:0]),
+        .s_axi_lite_rvalid(s_axi_lite_rvalid),
+        .s_axi_lite_wdata(s_axi_lite_wdata),
+        .s_axi_lite_wready(s_axi_lite_wready),
+        .s_axi_lite_wvalid(s_axi_lite_wvalid),
+        .s_axis_s2mm_aclk(s_axis_s2mm_aclk),
+        .s_axis_s2mm_tdata(s_axis_s2mm_tdata),
+        .s_axis_s2mm_tkeep(1'b0),
+        .s_axis_s2mm_tlast(s_axis_s2mm_tlast),
+        .s_axis_s2mm_tready(s_axis_s2mm_tready),
+        .s_axis_s2mm_tuser(s_axis_s2mm_tuser),
+        .s_axis_s2mm_tvalid(s_axis_s2mm_tvalid));
+  VCC VCC
+       (.P(\<const1> ));
+endmodule
+
 module cam_to_mem_axi_vdma_0_0_srl_fifo
    (E,
     Q,
@@ -63863,10 +63816,9 @@ module cam_to_mem_axi_vdma_0_0_srl_fifo__parameterized9
         .O(sig_next_calc_error_reg_i_8_n_0));
 endmodule
 
-(* DEST_SYNC_FF = "4" *) (* INIT_SYNC_FF = "0" *) (* ORIG_REF_NAME = "xpm_cdc_pulse" *) 
-(* REG_OUTPUT = "0" *) (* RST_USED = "0" *) (* SIM_ASSERT_CHK = "0" *) 
-(* VERSION = "0" *) (* XPM_MODULE = "TRUE" *) (* keep_hierarchy = "soft" *) 
-(* xpm_cdc = "PULSE" *) 
+(* DEST_SYNC_FF = "4" *) (* INIT_SYNC_FF = "0" *) (* REG_OUTPUT = "0" *) 
+(* RST_USED = "0" *) (* SIM_ASSERT_CHK = "0" *) (* VERSION = "0" *) 
+(* XPM_MODULE = "TRUE" *) (* keep_hierarchy = "soft" *) (* xpm_cdc = "PULSE" *) 
 module cam_to_mem_axi_vdma_0_0_xpm_cdc_pulse
    (src_clk,
     src_pulse,
@@ -64637,9 +64589,9 @@ module cam_to_mem_axi_vdma_0_0_xpm_cdc_pulse__parameterized2__1
         .src_in(src_level_ff));
 endmodule
 
-(* DEST_SYNC_FF = "4" *) (* INIT_SYNC_FF = "0" *) (* ORIG_REF_NAME = "xpm_cdc_single" *) 
-(* SIM_ASSERT_CHK = "0" *) (* SRC_INPUT_REG = "0" *) (* VERSION = "0" *) 
-(* XPM_MODULE = "TRUE" *) (* keep_hierarchy = "soft" *) (* xpm_cdc = "SINGLE" *) 
+(* DEST_SYNC_FF = "4" *) (* INIT_SYNC_FF = "0" *) (* SIM_ASSERT_CHK = "0" *) 
+(* SRC_INPUT_REG = "0" *) (* VERSION = "0" *) (* XPM_MODULE = "TRUE" *) 
+(* keep_hierarchy = "soft" *) (* xpm_cdc = "SINGLE" *) 
 module cam_to_mem_axi_vdma_0_0_xpm_cdc_single
    (src_clk,
     src_in,
@@ -66075,7 +66027,6 @@ module cam_to_mem_axi_vdma_0_0_xpm_cdc_single__parameterized3__1
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "xpm_counter_updn" *) 
 module cam_to_mem_axi_vdma_0_0_xpm_counter_updn
    (D,
     count_value_i,
@@ -71263,19 +71214,18 @@ endmodule
 (* FG_EQ_ASYM_DOUT = "1'b0" *) (* FIFO_MEMORY_TYPE = "0" *) (* FIFO_MEM_TYPE = "0" *) 
 (* FIFO_READ_DEPTH = "8192" *) (* FIFO_READ_LATENCY = "0" *) (* FIFO_SIZE = "147456" *) 
 (* FIFO_WRITE_DEPTH = "8192" *) (* FULL_RESET_VALUE = "0" *) (* FULL_RST_VAL = "1'b0" *) 
-(* ORIG_REF_NAME = "xpm_fifo_base" *) (* PE_THRESH_ADJ = "8" *) (* PE_THRESH_MAX = "8187" *) 
-(* PE_THRESH_MIN = "5" *) (* PF_THRESH_ADJ = "8" *) (* PF_THRESH_MAX = "8187" *) 
-(* PF_THRESH_MIN = "5" *) (* PROG_EMPTY_THRESH = "10" *) (* PROG_FULL_THRESH = "10" *) 
-(* RD_DATA_COUNT_WIDTH = "14" *) (* RD_DC_WIDTH_EXT = "14" *) (* RD_LATENCY = "2" *) 
-(* RD_MODE = "1" *) (* RD_PNTR_WIDTH = "13" *) (* READ_DATA_WIDTH = "18" *) 
-(* READ_MODE = "1" *) (* READ_MODE_LL = "1" *) (* RELATED_CLOCKS = "0" *) 
-(* REMOVE_WR_RD_PROT_LOGIC = "0" *) (* SIM_ASSERT_CHK = "0" *) (* USE_ADV_FEATURES = "1717" *) 
-(* VERSION = "0" *) (* WAKEUP_TIME = "0" *) (* WIDTH_RATIO = "1" *) 
-(* WRITE_DATA_WIDTH = "18" *) (* WR_DATA_COUNT_WIDTH = "14" *) (* WR_DC_WIDTH_EXT = "14" *) 
-(* WR_DEPTH_LOG = "13" *) (* WR_PNTR_WIDTH = "13" *) (* WR_RD_RATIO = "0" *) 
-(* WR_WIDTH_LOG = "5" *) (* XPM_MODULE = "TRUE" *) (* both_stages_valid = "3" *) 
-(* invalid = "0" *) (* keep_hierarchy = "soft" *) (* stage1_valid = "2" *) 
-(* stage2_valid = "1" *) 
+(* PE_THRESH_ADJ = "8" *) (* PE_THRESH_MAX = "8187" *) (* PE_THRESH_MIN = "5" *) 
+(* PF_THRESH_ADJ = "8" *) (* PF_THRESH_MAX = "8187" *) (* PF_THRESH_MIN = "5" *) 
+(* PROG_EMPTY_THRESH = "10" *) (* PROG_FULL_THRESH = "10" *) (* RD_DATA_COUNT_WIDTH = "14" *) 
+(* RD_DC_WIDTH_EXT = "14" *) (* RD_LATENCY = "2" *) (* RD_MODE = "1" *) 
+(* RD_PNTR_WIDTH = "13" *) (* READ_DATA_WIDTH = "18" *) (* READ_MODE = "1" *) 
+(* READ_MODE_LL = "1" *) (* RELATED_CLOCKS = "0" *) (* REMOVE_WR_RD_PROT_LOGIC = "0" *) 
+(* SIM_ASSERT_CHK = "0" *) (* USE_ADV_FEATURES = "1717" *) (* VERSION = "0" *) 
+(* WAKEUP_TIME = "0" *) (* WIDTH_RATIO = "1" *) (* WRITE_DATA_WIDTH = "18" *) 
+(* WR_DATA_COUNT_WIDTH = "14" *) (* WR_DC_WIDTH_EXT = "14" *) (* WR_DEPTH_LOG = "13" *) 
+(* WR_PNTR_WIDTH = "13" *) (* WR_RD_RATIO = "0" *) (* WR_WIDTH_LOG = "5" *) 
+(* XPM_MODULE = "TRUE" *) (* both_stages_valid = "3" *) (* invalid = "0" *) 
+(* keep_hierarchy = "soft" *) (* stage1_valid = "2" *) (* stage2_valid = "1" *) 
 module cam_to_mem_axi_vdma_0_0_xpm_fifo_base
    (sleep,
     rst,
@@ -73395,7 +73345,6 @@ module cam_to_mem_axi_vdma_0_0_xpm_fifo_base__parameterized3
         .wr_en(wr_en));
 endmodule
 
-(* ORIG_REF_NAME = "xpm_fifo_reg_bit" *) 
 module cam_to_mem_axi_vdma_0_0_xpm_fifo_reg_bit
    (rst_d1,
     clr_full,
@@ -73697,7 +73646,6 @@ module cam_to_mem_axi_vdma_0_0_xpm_fifo_reg_bit_5
         .O(E));
 endmodule
 
-(* ORIG_REF_NAME = "xpm_fifo_rst" *) 
 module cam_to_mem_axi_vdma_0_0_xpm_fifo_rst
    (E,
     Q,
@@ -74135,12 +74083,12 @@ endmodule
 (* CASCADE_HEIGHT = "0" *) (* DOUT_RESET_VALUE = "0" *) (* ECC_MODE = "no_ecc" *) 
 (* EN_ADV_FEATURE_SYNC = "16'b0001011100010111" *) (* EN_SIM_ASSERT_ERR = "warning" *) (* FIFO_MEMORY_TYPE = "auto" *) 
 (* FIFO_READ_LATENCY = "0" *) (* FIFO_WRITE_DEPTH = "8192" *) (* FULL_RESET_VALUE = "0" *) 
-(* ORIG_REF_NAME = "xpm_fifo_sync" *) (* PROG_EMPTY_THRESH = "10" *) (* PROG_FULL_THRESH = "10" *) 
-(* P_COMMON_CLOCK = "1" *) (* P_ECC_MODE = "0" *) (* P_FIFO_MEMORY_TYPE = "0" *) 
-(* P_READ_MODE = "1" *) (* P_WAKEUP_TIME = "2" *) (* RD_DATA_COUNT_WIDTH = "14" *) 
-(* READ_DATA_WIDTH = "18" *) (* READ_MODE = "fwft" *) (* SIM_ASSERT_CHK = "0" *) 
-(* USE_ADV_FEATURES = "1717" *) (* WAKEUP_TIME = "0" *) (* WRITE_DATA_WIDTH = "18" *) 
-(* WR_DATA_COUNT_WIDTH = "14" *) (* XPM_MODULE = "TRUE" *) (* keep_hierarchy = "soft" *) 
+(* PROG_EMPTY_THRESH = "10" *) (* PROG_FULL_THRESH = "10" *) (* P_COMMON_CLOCK = "1" *) 
+(* P_ECC_MODE = "0" *) (* P_FIFO_MEMORY_TYPE = "0" *) (* P_READ_MODE = "1" *) 
+(* P_WAKEUP_TIME = "2" *) (* RD_DATA_COUNT_WIDTH = "14" *) (* READ_DATA_WIDTH = "18" *) 
+(* READ_MODE = "fwft" *) (* SIM_ASSERT_CHK = "0" *) (* USE_ADV_FEATURES = "1717" *) 
+(* WAKEUP_TIME = "0" *) (* WRITE_DATA_WIDTH = "18" *) (* WR_DATA_COUNT_WIDTH = "14" *) 
+(* XPM_MODULE = "TRUE" *) (* keep_hierarchy = "soft" *) 
 module cam_to_mem_axi_vdma_0_0_xpm_fifo_sync
    (sleep,
     rst,
@@ -75210,28 +75158,27 @@ endmodule
 (* ECC_TYPE = "NONE" *) (* IGNORE_INIT_SYNTH = "0" *) (* MAX_NUM_CHAR = "0" *) 
 (* MEMORY_INIT_FILE = "none" *) (* MEMORY_INIT_PARAM = "" *) (* MEMORY_OPTIMIZATION = "true" *) 
 (* MEMORY_PRIMITIVE = "0" *) (* MEMORY_SIZE = "147456" *) (* MEMORY_TYPE = "1" *) 
-(* MESSAGE_CONTROL = "0" *) (* NUM_CHAR_LOC = "0" *) (* ORIG_REF_NAME = "xpm_memory_base" *) 
-(* P_ECC_MODE = "0" *) (* P_ENABLE_BYTE_WRITE_A = "0" *) (* P_ENABLE_BYTE_WRITE_B = "0" *) 
-(* P_MAX_DEPTH_DATA = "8192" *) (* P_MEMORY_OPT = "yes" *) (* P_MEMORY_PRIMITIVE = "auto" *) 
-(* P_MIN_WIDTH_DATA = "18" *) (* P_MIN_WIDTH_DATA_A = "18" *) (* P_MIN_WIDTH_DATA_B = "18" *) 
-(* P_MIN_WIDTH_DATA_ECC = "18" *) (* P_MIN_WIDTH_DATA_LDW = "4" *) (* P_MIN_WIDTH_DATA_SHFT = "18" *) 
-(* P_NUM_COLS_WRITE_A = "1" *) (* P_NUM_COLS_WRITE_B = "1" *) (* P_NUM_COL_READ_A = "1" *) 
-(* P_NUM_COL_READ_B = "1" *) (* P_NUM_COL_WRITE_A = "1" *) (* P_NUM_COL_WRITE_B = "1" *) 
-(* P_NUM_ROWS_READ_A = "1" *) (* P_NUM_ROWS_READ_B = "1" *) (* P_NUM_ROWS_WRITE_A = "1" *) 
-(* P_NUM_ROWS_WRITE_B = "1" *) (* P_SDP_WRITE_MODE = "yes" *) (* P_WIDTH_ADDR_LSB_READ_A = "0" *) 
-(* P_WIDTH_ADDR_LSB_READ_B = "0" *) (* P_WIDTH_ADDR_LSB_READ_COLL_A = "1" *) (* P_WIDTH_ADDR_LSB_READ_COLL_B = "1" *) 
-(* P_WIDTH_ADDR_LSB_WRITE_A = "0" *) (* P_WIDTH_ADDR_LSB_WRITE_B = "0" *) (* P_WIDTH_ADDR_LSB_WRITE_COLL_A = "1" *) 
-(* P_WIDTH_ADDR_LSB_WRITE_COLL_B = "1" *) (* P_WIDTH_ADDR_READ_A = "13" *) (* P_WIDTH_ADDR_READ_B = "13" *) 
-(* P_WIDTH_ADDR_WRITE_A = "13" *) (* P_WIDTH_ADDR_WRITE_B = "13" *) (* P_WIDTH_COL_WRITE_A = "18" *) 
-(* P_WIDTH_COL_WRITE_B = "18" *) (* RAM_DECOMP = "auto" *) (* READ_DATA_WIDTH_A = "18" *) 
-(* READ_DATA_WIDTH_B = "18" *) (* READ_LATENCY_A = "2" *) (* READ_LATENCY_B = "2" *) 
-(* READ_RESET_VALUE_A = "0" *) (* READ_RESET_VALUE_B = "0" *) (* RST_MODE_A = "SYNC" *) 
-(* RST_MODE_B = "SYNC" *) (* SIM_ASSERT_CHK = "0" *) (* USE_EMBEDDED_CONSTRAINT = "0" *) 
-(* USE_MEM_INIT = "0" *) (* USE_MEM_INIT_MMI = "0" *) (* VERSION = "0" *) 
-(* WAKEUP_TIME = "0" *) (* WRITE_DATA_WIDTH_A = "18" *) (* WRITE_DATA_WIDTH_B = "18" *) 
-(* WRITE_MODE_A = "2" *) (* WRITE_MODE_B = "2" *) (* WRITE_PROTECT = "1" *) 
-(* XPM_MODULE = "TRUE" *) (* keep_hierarchy = "soft" *) (* rsta_loop_iter = "20" *) 
-(* rstb_loop_iter = "20" *) 
+(* MESSAGE_CONTROL = "0" *) (* NUM_CHAR_LOC = "0" *) (* P_ECC_MODE = "0" *) 
+(* P_ENABLE_BYTE_WRITE_A = "0" *) (* P_ENABLE_BYTE_WRITE_B = "0" *) (* P_MAX_DEPTH_DATA = "8192" *) 
+(* P_MEMORY_OPT = "yes" *) (* P_MEMORY_PRIMITIVE = "auto" *) (* P_MIN_WIDTH_DATA = "18" *) 
+(* P_MIN_WIDTH_DATA_A = "18" *) (* P_MIN_WIDTH_DATA_B = "18" *) (* P_MIN_WIDTH_DATA_ECC = "18" *) 
+(* P_MIN_WIDTH_DATA_LDW = "4" *) (* P_MIN_WIDTH_DATA_SHFT = "18" *) (* P_NUM_COLS_WRITE_A = "1" *) 
+(* P_NUM_COLS_WRITE_B = "1" *) (* P_NUM_COL_READ_A = "1" *) (* P_NUM_COL_READ_B = "1" *) 
+(* P_NUM_COL_WRITE_A = "1" *) (* P_NUM_COL_WRITE_B = "1" *) (* P_NUM_ROWS_READ_A = "1" *) 
+(* P_NUM_ROWS_READ_B = "1" *) (* P_NUM_ROWS_WRITE_A = "1" *) (* P_NUM_ROWS_WRITE_B = "1" *) 
+(* P_SDP_WRITE_MODE = "yes" *) (* P_WIDTH_ADDR_LSB_READ_A = "0" *) (* P_WIDTH_ADDR_LSB_READ_B = "0" *) 
+(* P_WIDTH_ADDR_LSB_READ_COLL_A = "1" *) (* P_WIDTH_ADDR_LSB_READ_COLL_B = "1" *) (* P_WIDTH_ADDR_LSB_WRITE_A = "0" *) 
+(* P_WIDTH_ADDR_LSB_WRITE_B = "0" *) (* P_WIDTH_ADDR_LSB_WRITE_COLL_A = "1" *) (* P_WIDTH_ADDR_LSB_WRITE_COLL_B = "1" *) 
+(* P_WIDTH_ADDR_READ_A = "13" *) (* P_WIDTH_ADDR_READ_B = "13" *) (* P_WIDTH_ADDR_WRITE_A = "13" *) 
+(* P_WIDTH_ADDR_WRITE_B = "13" *) (* P_WIDTH_COL_WRITE_A = "18" *) (* P_WIDTH_COL_WRITE_B = "18" *) 
+(* RAM_DECOMP = "auto" *) (* READ_DATA_WIDTH_A = "18" *) (* READ_DATA_WIDTH_B = "18" *) 
+(* READ_LATENCY_A = "2" *) (* READ_LATENCY_B = "2" *) (* READ_RESET_VALUE_A = "0" *) 
+(* READ_RESET_VALUE_B = "0" *) (* RST_MODE_A = "SYNC" *) (* RST_MODE_B = "SYNC" *) 
+(* SIM_ASSERT_CHK = "0" *) (* USE_EMBEDDED_CONSTRAINT = "0" *) (* USE_MEM_INIT = "0" *) 
+(* USE_MEM_INIT_MMI = "0" *) (* VERSION = "0" *) (* WAKEUP_TIME = "0" *) 
+(* WRITE_DATA_WIDTH_A = "18" *) (* WRITE_DATA_WIDTH_B = "18" *) (* WRITE_MODE_A = "2" *) 
+(* WRITE_MODE_B = "2" *) (* WRITE_PROTECT = "1" *) (* XPM_MODULE = "TRUE" *) 
+(* keep_hierarchy = "soft" *) (* rsta_loop_iter = "20" *) (* rstb_loop_iter = "20" *) 
 module cam_to_mem_axi_vdma_0_0_xpm_memory_base
    (sleep,
     clka,
