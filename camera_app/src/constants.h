@@ -29,6 +29,7 @@
 // sd card constants
 #define BMP_HEADER_SIZE             54
 #define IMG_HEADER_SIZE             40
+#define MAX_PHOTOS                  450
 
 // system modes
 typedef enum {

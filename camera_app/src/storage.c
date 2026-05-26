@@ -12,9 +12,12 @@
 
 static FATFS fatfs;
 static int photo_counter = 0;
+static int file_id_counter = 0;
 
 static u8 row_buffer[CAM_WIDTH * 3]; // RGB565 to RGB888
 static u16 snapshot_buffer[CAM_WIDTH * CAM_HEIGHT];
+
+static char photo_list[MAX_PHOTOS][16];
 
 
 static void create_bmp_header(u8 *header) {
@@ -78,7 +81,8 @@ int sd_card_write(void) {
     u8 bmp_header[BMP_HEADER_SIZE];
     
     // generate filename
-    snprintf(filename, sizeof(filename), "0:/IMG_%04d.bmp", photo_counter);
+    snprintf(filename, sizeof(filename), "0:/IMG_%04d.bmp", file_id_counter);
+    file_id_counter++;
     
     // create file
     result = f_open(&file, filename, FA_WRITE | FA_CREATE_ALWAYS);
@@ -124,7 +128,11 @@ int sd_card_write(void) {
     }
 
     f_close(&file);
-    photo_counter++;
+    
+    if (photo_counter < MAX_PHOTOS) {
+        strncpy(photo_list[photo_counter], filename, sizeof(photo_list[photo_counter]));
+        photo_counter++;
+    }
 
     return XST_SUCCESS;
 }
@@ -137,7 +145,7 @@ int sd_card_read(int index) {
     char filename[32];
 
     // generate filename
-    snprintf(filename, sizeof(filename), "0:/IMG_%04d.bmp", index);
+    snprintf(filename, sizeof(filename), "%s", photo_list[index]);
     
     // open file
     result = f_open(&file, filename, FA_READ);
@@ -203,7 +211,7 @@ int sd_card_delete(int index) {
     char filename[32];
 
     // generate filename
-    snprintf(filename, sizeof(filename), "0:/IMG_%04d.bmp", index);
+    snprintf(filename, sizeof(filename), "%s", photo_list[index]);
 
     // delete file
     result = f_unlink(filename);
@@ -211,6 +219,13 @@ int sd_card_delete(int index) {
         xil_printf("[sd] Deletion failed with code %d\r\n", result);
         return XST_FAILURE;
     }
+
+    // remove file from list
+    for (int i = index; i < photo_counter - 1; i++) {
+        strcpy(photo_list[i], photo_list[i + 1]);
+    }
+    memset(photo_list[photo_counter - 1], 0, sizeof(photo_list[photo_counter - 1]));
+    photo_counter--;
 
     xil_printf("[sd] File successfully deleted!\r\n");
     return XST_SUCCESS;
@@ -221,6 +236,7 @@ int sd_get_photo_count(void) {
     DIR dir;
     FILINFO finfo;
     FRESULT result;
+    file_id_counter = 0;
 
     result = f_opendir(&dir, "0:/");
     if (result != FR_OK) {
@@ -238,7 +254,15 @@ int sd_get_photo_count(void) {
         if (!(finfo.fattrib & AM_DIR)) {
             if (strncmp(finfo.fname, "IMG_", 4) == 0 &&
                 strstr(finfo.fname, ".BMP") != NULL) {
-                photo_counter++;
+                if (photo_counter < MAX_PHOTOS) {
+                    snprintf(photo_list[photo_counter], sizeof(photo_list[photo_counter]), "0:/%s", finfo.fname);
+                    photo_counter++;
+
+                    int id = 0;
+                    if (sscanf(finfo.fname, "IMG_%04d.BMP", &id) == 1) {
+                        file_id_counter = id + 1;
+                    }
+                }
             }
         }
     }

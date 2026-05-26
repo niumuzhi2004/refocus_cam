@@ -117,8 +117,21 @@ int main () {
 
         if (photo_delete_selected) {
             if (mode == MODE_ALBUM) {
-                sd_card_delete(current_photo_index);
+                sd_card_delete(current_photo_index - 1);
                 xil_printf("[UI] Photo successfully deleted!\r\n");
+
+                max_photo_index--;
+                if (max_photo_index == 0) {
+                    mode = MODE_LIVE;
+                    vdma_write_resume();
+                    xil_printf("[UI] No photos to show!\r\n");
+                } else {
+                    if (current_photo_index > max_photo_index) {
+                        current_photo_index--;
+                    }
+                    sd_card_read(current_photo_index - 1);
+                    xil_printf("[UI] Displaying remaining photo\r\n");
+                }
             } else {
                 xil_printf("[UI] Photo delete disabled in live mode!\r\n");
             }
